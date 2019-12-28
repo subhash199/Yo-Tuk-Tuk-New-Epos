@@ -1,0 +1,20 @@
+﻿<Window x:Class="Yo_Tuk_Tuk_Epos.SignUpForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
+        mc:Ignorable="d"
+        Title="SignUpForm" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="17,57,0,0" VerticalAlignment="Top" Style="{StaticResource labelModifier}"/>
+        <Label x:Name="LogInlabel" Content="Log In ID" HorizontalAlignment="Left" Margin="17,131,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=labelModifier}"/>
+        <Label x:Name="AccessCode" Content="Access Code" HorizontalAlignment="Left" Margin="17,200,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=labelModifier}"/>
+        <TextBox x:Name="logInBox" HorizontalAlignment="Left" Height="42" Margin="322,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,1.574" Style="{StaticResource textboxMod}"/>
+        <Button x:Name="signup_btn" Content="Yo! Sign up" HorizontalAlignment="Left" Margin="373,273,0,0" VerticalAlignment="Top" Style="{StaticResource mainButtons}" Click="Signup_btn_Click"/>
+        <Label x:Name="errorPrompt_label" Content="" HorizontalAlignment="Left" Margin="257,9,0,0" VerticalAlignment="Top" Style="{StaticResource labelModifier}" Width="268" RenderTransformOrigin="0.4,0.431" Height="45"/>
+        <TextBox x:Name="name_box" HorizontalAlignment="Left" Height="42" Margin="322,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,1.574" Style="{StaticResource textboxMod}"/>
+        <PasswordBox x:Name="accessBox" HorizontalAlignment="Left" Margin="322,211,0,0" VerticalAlignment="Top" Height="42" Width="199" FontSize="24"/>
+
+    </Grid>
+</Window>
