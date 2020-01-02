@@ -5,44 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
-        Title="RestaurantLayout" Height="600" Width="1000" HorizontalAlignment="Center" WindowState="Maximized">
-    <Grid Margin="0,10,3.333,-19.333" RenderTransformOrigin="0.664,0.523" HorizontalAlignment="Center" Width="990">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="321.333"/>
-            <RowDefinition Height="auto" MinHeight="521.333"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" MinWidth="494.667"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto" MinWidth="674.667"/>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="_1btn" Click="_1btn_Click" Content="1" HorizontalAlignment="Center" Margin="10,37,353.667,224.333" VerticalAlignment="center" Style="{StaticResource tables}" Background="#FF4EE715"/>
-        <Button x:Name="_2btn" Content="2" HorizontalAlignment="Center" Margin="179,37,184.667,224.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="_4btn" Content="4" HorizontalAlignment="Center" Margin="10.333,34,533.333,227.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="_3btn" Content="3" HorizontalAlignment="Center" Margin="351,38,12.667,223.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="_5btn" Content="5" HorizontalAlignment="Center" Margin="173.333,33,370.333,228.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="_6btn" Content="6" HorizontalAlignment="Center" Margin="337.333,32,206.333,229.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="_7btn" Content="7" HorizontalAlignment="Center" Margin="10,124,353.667,137.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="b1btn" Content="B1" HorizontalAlignment="Center" Margin="179,124,184.667,137.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="b2btn" Content="B2" HorizontalAlignment="Center" Margin="351,124,12.667,137.333" VerticalAlignment="center" Style="{StaticResource tables}" RenderTransformOrigin="0.697,0.1"/>
-        <Button x:Name="b3btn" Content="B3" HorizontalAlignment="Center" Margin="10.333,119,533.333,142.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2" RenderTransformOrigin="0.412,1.011"/>
-        <Button x:Name="b4btn" Content="B4" HorizontalAlignment="Center" Margin="173.333,118,370.333,143.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="b5btn" Content="B5" HorizontalAlignment="Center" Margin="337.333,119,206.333,142.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="b6btn" Content="B6" HorizontalAlignment="Center" Margin="10,219,353.667,42.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="b7btn" Content="B7" HorizontalAlignment="Center" Margin="179,219,184.667,42.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="_8btn" Content="8" HorizontalAlignment="Center" Margin="351,219,12.667,42.333" VerticalAlignment="center" Style="{StaticResource tables}"/>
-        <Button x:Name="_9btn" Content="9" HorizontalAlignment="Center" Margin="10.333,215,533.333,46.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="_10btn" Content="10" HorizontalAlignment="Center" Margin="173.333,214,370.333,47.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="_11btn" Content="11" HorizontalAlignment="Center" Margin="337.333,215,206.333,46.333" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2"/>
-        <Button x:Name="_12btn" Content="12" HorizontalAlignment="Center" Margin="10,4.667,353.667,456.667" VerticalAlignment="center" Style="{StaticResource tables}" RenderTransformOrigin="0.58,-0.622" Grid.Row="1"/>
-        <Button x:Name="_13btn" Content="13" HorizontalAlignment="Center" Margin="179,4.667,184.667,456.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Row="1"/>
-        <Button x:Name="_14btn" Content="14" HorizontalAlignment="Center" Margin="351,4.667,12.667,456.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Row="1"/>
-        <Button x:Name="twbtn" Content="TW" HorizontalAlignment="Center" Margin="10.333,93.667,533.333,367.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Row="1" Grid.Column="2"/>
-        <Button x:Name="_18btn" Content="18" HorizontalAlignment="Center" Margin="351,98.667,12.667,362.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Row="1"/>
-        <Button x:Name="_17btn" Content="17" HorizontalAlignment="Center" Margin="337.333,326,206.333,466.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2" Grid.RowSpan="2"/>
-        <Button x:Name="_16btn" Content="16" HorizontalAlignment="Center" Margin="173.333,326,370.333,466.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Column="2" Grid.RowSpan="2"/>
-        <Button x:Name="_15btn" Content="15" HorizontalAlignment="Center" Margin="10.333,9.667,533.333,451.667" VerticalAlignment="center" Style="{StaticResource tables}" Grid.Row="1" Grid.Column="2"/>
+        Title="RestaurantLayout" Height="720" Width="1280" WindowState="Maximized">
+    <Grid>
+        <Viewbox HorizontalAlignment="Center">
+            <Grid >
+                <Viewbox Margin="0,-52,0,350">
+                    <Label Content="Table Layout" FontSize="24"></Label>
+                </Viewbox>
+                
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="_1btn" Click="_1btn_Click" Content="1" Height="70" Width="141" FontSize="34" Style="{StaticResource tables}" />
+                        <Button x:Name="_2btn" Content="2"  Style="{StaticResource tables}" Click="_2btn_Click"/>                       
+                        <Button x:Name="_3btn" Content="3"  Style="{StaticResource tables}" Click="_3btn_Click"/>
+                        <Button x:Name="_4btn" Content="4"   Style="{StaticResource tables}"  Click="_4btn_Click"/>
+                        <Button x:Name="_5btn" Content="5"  Style="{StaticResource tables}"  Click="_5btn_Click"/>
+                        <Button x:Name="_6btn" Content="6"   Style="{StaticResource tables}"  Click="_6btn_Click"/>
 
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                       
+                        <Button x:Name="_7btn" Content="7"  Style="{StaticResource tables}" Click="_7btn_Click"/>
+                        <Button x:Name="b1btn" Content="B1"   Style="{StaticResource tables}" Click="b1btn_Click"/>
+                        <Button x:Name="b2btn" Content="B2"  Style="{StaticResource tables}" Click="b2btn_Click"/>
+                        <Button x:Name="b3btn" Content="B3"   Style="{StaticResource tables}" Click="b3btn_Click"/>
+                        <Button x:Name="b4btn" Content="B4"  Style="{StaticResource tables}"  Click="b4btn_Click"/>
+                        <Button x:Name="b5btn" Content="B5"  Style="{StaticResource tables}"  Click="b5btn_Click"/>
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <Button x:Name="b6btn" Content="B6"   Style="{StaticResource tables}" Click="b6btn_Click"/>
+                        <Button x:Name="b7btn" Content="B7"  Style="{StaticResource tables}" Click="b7btn_Click"/>
+                        <Button x:Name="_8btn" Content="8"  Style="{StaticResource tables}" Click="_8btn_Click"/>
+                        <Button x:Name="_9btn" Content="9"  Style="{StaticResource tables}"  Click="_9btn_Click"/>
+                        <Button x:Name="_10btn" Content="10"   Style="{StaticResource tables}"  Click="_10btn_Click"/>
+                        <Button x:Name="_11btn" Content="11"   Style="{StaticResource tables}"  Click="_11btn_Click"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                      
+                        <Button x:Name="_12btn" Content="12"  Style="{StaticResource tables}" Click="_12btn_Click"/>
+                        <Button x:Name="_13btn" Content="13"   Style="{StaticResource tables}" Click="_13btn_Click"/>
+                        <Button x:Name="_14btn" Content="14"  Style="{StaticResource tables}" Click="_14btn_Click"/>
+                        <Button x:Name="_15btn" Content="15"   Style="{StaticResource tables}"  Click="_15btn_Click"/>
+                        <Button x:Name="_16btn" Content="16"  Style="{StaticResource tables}"  Click="_16btn_Click" />
+                        <Button x:Name="_17btn" Content="17"   Style="{StaticResource tables}"  Click="_17btn_Click"/>
+
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">  
+                        <Button x:Name="_18btn" Content="18"  Style="{StaticResource tables}" Click="_18btn_Click"/>
+                        <Button x:Name="twbtn" Content="TW"  Style="{StaticResource tables}" />
+                        
+                    </StackPanel>
+              
+
+           
+                </StackPanel>
+            </Grid>
+            
+        </Viewbox>
+      
     </Grid>
 </Window>

@@ -8,17 +8,29 @@
             <Setter Property="Height" Value="70"/>
             <Setter Property="Width" Value="141"/>
             <Setter Property="FontSize" Value="34"/>
-            <Setter Property="Template">                
+            <Setter Property="Background" Value="#FF4EE715"/>
+                <Setter Property="Template">                
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20"
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                            <Border CornerRadius="20"
                                 Background="#FF4EE715"
                                  BorderThickness="1">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-                                
-                            </ContentPresenter>
-                            
-                        </Border>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                       
                     </ControlTemplate>
                 </Setter.Value>
                     
@@ -52,13 +64,25 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#FF59E11D"
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                            <Border Background="#FF59E11D"
                                 CornerRadius="20"
                                 BorderThickness="1">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-                                
-                            </ContentPresenter>
-                        </Border>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -98,133 +122,295 @@
             
         </Style>
         <Style x:Key="Starters" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Rockwell"/>
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid" >
                             <Ellipse Fill="#FFF1732B"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
         </Style>
         <Style x:Key="MainCourse" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Rockwell"/>
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
                             <Ellipse Fill="#FFF62E2E"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
         </Style>
         <Style x:Key="SideOrders" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Rockwell"/>
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid" >
                             <Ellipse Fill="#FFF2F92B"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
         </Style>
         <Style x:Key="Carbs" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Rockwell"/>
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid" >
                             <Ellipse Fill="#FF33EAF6"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
         </Style>
         <Style x:Key="specialOffers" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Rockwell"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
                             <Ellipse Fill="Black"/>
                             
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
         </Style>
         <Style x:Key="Desserts" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Rockwell"/>
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
                             <Ellipse Fill="Snow"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
         </Style>
         <Style x:Key="Plus" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
             
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid" >
                             <Ellipse Fill="#FF33E80B" />
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="Minus" TargetType="Button">
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
 
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid >
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
                             <Ellipse Fill="#FFF31C1C" />
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="RestaurantMenuButtons" TargetType="Button">
+            <Setter Property="MinHeight" Value="80"/>
+            <Setter Property="MinWidth" Value="160"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">                                                      
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+        <Style x:Key="PayButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                            <Border Background="#FF59E11D"
+                                CornerRadius="20"
+                                BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+        <Style x:Key="Tranform" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                            <Border Background="#FF59E11D"
+                                CornerRadius="20"
+                                BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter TargetName="RootGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+       
+               
     </Application.Resources>
     
 </Application>

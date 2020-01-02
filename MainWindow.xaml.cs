@@ -25,16 +25,20 @@ namespace Yo_Tuk_Tuk_Epos
         {
             InitializeComponent();
             //RestaurantMenu menu = new RestaurantMenu();
-            ////this.Close();
+            //this.Close();
             //menu.Show();
+            //RestaurantLayout layout = new RestaurantLayout();
+            //this.Close();
+            //layout.Show();
         }
 
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
         {
             SignUpForm sign = new SignUpForm();
             sign.Show();
-        }
-
+        }      
+        
+        
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
             string userId = Password_box.Password;

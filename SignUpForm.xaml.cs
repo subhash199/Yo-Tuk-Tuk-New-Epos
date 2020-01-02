@@ -44,34 +44,35 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     name = name_box.Text;
                     id = logInBox.Text;
-                }
-                StreamReader reader = new StreamReader("../../UserDetails.txt");
-                string copyRead = reader.ReadToEnd();
-                //string[] read = File.ReadAllLines("../../UserDetails.txt");
-
-                //string copyRead = "";
-                //for (int i = 0; i < read.Length; i++)
-                //{
-                //    copyRead += read[i];
-                //}
-                reader.Close();
-                string[] splitDetails = copyRead.Split(',');                
-                for (int i = 0; i < splitDetails.Length; i++)
-                {
-                    if(splitDetails[i]==id)
+                    if(File.Exists("../../UserDetails.txt")==false)
                     {
-                        idExist = true;
-                        errorPrompt_label.Content = "User Id already exists!";
+                        StreamWriter write = new StreamWriter("../../UserDetails.txt");
+                        write.Close();
+                    }
+                    StreamReader reader = new StreamReader("../../UserDetails.txt");
+                    string copyRead = reader.ReadToEnd();
+                    reader.Close();
+                    string[] splitDetails = copyRead.Split(',');
+                    for (int i = 0; i < splitDetails.Length; i++)
+                    {
+                        if (splitDetails[i] == id)
+                        {
+                            idExist = true;
+                            errorPrompt_label.Content = "User Id already exists!";
+                        }
+                    }
+
+                    if (idExist == false)
+                    {
+                        StreamWriter write = new StreamWriter("../../UserDetails.txt", true);
+                        
+                        write.Write(id + "," + name + ",");
+                        write.Close();
+                        this.Close();
+                       
                     }
                 }
-              
-                if(idExist==false)
-                {
-                    StreamWriter write = new StreamWriter("../../UserDetails.txt",true);
-                    write.Write(id + "," + name+",");
-                    write.Close();
-                    this.Close();
-                }           
+               
                 
             }
             else

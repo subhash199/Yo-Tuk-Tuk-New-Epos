@@ -6,67 +6,314 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
-        Title="RestaurantMenu" Height="720" Width="1280" WindowState="Maximized" SizeChanged="Window_SizeChanged">
-    <Canvas x:Name="menuCanvas">
-        <Button x:Name="bombay_bnt" Content="Bombay Mix" Canvas.Left="3" Click="Bombay_bnt_Click" Canvas.Top="5" Style="{StaticResource Starters}"/>
-        <Button x:Name="FishLeek_btn" Content="Fish &amp; Leek" Canvas.Left="3" Click="FishLeek_btn_Click" Canvas.Top="110" Style="{StaticResource ResourceKey=Starters}"/>
-        <Button x:Name="Fish_btn" Content="Fish &amp; Chips" Canvas.Left="839" Click="Fish_btn_Click" Style="{StaticResource ResourceKey=Starters}" Canvas.Top="5"/>
-        <Button x:Name="Keema_btn" Content="Keema Aloo" Canvas.Left="734" Canvas.Top="5" Click="Keema_btn_Click" Style="{StaticResource ResourceKey=Starters}"/>
-        <Button x:Name="bangers_btn" Content="Bangers &amp; Mash" Canvas.Left="629" Click="Bangers_btn_Click" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}"/>
-        <Button x:Name="dirty_btn" Content="Dirty Bird" Canvas.Left="525" Canvas.Top="5" Click="Dirty_btn_Click" Style="{StaticResource ResourceKey=Starters}"/>
-        <Button x:Name="sweet_btn" Content="Sweet chilli" Canvas.Left="420" Style="{StaticResource ResourceKey=Starters}" Click="Sweet_btn_Click" Canvas.Top="5"/>
-        <Button x:Name="Goat_btn" Content="Goat Cheese" Canvas.Left="314" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}" Click="Goat_btn_Click_1" />
-        <Button x:Name="Samosas_btn" Content="Samosas" Canvas.Left="211" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}" Click="Samosas_btn_Click"/>
-        <Button x:Name="Bombay_btn" Content="Bombay Cool" Canvas.Left="109" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}" Click="Bombay_btn_Click"/>
-        <Button x:Name="Railway_btn" Content="Railway Lamp" Canvas.Left="3" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="Railway_btn_Click"/>
-        <Button x:Name="Butter_btn" Content="Butter Mossala" Canvas.Left="839" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Butter_btn_Click"/>
-        <Button x:Name="Staff_btn" Content="Staff Curry" Canvas.Left="734" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Staff_btn_Click"/>
-        <Button x:Name="Goan_btn" Content="Goan Fish" Canvas.Left="629" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Goan_btn_Click_1" />
-        <Button x:Name="Coconut_btn" Content="Coconut Chicken" Canvas.Left="525" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Coconut_btn_Click"/>
-        <Button x:Name="Mango_btn" Content="Mango Prawn" Canvas.Left="420" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Mango_btn_Click"/>
-        <Button x:Name="Lemon_btn" Content="Lemon Fish" Canvas.Left="314" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Lemon_btn_Click"/>
-        <Button x:Name="Modu_btn" Content="Modu Chilli" Canvas.Left="211" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Modu_btn_Click"/>
-        <Button x:Name="Bengal_btn" Content="Bengal Burner" Canvas.Left="109" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Bengal_btn_Click"/>
-        <Button x:Name="Mixed_btn" Content="Mixed Biriyani" Canvas.Left="109" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="Mixed_btn_Click"/>
-        <Button x:Name="Korai_btn" Content="Korai keema" Canvas.Left="211" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="Korai_btn_Click"/>
-        <Button x:Name="GarlicSide_btn" Content="Garlic Dhal&#xD;&#xA;Side&#xD;&#xA;&#xD;&#xA;" Canvas.Left="314" Canvas.Top="216" Style="{StaticResource ResourceKey=SideOrders}" Click="Garlic_btn_Click"/>
-        <Button x:Name="BengalPotatoSide_btn" Content="Bengal Potato&#xD;&#xA;Side" Canvas.Left="525" Canvas.Top="215" Style="{StaticResource ResourceKey=SideOrders}" Click="BengalPotato_btn_Click"/>
-        <Button x:Name="SpinachSide_btn" Content="Coconut Spinach&#xD;&#xA;Side" Canvas.Left="734" Canvas.Top="213" Style="{StaticResource ResourceKey=SideOrders}" Click="Spinach_btn_Click"/>
-        <Button x:Name="ChickMain_btn" Content="Chick Pea Mush&#xD;&#xA;Main" Canvas.Left="109" Canvas.Top="319" Style="{StaticResource ResourceKey=SideOrders}" Click="ChickMain_btn_Click" />
-        <Button x:Name="vegSide_btn" Content="Mixed Veg&#xD;&#xA;Side" Canvas.Left="211" Canvas.Top="319" Style="{StaticResource ResourceKey=SideOrders}" Click="Veg_btn_Click"/>
-        <Button x:Name="Aloo_btn" Content="Aloo Puri" Canvas.Left="420" Canvas.Top="321" Style="{StaticResource ResourceKey=Carbs}" Click="Aloo_btn_Click"/>
-        <Button x:Name="Noon_btn" Content="Noon Bora" Canvas.Left="734" Canvas.Top="319" Style="{StaticResource ResourceKey=Carbs}" Click="Noon_btn_Click"/>
-        <Button x:Name="Chapatti_btn" Content="Chapatti" Canvas.Left="525" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" Click="Chapatti_btn_Click"/>
-        <Button x:Name="Porota_btn" Content="Porata" Canvas.Left="629" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" Click="Porota_btn_Click"/>
-        <Button x:Name="Bread_btn" Content="Bread Basket" Canvas.Left="839" Canvas.Top="319" Style="{StaticResource ResourceKey=Carbs}" Click="Bread_btn_Click"/>
-        <Button x:Name="_1pt_btn" Content="1pt Rice" Canvas.Left="3" Canvas.Top="429" Style="{StaticResource ResourceKey=Carbs}" Click="_1pt_btn_Click"/>
-        <Button x:Name="Half_btn" Content="half pt Rice" Canvas.Left="109" Canvas.Top="429" Style="{StaticResource ResourceKey=Carbs}" Click="Half_btn_Click"/>
-        <Button x:Name="Gulab_btn" Content="Gulab Jamun" Canvas.Left="211" Canvas.Top="429" Style="{StaticResource ResourceKey=Desserts}" Click="Gulab_btn_Click"/>
-        <Button x:Name="Macaroons_btn" Content="Macaroons" Canvas.Left="314" Canvas.Top="429" Style="{StaticResource ResourceKey=Desserts}" Click="Macaroons_btn_Click"/>
-        <Button x:Name="Sorbet_btn" Content="Mixed sorbet" Canvas.Left="420" Canvas.Top="429" Style="{StaticResource ResourceKey=Desserts}" Click="Sorbet_btn_Click"/>
-        <Button x:Name="Vanillia_btn" Content="Vanilla Ice Cream" Canvas.Left="525" Canvas.Top="424" Style="{StaticResource ResourceKey=Desserts}" Click="Vanillia_btn_Click"/>
-        <Button x:Name="Kulfi_btn" Content="Kulfi" Canvas.Left="629" Canvas.Top="424" Style="{StaticResource ResourceKey=Desserts}" Click="Kulfi_btn_Click"/>
-        <Button x:Name="Cancel_btn" Content="Cancel"  Canvas.Left="315" Canvas.Top="556"  Height="83" Width="204" FontWeight="Bold" FontSize="24" Background="#FFFF0B0B" Click="Cancel_btn_Click"/>
-        <Button x:Name="Save_btn" Content="Hold or Save" Canvas.Left="523" Canvas.Top="556" Height="83" Width="204" FontWeight="Bold" FontSize="24" Background="#FF1C1C97" Click="Save_btn_Click"/>
-        <Button x:Name="Pay_btn" Content="Pay" Canvas.Left="1023" Canvas.Top="555" Height="83" Width="204" FontWeight="Bold" FontSize="24" Background="#FF1DDB2E" Click="Pay_btn_Click"/>
-        <Label Content="Order" Canvas.Left="1057" Canvas.Top="12" Height="33" Width="63" FontSize="18"/>
-        <Button x:Name="plus_btn" Content="+" Canvas.Left="734" Canvas.Top="549" Style="{StaticResource Plus}" FontSize="36" Click="Button_Click_2"/>
-        <Button x:Name="minus_btn" Content="-" Canvas.Left="839" Canvas.Top="547" Style="{StaticResource ResourceKey=Minus}" FontSize="36" Click="Minus_btn_Click"/>
-        <Label Content="Total" Canvas.Left="1097" Canvas.Top="477" FontSize="24" FontWeight="Bold"/>
-        <ListBox x:Name="order_Box" Height="395" Canvas.Left="964" Canvas.Top="68" Width="219" SelectionChanged="Order_Box_SelectionChanged" FontSize="20" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch"/>
-        <ListBox x:Name="price_box" Height="395" Canvas.Left="1182" Canvas.Top="68" Width="91" SelectionChanged="Order_Box_SelectionChanged" FontSize="20" BorderBrush="{x:Null}"/>
-        <Button x:Name="GarlicMain_btn" Content="Garlic Dhal&#xD;&#xA;Main" Canvas.Left="420" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" Click="GarlicMain_btn_Click"/>
-        <Button x:Name="BengalPotatoMain_btn" Content="Bengal Potato&#xD;&#xA;Main" Canvas.Left="629" Canvas.Top="217" Style="{StaticResource ResourceKey=SideOrders}" Click="BengalPotatoMain_btn_Click"/>
-        <Button x:Name="SpinachMain_btn_Copy" Content="Coconut Spinach&#xD;&#xA;Main" Canvas.Left="839" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" Click="SpinachMain_btn_Copy_Click" />
-        <Button x:Name="ChickSide_btn" Content="Chick Pea Mush&#xD;&#xA;Side" Canvas.Left="3" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" Click="Chick_btn_Click"/>
-        <Button x:Name="vegMain_btn" Content="Mixed Veg&#xA;Main" Canvas.Left="314" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" Click="VegMain_btn_Click" />
-        <TextBlock x:Name="total_box" Canvas.Left="1165" TextWrapping="Wrap" Text="" Canvas.Top="479" Height="44" Width="105" FontSize="24"/>
-        <Button x:Name="NonVeg_btn" Content="Non-Veg Thali" Canvas.Left="109" Canvas.Top="540" Style="{StaticResource ResourceKey=specialOffers}" Click="NonVeg_btn_Click"/>
-        <Button x:Name="VegThali_btn" Content="Veg Thali" Canvas.Left="3" Canvas.Top="540" Style="{StaticResource ResourceKey=specialOffers}" Click="VegThali_btn_Click" />
-        <Button x:Name="SchoolBoy_btn" Content="School Boy Tiffin" Canvas.Left="839" Canvas.Top="424" Style="{StaticResource ResourceKey=specialOffers}" Click="SchoolBoy_btn_Click" />
-        <Button x:Name="officeWorker_btn" Content="Office Tiffin" Canvas.Left="734" Canvas.Top="424" Style="{StaticResource ResourceKey=specialOffers}" Click="OfficeWorker_btn_Click"/>
-        <Button x:Name="Taster_Button" Content="Taster Menu" Canvas.Left="211" Canvas.Top="540" Style="{StaticResource ResourceKey=specialOffers}" Click="Taster_Button_Click"/>
+        Title="RestaurantMenu" Height="720" Width="1280" WindowState="Maximized">
+    <Grid x:Name="Origin" >
+        <Viewbox HorizontalAlignment="left">
+            <Grid x:Name="menuCanvas">
+                <StackPanel >
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="bombay_bnt" Content="Bombay Mix" Canvas.Left="3" Click="Bombay_bnt_Click" Canvas.Top="5" Style="{StaticResource Starters}"/>
+                        <Button x:Name="Bombay_btn" Content="Bombay Cool" Canvas.Left="109" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}" Click="Bombay_btn_Click"/>
+                        <Button x:Name="Samosas_btn" Content="Samosas" Canvas.Left="211" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}" Click="Samosas_btn_Click"/>
+                        <Button x:Name="Goat_btn" Content="Goat Cheese" Canvas.Left="314" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}" Click="Goat_btn_Click_1" />
+                        <Button x:Name="sweet_btn" Content="Sweet chilli" Canvas.Left="420" Style="{StaticResource ResourceKey=Starters}" Click="Sweet_btn_Click" Canvas.Top="5"/>
+                        <Button x:Name="dirty_btn" Content="Dirty Bird" Canvas.Left="525" Canvas.Top="5" Click="Dirty_btn_Click" Style="{StaticResource ResourceKey=Starters}"/>
+                        <Button x:Name="bangers_btn" Content="Bangers &amp; Mash" Canvas.Left="629" Click="Bangers_btn_Click" Canvas.Top="5" Style="{StaticResource ResourceKey=Starters}"/>
+                        <Button x:Name="Keema_btn" Content="Keema Aloo" Canvas.Left="734" Canvas.Top="5" Click="Keema_btn_Click" Style="{StaticResource ResourceKey=Starters}"/>
+                        <Button x:Name="Fish_btn" Content="Fish &amp; Chips" Canvas.Left="839" Click="Fish_btn_Click" Style="{StaticResource ResourceKey=Starters}" Canvas.Top="5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="FishLeek_btn" Content="Fish &amp; Leek" Canvas.Left="3" Click="FishLeek_btn_Click" Canvas.Top="110" Style="{StaticResource ResourceKey=Starters}"/>
+                        <Button x:Name="Bengal_btn" Content="Bengal Burner" Canvas.Left="109" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Bengal_btn_Click"/>
+                        <Button x:Name="Modu_btn" Content="Modu Chilli" Canvas.Left="211" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Modu_btn_Click"/>
+                        <Button x:Name="Lemon_btn" Content="Lemon Fish" Canvas.Left="314" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Lemon_btn_Click"/>
+                        <Button x:Name="Mango_btn" Content="Mango Prawn" Canvas.Left="420" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Mango_btn_Click"/>
+                        <Button x:Name="Coconut_btn" Content="Coconut Chicken" Canvas.Left="525" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Coconut_btn_Click"/>
+                        <Button x:Name="Goan_btn" Content="Goan Fish" Canvas.Left="629" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Goan_btn_Click_1" />
+                        <Button x:Name="Staff_btn" Content="Staff Curry" Canvas.Left="734" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Staff_btn_Click"/>
+                        <Button x:Name="Butter_btn" Content="Butter Mossala" Canvas.Left="839" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="Butter_btn_Click"/>
+
+                    </StackPanel>
 
 
-    </Canvas>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="Railway_btn" Content="Railway Lamp" Canvas.Left="3" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="Railway_btn_Click"/>
+                        <Button x:Name="Mixed_btn" Content="Mixed Biriyani" Canvas.Left="109" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="Mixed_btn_Click"/>
+                        <Button x:Name="Korai_btn" Content="Korai keema" Canvas.Left="211" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="Korai_btn_Click"/>
+                        <Button x:Name="GarlicSide_btn" Content="Garlic Dhal&#xD;&#xA;Side" Canvas.Left="314" Canvas.Top="216" Style="{StaticResource ResourceKey=SideOrders}" Click="Garlic_btn_Click"/>
+                        <Button x:Name="GarlicMain_btn" Content="Garlic Dhal&#xD;&#xA;Main" Canvas.Left="420" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" Click="GarlicMain_btn_Click"/>
+                        <Button x:Name="BengalPotatoSide_btn" Content="Bengal Potato&#xD;&#xA;Side" Canvas.Left="525" Canvas.Top="215" Style="{StaticResource ResourceKey=SideOrders}" Click="BengalPotato_btn_Click"/>
+                        <Button x:Name="BengalPotatoMain_btn" Content="Bengal&#xD;Potato&#xD;&#xA;Main" Canvas.Left="629" Canvas.Top="217" Style="{StaticResource ResourceKey=SideOrders}" Click="BengalPotatoMain_btn_Click"/>
+                        <Button x:Name="SpinachSide_btn" Content="Coconut&#xD;Spinach&#xD;&#xA;Side" Canvas.Left="734" Canvas.Top="213" Style="{StaticResource ResourceKey=SideOrders}" Click="Spinach_btn_Click"/>
+                        <Button x:Name="SpinachMain_btn_Copy" Content="Coconut&#xD;Spinach&#xD;&#xA;Main" Canvas.Left="839" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" Click="SpinachMain_btn_Copy_Click" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="ChickSide_btn" Content="Chick Pea&#xD;Mush&#xD;&#xA;Side" Canvas.Left="3" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" Click="Chick_btn_Click"/>
+                        <Button x:Name="ChickMain_btn" Content="Chick Pea&#xD; Mush&#xD;&#xA;Main" Canvas.Left="109" Canvas.Top="319" Style="{StaticResource ResourceKey=SideOrders}" Click="ChickMain_btn_Click" />
+                        <Button x:Name="vegSide_btn" Content="Mixed Veg&#xD;&#xA;Side" Canvas.Left="211" Canvas.Top="319" Style="{StaticResource ResourceKey=SideOrders}" Click="Veg_btn_Click"/>
+                        <Button x:Name="vegMain_btn" Content="Mixed Veg&#xA;Main" Canvas.Left="314" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" Click="VegMain_btn_Click" />
+                        <Button x:Name="Aloo_btn" Content="Aloo Puri" Canvas.Left="420" Canvas.Top="321" Style="{StaticResource ResourceKey=Carbs}" Click="Aloo_btn_Click"/>
+                        <Button x:Name="Chapatti_btn" Content="Chapatti" Canvas.Left="525" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" Click="Chapatti_btn_Click"/>
+                        <Button x:Name="Porota_btn" Content="Porata" Canvas.Left="629" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" Click="Porota_btn_Click"/>
+                        <Button x:Name="Noon_btn" Content="Noon Bora" Canvas.Left="734" Canvas.Top="319" Style="{StaticResource ResourceKey=Carbs}" Click="Noon_btn_Click"/>
+                        <Button x:Name="Bread_btn" Content="Bread Basket" Canvas.Left="839" Canvas.Top="319" Style="{StaticResource ResourceKey=Carbs}" Click="Bread_btn_Click"/>
+
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="_1pt_btn" Content="1pt Rice" Canvas.Left="3" Canvas.Top="429" Style="{StaticResource ResourceKey=Carbs}" Click="_1pt_btn_Click"/>
+                        <Button x:Name="Half_btn" Content="half pt Rice" Canvas.Left="109" Canvas.Top="429" Style="{StaticResource ResourceKey=Carbs}" Click="Half_btn_Click"/>
+                        <Button x:Name="Gulab_btn" Content="Gulab Jamun" Canvas.Left="211" Canvas.Top="429" Style="{StaticResource ResourceKey=Desserts}" Click="Gulab_btn_Click"/>
+                        <Button x:Name="Macaroons_btn" Content="Macaroons" Canvas.Left="314" Canvas.Top="429" Style="{StaticResource ResourceKey=Desserts}" Click="Macaroons_btn_Click"/>
+                        <Button x:Name="Sorbet_btn" Content="Mixed sorbet" Canvas.Left="420" Canvas.Top="429" Style="{StaticResource ResourceKey=Desserts}" Click="Sorbet_btn_Click"/>
+                        <Button x:Name="Vanillia_btn" Content="Vanilla Ice Cream" Canvas.Left="525" Canvas.Top="424" Style="{StaticResource ResourceKey=Desserts}" Click="Vanillia_btn_Click"/>
+                        <Button x:Name="Kulfi_btn" Content="Kulfi" Canvas.Left="629" Canvas.Top="424" Style="{StaticResource ResourceKey=Desserts}" Click="Kulfi_btn_Click"/>
+                        <Button x:Name="officeWorker_btn" Content="Office Tiffin" Canvas.Left="734" Canvas.Top="424" Style="{StaticResource ResourceKey=specialOffers}" Click="OfficeWorker_btn_Click"/>
+                        <Button x:Name="SchoolBoy_btn" Content="School Boy Tiffin" Canvas.Left="839" Canvas.Top="424" Style="{StaticResource ResourceKey=specialOffers}" Click="SchoolBoy_btn_Click" />
+
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="VegThali_btn" Content="Veg Thali" Canvas.Left="3" Canvas.Top="540" Style="{StaticResource ResourceKey=specialOffers}" Click="VegThali_btn_Click" />
+                        <Button x:Name="NonVeg_btn" Content="Non-Veg Thali" Canvas.Left="109" Canvas.Top="540" Style="{StaticResource ResourceKey=specialOffers}" Click="NonVeg_btn_Click"/>
+                        <Button x:Name="Taster_Button" Content="Taster Menu" Canvas.Left="211" Canvas.Top="540" Style="{StaticResource ResourceKey=specialOffers}" Click="Taster_Button_Click"/>
+                        <Button x:Name="plus_btn" Content="+" Style="{StaticResource Plus}" FontSize="36" Click="Button_Click_2" />
+                        <Button x:Name="minus_btn" Content="-" Canvas.Left="839" Canvas.Top="547" Style="{StaticResource ResourceKey=Minus}" FontSize="36" Click="Minus_btn_Click" />
+                        <Viewbox Width="357">
+                            <CheckBox x:Name="MemeberDiscount_btn" Content="Members Discount" Unchecked="MemeberDiscount_btn_Unchecked" Checked="MemeberDiscount_btn_Checked" />
+
+                        </Viewbox>
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="Back_btn"  Canvas.Left="315" Canvas.Top="556"  Height="80" Width="200" FontWeight="Bold" FontSize="24"  Click="Cancel_btn_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                                        <Border CornerRadius="20" Background="#FFF31C1C" BorderThickness="1" >
+                                            <TextBlock Text ="Back" Foreground="Black"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property ="IsPressed" Value ="True">
+                                            <Setter TargetName="RootGrid" Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="Save_btn" Canvas.Left="523" Canvas.Top="556" Height="80" Width="200" FontWeight="Bold" FontSize="24" Click="Save_btn_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                                        <Border CornerRadius="20" Background="#FF1A3EDE" BorderThickness="1" >
+                                            <TextBlock Text ="Hold/Save" Foreground="Black"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property ="IsPressed" Value ="True">
+                                            <Setter TargetName="RootGrid" Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="Pay_btn" Height="80" FontWeight="Bold" FontSize="24" Width="200" Click="Pay_btn_Click" >
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                                        <Border CornerRadius="20" Background="#FF1DDB2E" BorderThickness="1" >
+                                            <TextBlock Text ="Pay" Foreground="Black"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property ="IsPressed" Value ="True">
+                                            <Setter TargetName="RootGrid" Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="Print_btn"  Canvas.Left="1023" Canvas.Top="555" Height="80" FontWeight="Bold" FontSize="24" Width="200" Click="Print_btn_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                                        <Border CornerRadius="20" BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text ="Print Bill" Foreground="Black"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property ="IsPressed" Value ="True">
+                                            <Setter TargetName="RootGrid" Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Margin="0,0,-385,0" Width="380">
+                    <StackPanel Orientation="Vertical" Margin="0,0,58,0" >
+                        <Label x:Name="title_box" Content="Order Review" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" />
+                        <ListView x:Name="order_Box"  FontSize="16" BorderBrush="Black" HorizontalContentAlignment="Stretch" FontFamily="Courier New" SelectionMode="Multiple" Height="494" Margin="10,0" />
+
+                    </StackPanel>
+
+                    <DockPanel Margin="11,0,67,0">
+                        <Label x:Name="discount" DockPanel.Dock="Left" Content="Members Discount" FontSize="20" FontWeight="Bold" Height="34"  />
+                        <TextBlock x:Name="discountBox" DockPanel.Dock="Right" TextWrapping="Wrap" Text="" Height="26" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right" />
+
+                    </DockPanel>
+                    <DockPanel Height="36" Margin="11,0,67,0">
+                        <Label Content="Total"  DockPanel.Dock="Left" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock x:Name="total_box" DockPanel.Dock="Right" TextWrapping="Wrap" Text="" Height="26"  FontWeight="Bold" FontSize="20"  HorizontalAlignment="Right" />
+                    </DockPanel>
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+        <Grid x:Name="PaymentGrid" Visibility="Hidden" Background="White" >
+
+            <Viewbox x:Name="PayMent" HorizontalAlignment="Left">
+                <Grid x:Name="rightSide">
+                    <StackPanel >
+                        <StackPanel>
+                            <TextBlock x:Name="userInput" FontSize="24" TextAlignment="Center">
+
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btn_7" Content="7" Style="{StaticResource PayButton}" Click="Btn_7_Click" />
+                            <Button x:Name="btn_8" Content="8" Style="{StaticResource PayButton}" Click="Btn_8_Click" />
+                            <Button x:Name="btn_9" Content="9" Style="{StaticResource PayButton}" Click="Btn_9_Click"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btn_4" Content="4" Style="{StaticResource PayButton}" Click="Btn_4_Click" />
+                            <Button x:Name="btn_5" Content="5" Style="{StaticResource PayButton}" Click="Btn_5_Click"/>
+                            <Button x:Name="btn_6" Content="6" Style="{StaticResource PayButton}" Click="Btn_6_Click"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btn_1" Content="1" Style="{StaticResource PayButton}" Click="Btn_1_Click"/>
+                            <Button x:Name="btn_2" Content="2" Style="{StaticResource PayButton}" Click="Btn_2_Click"/>
+                            <Button x:Name="btn_3" Content="3" Style="{StaticResource PayButton}" Click="Btn_3_Click"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btn_0" Content="0 " Style="{StaticResource PayButton}" Click="Btn_0_Click"/>
+                            <Button x:Name="btn_dot" Content="." Style="{StaticResource PayButton}" Click="Btn_dot_Click" />
+                            <Button x:Name="btn_CE" Content="CE"  Height="50" Width="100" Click="Btn_CE_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border CornerRadius="20" BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text ="CE" Foreground="Black"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+
+                                            </TextBlock>
+
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="cash_btn" Height="50" Width="100" Click="Cash_btn_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border CornerRadius="20" BorderThickness="1" Background="#FF232AC9">
+                                            <TextBlock Text ="Cash" Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+
+                                            </TextBlock>
+
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button x:Name="card_btn" Height="50" Width="100" Click="Card_btn_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border CornerRadius="20" BorderBrush="Black" Background="#FF1F1616" BorderThickness="1">
+                                            <TextBlock Text ="Card" Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+
+                                            </TextBlock>
+
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button x:Name="Cancel" Height="50" Width="100" Background="#FF8F1B1B" Click="Cancel_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border CornerRadius="20" BorderBrush="Black" Background="#FFA21A1A" BorderThickness="1">
+                                            <TextBlock Text ="Back" Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+
+                                            </TextBlock>
+
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="303,39,-218,0">
+                        <Label x:Name="toPayLabel" Content="To Pay"  HorizontalContentAlignment="Center" FontSize="16" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="toPay_btn" Text="0" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,0"/>
+                        <Label x:Name="change_label" Content="Change" HorizontalAlignment="Center" FontSize="16" Margin="0,30,0,0"/>
+                        <TextBlock x:Name="change_btn" Text="0" HorizontalAlignment="Center" FontSize="16"/>
+                    </StackPanel>
+                </Grid>
+
+            </Viewbox>
+        </Grid>
+    </Grid>
+
+
 </Window>

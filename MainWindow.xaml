@@ -25,10 +25,10 @@
         <Separator Margin="258,209,263,177">
 
         </Separator>
-        <Button x:Name="login_btn" Content="Log In" HorizontalAlignment="Center" Margin="383,305,291,73" VerticalAlignment="Center" Click="Login_btn_Click" Style="{StaticResource mainButtons}" />
+        <Button x:Name="login_btn" Content="Log In" HorizontalAlignment="Center" Margin="383,305,291,73" VerticalAlignment="Center" Click="Login_btn_Click" Style="{StaticResource mainButtons}" KeyboardNavigation.TabIndex="1" IsDefault="True" />
         <Label x:Name="Title_label" Content="Yo! Tuk Tuk " HorizontalAlignment="Center" Margin="286,10,285,353" VerticalAlignment="Center" FontSize="36" Background="{x:Null}" Foreground="#FFEAF10E"/>
-        <PasswordBox x:Name="Password_box" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="302,244,323,127" VerticalAlignment="Center" Height="50" Width="155" FontSize="36"/>
-        <Button x:Name="signup_btn" Content="Sign Up" Click="Signup_btn_Click" HorizontalAlignment="Center" Margin="266,305,408,73" VerticalAlignment="Center" Style="{StaticResource mainButtons}"/>
+        <PasswordBox x:Name="Password_box" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="302,244,323,127" VerticalAlignment="Center" Height="50" Width="155" FontSize="36" KeyboardNavigation.TabIndex="0"/>
+        <Button x:Name="signup_btn" Content="Sign Up" Click="Signup_btn_Click" HorizontalAlignment="Center" Margin="266,305,408,73" VerticalAlignment="Center" Style="{StaticResource mainButtons}" KeyboardNavigation.TabIndex="2"/>
         <Label x:Name="prompt_label" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="260,371,283,13" VerticalAlignment="Center" Width="237" FontSize="18"/>
 
     </Grid>
