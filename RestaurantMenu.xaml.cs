@@ -43,6 +43,7 @@ namespace Yo_Tuk_Tuk_Epos
         string folderName = "";
         string txtFileName = "";
         
+        
 
         public void FolderFileName(string folder, string txtfile)
         {
@@ -92,7 +93,7 @@ namespace Yo_Tuk_Tuk_Epos
 
             try
             {
-                StreamReader reader = new StreamReader("..//..//Bills\\" + folderName + "\\" + txtFileName);
+                StreamReader reader = new StreamReader(txtFileName);
                 string[] splitArray = Regex.Split(reader.ReadToEnd(), "\r\n");
                 reader.Close();
                 for (int i = 0; i < splitArray.Length; i++)
@@ -353,20 +354,21 @@ namespace Yo_Tuk_Tuk_Epos
                         currentList.RemoveAt(i);
                         break;
                     }
+
                 }
+                
                 TotalUp();
             }
 
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            StreamWriter writer = new StreamWriter("..//..//Bills\\" + folderName + "\\" + txtFileName);
+            StreamWriter writer = new StreamWriter( txtFileName);
             for (int i = 0; i < currentList.Count; i++)
             {
                 writer.WriteLine(currentList[i]);
             }
-            writer.Close();
-            //this.DialogResult = true;
+            writer.Close();          
             this.Close();
         }
 
@@ -822,9 +824,11 @@ namespace Yo_Tuk_Tuk_Epos
             {
                 toPay_btn.Text = "0";
                 change_btn.Text = totalValue.ToString();
-                PaidReceipt();
-          
-                File.Move("..//..//Bills\\" + folderName + "\\" + txtFileName, "..//..//Bills\\" + folderName + "\\" +"paid "+txtFileName);
+                PaidReceipt();                
+                DateTime date = DateTime.Now;
+                string pDate = date.ToString("HH:mm");
+                pDate = pDate.Replace(':', ' ');
+                File.Move( txtFileName, "..//..//Bills\\" + folderName + "\\" +"paid Cash" + pDate + " "+txtFileName);
                 
             }
 
@@ -838,13 +842,14 @@ namespace Yo_Tuk_Tuk_Epos
             userInput.Text = userInput.Text.Remove(0);
             if (totalValue == 0 || totalValue < 0)
             {
+               
                 toPay_btn.Text = "0";
                 change_btn.Text = totalValue.ToString();
                 PaidReceipt();
                 DateTime date = DateTime.Now;
                 string pDate = date.ToString("HH:mm");
                 pDate = pDate.Replace(':', ' ');
-                File.Move("..//..//Bills\\" + folderName + "\\" + txtFileName, "..//..//Bills\\" + folderName + "\\" + "paid "+pDate+" "+ txtFileName);
+                File.Move(txtFileName, "..//..//Bills\\" + folderName + "\\" + "paid Card"+ pDate+" "+ txtFileName);
             }
         }
 

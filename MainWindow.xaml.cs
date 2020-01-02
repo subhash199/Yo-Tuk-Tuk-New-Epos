@@ -64,6 +64,7 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     Password_box.Clear();
                     RestaurantLayout layout = new RestaurantLayout();
+                    
                     layout.Show();
 
                 }
