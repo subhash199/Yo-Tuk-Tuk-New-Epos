@@ -1,0 +1,6 @@
+
+M,Coconut Chicken,9.95,
+St,Dirty Bird,4.95,
+St,Sweet chilli,4.95,
+M,Lemon Fish,12.95,
+Sd,Garlic Dhall S,3.95,

@@ -368,7 +368,8 @@ namespace Yo_Tuk_Tuk_Epos
             {
                 writer.WriteLine(currentList[i]);
             }
-            writer.Close();          
+            writer.Close();
+            this.DialogResult = true;
             this.Close();
         }
 
@@ -816,41 +817,13 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cash_btn_Click(object sender, RoutedEventArgs e)
         {
-            payment = decimal.Parse(userInput.Text);
-            totalValue -= payment;
-            toPay_btn.Text = totalValue.ToString();
-            userInput.Text = userInput.Text.Remove(0);
-            if(totalValue==0||totalValue<0)
-            {
-                toPay_btn.Text = "0";
-                change_btn.Text = totalValue.ToString();
-                PaidReceipt();                
-                DateTime date = DateTime.Now;
-                string pDate = date.ToString("HH:mm");
-                pDate = pDate.Replace(':', ' ');
-                File.Move( txtFileName, "..//..//Bills\\" + folderName + "\\" +"paid Cash" + pDate + " "+txtFileName);
-                
-            }
+            payMethod("Cash");
 
         }
 
         private void Card_btn_Click(object sender, RoutedEventArgs e)
         {
-            payment = decimal.Parse(userInput.Text);
-            totalValue -= totalValue;
-            toPay_btn.Text = totalValue.ToString();
-            userInput.Text = userInput.Text.Remove(0);
-            if (totalValue == 0 || totalValue < 0)
-            {
-               
-                toPay_btn.Text = "0";
-                change_btn.Text = totalValue.ToString();
-                PaidReceipt();
-                DateTime date = DateTime.Now;
-                string pDate = date.ToString("HH:mm");
-                pDate = pDate.Replace(':', ' ');
-                File.Move(txtFileName, "..//..//Bills\\" + folderName + "\\" + "paid Card"+ pDate+" "+ txtFileName);
-            }
+            payMethod("Card");
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -861,24 +834,43 @@ namespace Yo_Tuk_Tuk_Epos
         private void PaidReceipt()
         {
 
-            TotalUp();
-            int startX = 0;
-            int startY = 0;
-            int offSet = 20;
-            StreamWriter writer = new StreamWriter("..//..//Bills\\" + folderName + "\\" + txtFileName);               
+           // TotalUp();
+            
+            StreamWriter writer = new StreamWriter( txtFileName);               
 
-            writer.Write("Yo TUk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black), 60, 55 + -35);
-            offSet += 80;
+            writer.Write("Yo TUk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
+           
             for (int i = 0; i < sortedList.Count; i++)
             {
-                writer.Write(sortedList[i].ToString() + "\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                offSet += 20;
+                writer.Write(sortedList[i].ToString() + "\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
+                
             }
-            writer.Write("MembersDiscount".PadRight(padWidth + 4) + mainCurryCount.ToString() + ".00\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-            offSet += 20;
-            writer.Write("GrandTotal".PadRight(padWidth + 4) + totalValue.ToString(), new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-            offSet += 20;
+            writer.Write("MembersDiscount".PadRight(padWidth + 4) + mainCurryCount.ToString() + ".00\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
+           
+            writer.Write("GrandTotal".PadRight(padWidth + 4) + totalValue.ToString(), new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
+           
             writer.Close();
+        }
+
+        private void payMethod(string methodOfPay)
+        {
+           
+            payment = decimal.Parse(userInput.Text);
+            totalValue -= payment;
+            toPay_btn.Text = totalValue.ToString();
+            userInput.Text = userInput.Text.Remove(0);
+            if (totalValue == 0 || totalValue < 0)
+            {
+                PaidReceipt();
+                toPay_btn.Text = "0";
+                change_btn.Text = totalValue.ToString();
+                PaidReceipt();
+                DateTime date = DateTime.Now;
+                string pDate = date.ToString("HH:mm");
+                pDate = pDate.Replace(':', ' ');
+                File.Move(txtFileName, "..//..//Bills\\" + folderName + "\\" + "paid "+methodOfPay + pDate + " " + txtFileName);
+
+            }
         }
 
     
