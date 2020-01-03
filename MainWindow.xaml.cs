@@ -45,7 +45,12 @@ namespace Yo_Tuk_Tuk_Epos
             bool userExist = false;
             try
             {
-                StreamReader logIn = new StreamReader("../../UserDetails.txt");
+                if(File.Exists("UserDetails.txt")==false)
+                {
+                    StreamWriter writer = new StreamWriter("UserDetails.txt");
+                    writer.Close();
+                }
+                StreamReader logIn = new StreamReader("UserDetails.txt");
                 string read = logIn.ReadToEnd();
                 string[] logInId = read.Split(',');
 

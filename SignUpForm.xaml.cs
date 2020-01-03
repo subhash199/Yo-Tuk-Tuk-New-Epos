@@ -44,12 +44,12 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     name = name_box.Text;
                     id = logInBox.Text;
-                    if(File.Exists("../../UserDetails.txt")==false)
+                    if(File.Exists("UserDetails.txt")==false)
                     {
-                        StreamWriter write = new StreamWriter("../../UserDetails.txt");
+                        StreamWriter write = new StreamWriter("UserDetails.txt");
                         write.Close();
                     }
-                    StreamReader reader = new StreamReader("../../UserDetails.txt");
+                    StreamReader reader = new StreamReader("UserDetails.txt");
                     string copyRead = reader.ReadToEnd();
                     reader.Close();
                     string[] splitDetails = copyRead.Split(',');
@@ -64,7 +64,7 @@ namespace Yo_Tuk_Tuk_Epos
 
                     if (idExist == false)
                     {
-                        StreamWriter write = new StreamWriter("../../UserDetails.txt", true);
+                        StreamWriter write = new StreamWriter("UserDetails.txt", true);
                         
                         write.Write(id + "," + name + ",");
                         write.Close();

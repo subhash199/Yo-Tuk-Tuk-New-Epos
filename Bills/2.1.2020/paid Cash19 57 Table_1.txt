@@ -1,9 +1,0 @@
-
-St,Bombay Cool,3.95,
-
-
-M,Mango Prawn,12.95,
-M,Coconut Chicken,9.95,
-Sd,Garlic Dhall L,9.95,
-
-

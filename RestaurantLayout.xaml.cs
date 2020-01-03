@@ -167,8 +167,8 @@ namespace Yo_Tuk_Tuk_Epos
             folderName = folderName.Replace('/', ('.'));
             string folderPath = Directory.GetCurrentDirectory();
             string path = System.IO.Path.Combine(folderPath, folderName);
-            Directory.CreateDirectory("..//..//Bills");
-            Directory.CreateDirectory("..//..//Bills//" + folderName);
+           // Directory.CreateDirectory("..//..//Bills");
+            Directory.CreateDirectory("Bills//" + folderName);
             StreamWriter writer = new StreamWriter(table+".txt", true);
             writer.Close();
             fileName = table + ".txt";

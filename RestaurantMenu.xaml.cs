@@ -29,6 +29,7 @@ namespace Yo_Tuk_Tuk_Epos
         decimal payment = 0;
         decimal mainCurryCount = 0;
         int padWidth = 18;
+        decimal valueVariable = 0;
         public RestaurantMenu()
         {
             InitializeComponent();
@@ -321,6 +322,7 @@ namespace Yo_Tuk_Tuk_Epos
                 }
                 order_Box.Items.Insert(0, "QTY".PadRight(4) + "Dish".PadRight(padWidth) + "Price");               
                 total_box.Text = "£ " + totalValue.ToString();
+                valueVariable = totalValue;
 
 
             }
@@ -807,7 +809,7 @@ namespace Yo_Tuk_Tuk_Epos
         {
             PaymentGrid.Visibility = Visibility.Visible;
             toPay_btn.Text = totalValue.ToString();
-            StreamWriter writer = new StreamWriter("..//..//Bills\\" + folderName + "\\" + txtFileName);
+            StreamWriter writer = new StreamWriter(txtFileName);
             for (int i = 0; i < currentList.Count; i++)
             {
                 writer.WriteLine(currentList[i]);
@@ -847,7 +849,7 @@ namespace Yo_Tuk_Tuk_Epos
             }
             writer.Write("MembersDiscount".PadRight(padWidth + 4) + mainCurryCount.ToString() + ".00\n", new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
            
-            writer.Write("GrandTotal".PadRight(padWidth + 4) + totalValue.ToString(), new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
+            writer.Write("GrandTotal".PadRight(padWidth + 4) + valueVariable.ToString(), new Font("Courier New", 12), new SolidBrush(System.Drawing.Color.Black));
            
             writer.Close();
         }
@@ -868,7 +870,7 @@ namespace Yo_Tuk_Tuk_Epos
                 DateTime date = DateTime.Now;
                 string pDate = date.ToString("HH:mm");
                 pDate = pDate.Replace(':', ' ');
-                File.Move(txtFileName, "..//..//Bills\\" + folderName + "\\" + "paid "+methodOfPay + pDate + " " + txtFileName);
+                File.Move(txtFileName, "Bills\\" + folderName + "\\" + "paid "+methodOfPay + pDate + " " + txtFileName);
 
             }
         }
