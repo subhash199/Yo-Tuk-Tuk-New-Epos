@@ -31,7 +31,7 @@ namespace Yo_Tuk_Tuk_Epos
             //this.Close();
             //layout.Show();
         }
-
+        RestaurantLayout layout = null;
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
         {
             SignUpForm sign = new SignUpForm();
@@ -67,10 +67,19 @@ namespace Yo_Tuk_Tuk_Epos
                 }
                 if (userExist == true)
                 {
-                    Password_box.Clear();
-                    RestaurantLayout layout = new RestaurantLayout();
                     
-                    layout.Show();
+                    Password_box.Clear();
+                    try
+                    {
+                        layout.Show();
+                    }
+                    catch
+                    {
+                        layout= new RestaurantLayout();
+                        layout.Show();
+                    }
+                                       
+                   
 
                 }
                 else

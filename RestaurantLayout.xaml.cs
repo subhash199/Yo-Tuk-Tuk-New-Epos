@@ -174,6 +174,7 @@ namespace Yo_Tuk_Tuk_Epos
             writer.Close();
             fileName = table + ".txt";
 
+            isFileExist(fileName, pButton);
             RestaurantMenu menu = new RestaurantMenu();          
             menu.FolderFileName(folderName, fileName, table);
             menu.ShowDialog();
@@ -182,6 +183,7 @@ namespace Yo_Tuk_Tuk_Epos
                 pButton.Background = Brushes.Red;
             }
             isFileExist(fileName, pButton);
+            this.Hide();
 
 
         }
