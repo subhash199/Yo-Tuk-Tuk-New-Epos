@@ -161,7 +161,8 @@ namespace Yo_Tuk_Tuk_Epos
         }
         private void TableNumber(string TableNumber, Button pButton)
         {
-            string table = TableNumber;           
+            string table = TableNumber;
+            table = table.Replace('_', ' ');
             DateTime Date = DateTime.Now;
             string folderName = Date.ToString("d/M/yyyy");
             folderName = folderName.Replace('/', ('.'));
@@ -169,12 +170,12 @@ namespace Yo_Tuk_Tuk_Epos
             string path = System.IO.Path.Combine(folderPath, folderName);
            // Directory.CreateDirectory("..//..//Bills");
             Directory.CreateDirectory("Bills//" + folderName);
-            StreamWriter writer = new StreamWriter(table+".txt", true);
+            StreamWriter writer = new StreamWriter(TableNumber+".txt", true);
             writer.Close();
             fileName = table + ".txt";
 
             RestaurantMenu menu = new RestaurantMenu();          
-            menu.FolderFileName(folderName, fileName);
+            menu.FolderFileName(folderName, fileName, table);
             menu.ShowDialog();
             if(menu.DialogResult==true)
             {

@@ -83,6 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HoldItemsList.cs" />
+    <Compile Include="ItemList.cs" />
+    <Compile Include="orderItemIdentify.cs" />
     <Compile Include="PayForm.xaml.cs">
       <DependentUpon>PayForm.xaml</DependentUpon>
     </Compile>
