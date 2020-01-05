@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Yo! Tuk Tuk Epos System" Height="450" Width="800" WindowState="Maximized">
     <Grid x:Name="LoginScreen" Margin="10,0,3.333,-0.333" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>

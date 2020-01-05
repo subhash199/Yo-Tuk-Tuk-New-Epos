@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Yo_Tuk_Tuk_Epos
 {
@@ -19,6 +21,7 @@ namespace Yo_Tuk_Tuk_Epos
         int MainCount = 0;
         int sideCount = 0;
         int desertsCount = 0;
+        decimal unChangedTotal = 0;
 
         decimal payment = 0;
         decimal mainCurryCount = 0;
@@ -327,6 +330,7 @@ namespace Yo_Tuk_Tuk_Epos
 
 
                 total_box.Text = "£ " + totalValue.ToString();
+                unChangedTotal = totalValue;
 
 
             }
@@ -381,6 +385,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cancel_btn_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
             this.Close();
         }
 
@@ -615,12 +620,12 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void _1pt_btn_Click(object sender, RoutedEventArgs e)
         {
-            Carbs("Perfumed Rice pt", 4.50);
+            Carbs("Perfumed Rice pint", 4.50);
         }
 
         private void Half_btn_Click(object sender, RoutedEventArgs e)
         {
-            Carbs("Perfumed Rice halfpt", 2.50);
+            Carbs("halfpt Rice", 2.50);
         }
 
         private void Gulab_btn_Click(object sender, RoutedEventArgs e)
@@ -652,7 +657,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void OfficeWorker_btn_Click(object sender, RoutedEventArgs e)
         {
-            MainCourse("Office Workers Tiffin", 12.95);
+            MainCourse("Office Workers", 12.95);
         }
 
         private void SchoolBoy_btn_Click(object sender, RoutedEventArgs e)
@@ -903,6 +908,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult=true;
             this.Close();
         }
         public void discountButtonCheck()
@@ -934,6 +940,16 @@ namespace Yo_Tuk_Tuk_Epos
             userInput.Text = userInput.Text.Remove(0);
             if (totalValue == 0 || totalValue < 0)
             {
+                try
+                {
+                    StreamWriter writer = new StreamWriter("X-read.txt",true);
+                    writer.Write(methodOfPay + "\n" + unChangedTotal+ "\nTips\n" + totalValue+ "\n");
+                    writer.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Couldnt store X-read details");
+                }
                // PaidReceipt();
                 toPay_btn.Text = "0";
                 change_btn.Text = totalValue.ToString();

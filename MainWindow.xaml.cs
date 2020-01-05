@@ -71,12 +71,21 @@ namespace Yo_Tuk_Tuk_Epos
                     Password_box.Clear();
                     try
                     {
-                        layout.Show();
+                        
+                        layout.ShowDialog();
+                        if(DialogResult==true)
+                        {
+                            this.Show();
+                        }
                     }
                     catch
                     {
-                        layout= new RestaurantLayout();
-                        layout.Show();
+                        layout= new RestaurantLayout();                       
+                        layout.ShowDialog();
+                        if (DialogResult == true)
+                        {
+                            this.Show();
+                        }
                     }
                                        
                    

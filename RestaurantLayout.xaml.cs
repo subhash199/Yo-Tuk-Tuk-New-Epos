@@ -27,6 +27,8 @@ namespace Yo_Tuk_Tuk_Epos
         public RestaurantLayout()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+           
         }
         string fileName = "";       
         private void _1btn_Click(object sender, RoutedEventArgs e)
@@ -173,17 +175,20 @@ namespace Yo_Tuk_Tuk_Epos
             StreamWriter writer = new StreamWriter(TableNumber+".txt", true);
             writer.Close();
             fileName = table + ".txt";
-
-            isFileExist(fileName, pButton);
+            
             RestaurantMenu menu = new RestaurantMenu();          
             menu.FolderFileName(folderName, fileName, table);
             menu.ShowDialog();
             if(menu.DialogResult==true)
             {
                 pButton.Background = Brushes.Red;
-            }
+                this.DialogResult = true;
+                this.Hide();
+            }  
+            
             isFileExist(fileName, pButton);
-            this.Hide();
+            
+
 
 
         }

@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="RestaurantMenu" Height="720" Width="1280" WindowState="Maximized">
     <Grid x:Name="Origin" >
         <Viewbox HorizontalAlignment="left">
