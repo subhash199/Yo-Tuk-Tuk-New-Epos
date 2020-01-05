@@ -975,7 +975,8 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     MessageBox.Show("Couldnt store X-read details");
                 }
-               
+                this.payStackPanel.IsEnabled = false;
+                
                 toPay_btn.Text = "0";
                 change_btn.Text = totalValue.ToString();                
                 DateTime date = DateTime.Now;
