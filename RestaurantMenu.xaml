@@ -209,7 +209,7 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
-        <Grid x:Name="PaymentGrid" Visibility="Visible" Background="White" >
+        <Grid x:Name="PaymentGrid" Visibility="Hidden" Background="White" >
 
             <Viewbox x:Name="PayMent" HorizontalAlignment="Left">
                 <Grid x:Name="rightSide">

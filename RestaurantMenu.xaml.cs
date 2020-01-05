@@ -910,14 +910,27 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Pay_btn_Click(object sender, RoutedEventArgs e)
         {
-            PaymentGrid.Visibility = Visibility.Visible;
-            toPay_btn.Text = totalValue.ToString();
-            StreamWriter writer = new StreamWriter(txtFileName);
-            for (int i = 0; i < currentList.Count; i++)
+            if(currentList.Count==0 || holdPrint.Count==0)
             {
-                writer.WriteLine(currentList[i]);
+                MessageBox.Show("No items in the order!");
+
             }
-            writer.Close();
+            else
+            {
+                PaymentGrid.Visibility = Visibility.Visible;
+                toPay_btn.Text = totalValue.ToString();
+                if(holdPrint.Count!=0)
+                {
+                    StreamWriter writer = new StreamWriter(txtFileName);
+                    for (int i = 0; i < currentList.Count; i++)
+                    {
+                        writer.WriteLine(currentList[i]);
+                    }
+                    writer.Close();
+                }
+               
+            }
+         
         }
 
         private void Cash_btn_Click(object sender, RoutedEventArgs e)
