@@ -309,6 +309,7 @@
                         <TextBlock x:Name="toPay_btn" Text="0" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,0"/>
                         <Label x:Name="change_label" Content="Change" HorizontalAlignment="Center" FontSize="16" Margin="0,30,0,0"/>
                         <TextBlock x:Name="change_btn" Text="0" HorizontalAlignment="Center" FontSize="16"/>
+                        <Button x:Name="printbtn" Content="Print Receipt" Style="{StaticResource Tranform}" Width="100" Height="40" Margin="0,20,0,0" IsEnabled="False" Click="printbtn_Click" />
                     </StackPanel>
                 </Grid>
 

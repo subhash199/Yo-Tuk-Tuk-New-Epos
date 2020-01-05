@@ -27,6 +27,8 @@ namespace Yo_Tuk_Tuk_Epos
         decimal mainCurryCount = 0;
         decimal discountedValue = 0;
         int padWidth = 18;
+        string fileName = "";
+        bool isFinalReceipt = false;
 
 
         public RestaurantMenu()
@@ -682,6 +684,11 @@ namespace Yo_Tuk_Tuk_Epos
         #endregion
         private void Print_btn_Click(object sender, RoutedEventArgs e)
         {
+            receiptPrint();
+
+        }
+        private void receiptPrint()
+        {
             var printDocument = new PrintDocument();
 
             printDocument.PrintPage += new PrintPageEventHandler(PrintReceipt);
@@ -690,8 +697,6 @@ namespace Yo_Tuk_Tuk_Epos
             //printerSettings.PrinterName = "smartprinter";
             printDocument.PrinterSettings = printerSettings;
             printDocument.Print();
-
-
         }
 
         private void PrintReceipt(object sender, PrintPageEventArgs e)
@@ -703,7 +708,7 @@ namespace Yo_Tuk_Tuk_Epos
 
             int startX = 0;
             int startY = 0;
-            int offSet = 20;
+            int offSet = 80;
 
             int mCount = 0;
             int sCount = 0;
@@ -713,11 +718,12 @@ namespace Yo_Tuk_Tuk_Epos
 
             //e.PageSettings.PaperSize.Width = 50;
 
-            //Image newImage = Image.FromFile("Tuk-Tuk.jpg");
+            Image newImage = Image.FromFile("YoTukTuk.png");
 
-            //graphics.DrawImage( newImage, 100, 100);
-            graphics.DrawString("Yo TUk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET", new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + 0);
-            offSet += 70;
+            graphics.DrawImage(newImage,100,0);
+    
+            graphics.DrawString("Yo Tuk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n01482 881955", new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
+            offSet += 100;
             graphics.DrawString(tableNum.ToString(), new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
             offSet += 40;
             for (int i = 0; i < sortedList.Count; i++)
@@ -791,12 +797,30 @@ namespace Yo_Tuk_Tuk_Epos
             }
             offSet += 20;
             graphics.DrawString("Members Discount", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-            graphics.DrawString("£ -" + discountedValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+            graphics.DrawString("£-" + discountedValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
 
             offSet += 20;
-            graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-            graphics.DrawString("£ " + totalValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+            if(isFinalReceipt == false)
+            {
+                graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+                graphics.DrawString("£ " + totalValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+            }
+            else
+            {
+                graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+                graphics.DrawString("£ " + unChangedTotal.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+                offSet += 20;
+                graphics.DrawString("Paid", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+                string changeValue = totalValue.ToString();
+                changeValue = changeValue.Replace('-', ' ');
+                changeValue = changeValue.Trim();
+                totalValue = decimal.Parse(changeValue);
+                graphics.DrawString("£ " + (totalValue+unChangedTotal).ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+            }
+           
+
             offSet += 40;
+            
             graphics.DrawString("Thank You For Dining With Us!\n\n", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
            
 
@@ -940,6 +964,7 @@ namespace Yo_Tuk_Tuk_Epos
             userInput.Text = userInput.Text.Remove(0);
             if (totalValue == 0 || totalValue < 0)
             {
+                printbtn.IsEnabled = true;
                 try
                 {
                     StreamWriter writer = new StreamWriter("X-read.txt",true);
@@ -950,17 +975,23 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     MessageBox.Show("Couldnt store X-read details");
                 }
-               // PaidReceipt();
+               
                 toPay_btn.Text = "0";
-                change_btn.Text = totalValue.ToString();
-                //PaidReceipt();
+                change_btn.Text = totalValue.ToString();                
                 DateTime date = DateTime.Now;
                 string pDate = date.ToString("HH:mm");
                 pDate = pDate.Replace(':', ' ');
-                File.Move(txtFileName, "Bills\\" + folderName + "\\" + "paid " + methodOfPay + pDate + " " + txtFileName);
+                fileName = "paid " + methodOfPay + pDate + " " + txtFileName;
+                File.Move(txtFileName, "Bills\\" + folderName + "\\" + fileName);
 
             }
             btn_dot.IsEnabled = true;
+        }
+        private void printbtn_Click(object sender, RoutedEventArgs e)
+        {
+            isFinalReceipt = true;
+            receiptPrint();
+
         }
 
         private void kitchenRecipt()
@@ -1197,5 +1228,7 @@ namespace Yo_Tuk_Tuk_Epos
 
             }
         }
+
+       
     }
 }
