@@ -21,21 +21,18 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class MainWindow : Window
     {
+  
         public MainWindow()
         {
+
             InitializeComponent();
-            //RestaurantMenu menu = new RestaurantMenu();
-            //this.Close();
-            //menu.Show();
-            //RestaurantLayout layout = new RestaurantLayout();
-            //this.Close();
-            //layout.Show();
+           
         }
-        RestaurantLayout layout = null;
+        public RestaurantLayout layout;
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
         {
-            SignUpForm sign = new SignUpForm();
-            sign.Show();
+            SignUpForm sign = new SignUpForm(this);
+            sign.Show();            
         }      
         
         
@@ -71,21 +68,16 @@ namespace Yo_Tuk_Tuk_Epos
                     Password_box.Clear();
                     try
                     {
+                        this.Hide();                
+                        layout.Show();                
                         
-                        layout.ShowDialog();
-                        if(DialogResult==true)
-                        {
-                            this.Show();
-                        }
                     }
                     catch
                     {
-                        layout= new RestaurantLayout();                       
-                        layout.ShowDialog();
-                        if (DialogResult == true)
-                        {
-                            this.Show();
-                        }
+                        
+                        layout = new RestaurantLayout(this);
+                        this.Hide();
+                        layout.Show();                  
                     }
                                        
                    

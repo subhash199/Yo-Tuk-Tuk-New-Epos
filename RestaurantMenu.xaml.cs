@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Data.SqlClient;
 using System.Data;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Yo_Tuk_Tuk_Epos
 {
@@ -29,6 +31,9 @@ namespace Yo_Tuk_Tuk_Epos
         int padWidth = 18;
         string fileName = "";
         bool isFinalReceipt = false;
+        Socket socket=null;
+        IPAddress ip = null;
+        IPEndPoint ipep = null;
 
 
         public RestaurantMenu()
@@ -46,6 +51,14 @@ namespace Yo_Tuk_Tuk_Epos
         string txtFileName = "";
         string tableNum = "";
 
+        //private void socketConnection()
+        //{
+        //    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        //    socket.NoDelay = true;
+        //    ip = IPAddress.Parse("192.168.1.12");
+        //    ipep = new IPEndPoint(ip, 9100);
+        //    socket.Connect(ipep);
+        //}
         public void FolderFileName(string folder, string txtfile, string pTablenum)
         {
             folderName = folder;
@@ -357,30 +370,45 @@ namespace Yo_Tuk_Tuk_Epos
                 output = output.Replace(".", "");
 
                 output = output.Trim();
-
-
-                for (int i = 0; i < currentList.Count; i++)
+                if(output!="")
                 {
-                    if (currentList[i].Contains(output))
+                    for (int i = 0; i < currentList.Count; i++)
                     {
-                        currentList.RemoveAt(i);
-                        break;
+                        if (currentList[i].Contains(output))
+                        {
+                            currentList.RemoveAt(i);
+                            break;
+                        }
                     }
+                    for (int i = 0; i < holdPrint.Count; i++)
+                    {
+                        if(holdPrint[i].name.Contains(output))
+                        {
+                            holdPrint.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    discountButtonCheck();
                 }
-                discountButtonCheck();
+
+                
             }
 
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            StreamWriter writer = new StreamWriter(txtFileName);
-            for (int i = 0; i < currentList.Count; i++)
+            if(holdPrint.Count!=0)
             {
-                writer.WriteLine(currentList[i]);
-            }
-            writer.Close();
-            kitchenRecipt();
-            this.DialogResult = true;
+                StreamWriter writer = new StreamWriter(txtFileName);
+                for (int i = 0; i < currentList.Count; i++)
+                {
+                    writer.WriteLine(currentList[i]);
+                }
+                writer.Close();
+                kitchenRecipt();
+                this.DialogResult = true;
+            }           
+            
             this.Close();
         }
 
@@ -708,7 +736,7 @@ namespace Yo_Tuk_Tuk_Epos
 
             int startX = 0;
             int startY = 0;
-            int offSet = 80;
+            int offSet = 120;
 
             int mCount = 0;
             int sCount = 0;
@@ -718,9 +746,9 @@ namespace Yo_Tuk_Tuk_Epos
 
             //e.PageSettings.PaperSize.Width = 50;
 
-            Image newImage = Image.FromFile("YoTukTuk.png");
+            Image newImage = Image.FromFile("YoTukTukPrint.jpg");
 
-            graphics.DrawImage(newImage,100,0);
+            graphics.DrawImage(newImage,80,0);
     
             graphics.DrawString("Yo Tuk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n01482 881955", new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
             offSet += 100;
@@ -910,7 +938,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Pay_btn_Click(object sender, RoutedEventArgs e)
         {
-            if(currentList.Count==0 || holdPrint.Count==0)
+            if(currentList.Count==0 && holdPrint.Count==0)
             {
                 MessageBox.Show("No items in the order!");
 
@@ -1023,6 +1051,8 @@ namespace Yo_Tuk_Tuk_Epos
         private void kitchenPrinter(object sender, PrintPageEventArgs e)
         {
 
+            //socketConnection();
+            List<byte> byteData = new List<byte>();
 
             List<string> visitedStrings = new List<string>();
 
@@ -1073,6 +1103,7 @@ namespace Yo_Tuk_Tuk_Epos
                                     count++;
                                 }
                             }
+                            //byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name+ "\n"));
                             graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                             offSet += 20;
                             visitedStrings.Add(holdPrint[i].name);
@@ -1088,6 +1119,7 @@ namespace Yo_Tuk_Tuk_Epos
 
                             if (loop == 0)
                             {
+                                //byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1110,6 +1142,7 @@ namespace Yo_Tuk_Tuk_Epos
                                         count++;
                                     }
                                 }
+                                //byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
                                 graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
 
@@ -1125,6 +1158,7 @@ namespace Yo_Tuk_Tuk_Epos
                         {
                             if (sdLoop == 0)
                             {
+                               // byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1147,6 +1181,7 @@ namespace Yo_Tuk_Tuk_Epos
                                         count++;
                                     }
                                 }
+                                //byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
                                 graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
 
@@ -1162,6 +1197,7 @@ namespace Yo_Tuk_Tuk_Epos
                         {
                             if (cLoop == 0)
                             {
+                               // byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1184,6 +1220,7 @@ namespace Yo_Tuk_Tuk_Epos
                                         count++;
                                     }
                                 }
+                               // byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
                                 graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
 
@@ -1200,6 +1237,7 @@ namespace Yo_Tuk_Tuk_Epos
                         {
                             if (dloop == 0)
                             {
+                              //  byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1221,6 +1259,7 @@ namespace Yo_Tuk_Tuk_Epos
                                         count++;
                                     }
                                 }
+                               // byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
                                 graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
 
@@ -1241,6 +1280,11 @@ namespace Yo_Tuk_Tuk_Epos
 
 
             }
+            //byte[] arraybyte = byteData.ToArray();
+            //socket.Send(arraybyte);
+            //socket.Close();
+
+            
         }
 
        

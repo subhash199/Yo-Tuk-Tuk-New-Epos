@@ -23,12 +23,13 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class RestaurantLayout : Window
     {
-       
-        public RestaurantLayout()
+        private MainWindow window = null;
+        public RestaurantLayout(MainWindow mainWindow)
         {
+            
             InitializeComponent();
-            this.WindowState = WindowState.Maximized;
-           
+            window = mainWindow;
+
         }
         string fileName = "";       
         private void _1btn_Click(object sender, RoutedEventArgs e)
@@ -182,14 +183,16 @@ namespace Yo_Tuk_Tuk_Epos
             if(menu.DialogResult==true)
             {
                 pButton.Background = Brushes.Red;
-                this.DialogResult = true;
+                window.layout = this;
+                window.Show();                
                 this.Hide();
-            }  
-            
-            isFileExist(fileName, pButton);
-            
-
-
+                
+            }
+            else
+            {
+                isFileExist(fileName, pButton);
+            }          
+           
 
         }
         private void isFileExist(string fileName, Button pName)

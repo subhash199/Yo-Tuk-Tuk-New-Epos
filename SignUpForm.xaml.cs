@@ -20,9 +20,11 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class SignUpForm : Window
     {
-        public SignUpForm()
+       
+        public SignUpForm(MainWindow main)
         {
             InitializeComponent();
+            
         }
 
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
@@ -44,7 +46,7 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     name = name_box.Text;
                     id = logInBox.Text;
-                    if(File.Exists("UserDetails.txt")==false)
+                    if (File.Exists("UserDetails.txt") == false)
                     {
                         StreamWriter write = new StreamWriter("UserDetails.txt");
                         write.Close();
@@ -67,9 +69,10 @@ namespace Yo_Tuk_Tuk_Epos
                         StreamWriter write = new StreamWriter("UserDetails.txt", true);
                         
                         write.Write(id + "," + name + ",");
-                        write.Close();
+                        write.Close();                
                         this.Close();
-                       
+
+
                     }
                 }
                

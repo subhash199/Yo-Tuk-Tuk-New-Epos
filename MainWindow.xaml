@@ -9,7 +9,7 @@
         Title="Yo! Tuk Tuk Epos System" Height="450" Width="800" WindowState="Maximized">
     <Grid x:Name="LoginScreen" Margin="0,0,-2.333,0" RenderTransformOrigin="0.5,0.5">
         <Grid.Background>
-            <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="background2.jpg"/>
         </Grid.Background>
         <Grid.RenderTransform>
             <TransformGroup>
@@ -19,7 +19,7 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Label x:Name="LogInID" Content="Log In ID" HorizontalAlignment="Center" Margin="323,164,344,207" VerticalAlignment="Center" FontSize="24" Foreground="#FF3B21CA"/>
+        <Label x:Name="LogInID" Content="Log In ID" HorizontalAlignment="Center" Margin="323,164,344,207" VerticalAlignment="Center" FontSize="24" Foreground="#FFF3F1FF" Background="{x:Null}"/>
         <Separator Margin="258,209,263,177">
 
         </Separator>
@@ -27,7 +27,7 @@
         <Label x:Name="Title_label" Content="" HorizontalAlignment="Center" Margin="286,10,285,353" VerticalAlignment="Center" FontSize="36" Background="{x:Null}" Foreground="#FFEAF10E"/>
         <PasswordBox x:Name="Password_box" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="302,244,323,127" VerticalAlignment="Center" Height="50" Width="155" FontSize="36" KeyboardNavigation.TabIndex="0"/>
         <Button x:Name="signup_btn" Content="Sign Up" Click="Signup_btn_Click" HorizontalAlignment="Center" Margin="266,305,408,73" VerticalAlignment="Center" Style="{StaticResource mainButtons}" KeyboardNavigation.TabIndex="2"/>
-        <Label x:Name="prompt_label" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="260,371,283,13" VerticalAlignment="Center" Width="237" FontSize="18"/>
+        <Label x:Name="prompt_label" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="260,371,283,13" VerticalAlignment="Center" Width="237" FontSize="18" Foreground="White"/>
         <Image Margin="288,5,315,253" Source="YoTukTuk.png" Stretch="None"/>
 
     </Grid>
