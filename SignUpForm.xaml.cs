@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,7 +25,7 @@ namespace Yo_Tuk_Tuk_Epos
         public SignUpForm(MainWindow main)
         {
             InitializeComponent();
-            
+
         }
 
         private void Signup_btn_Click(object sender, RoutedEventArgs e)

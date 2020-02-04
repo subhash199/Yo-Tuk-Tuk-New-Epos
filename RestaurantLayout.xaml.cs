@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,11 +25,13 @@ namespace Yo_Tuk_Tuk_Epos
     public partial class RestaurantLayout : Window
     {
         private MainWindow window = null;
+        ServerClass server = new ServerClass();
         public RestaurantLayout(MainWindow mainWindow)
         {
             
             InitializeComponent();
             window = mainWindow;
+            
 
         }
         string fileName = "";       
@@ -171,12 +174,13 @@ namespace Yo_Tuk_Tuk_Epos
             folderName = folderName.Replace('/', ('.'));
             string folderPath = Directory.GetCurrentDirectory();
             string path = System.IO.Path.Combine(folderPath, folderName);
-           // Directory.CreateDirectory("..//..//Bills");
+            Directory.CreateDirectory("..//..//Bills");           
             Directory.CreateDirectory("Bills//" + folderName);
             StreamWriter writer = new StreamWriter(TableNumber+".txt", true);
             writer.Close();
             fileName = table + ".txt";
-            
+            server.create(folderName, fileName);
+
             RestaurantMenu menu = new RestaurantMenu();          
             menu.FolderFileName(folderName, fileName, table);
             menu.ShowDialog();

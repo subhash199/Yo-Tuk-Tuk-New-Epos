@@ -65,6 +65,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -83,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Client.cs" />
     <Compile Include="HoldItemsList.cs" />
     <Compile Include="ItemList.cs" />
     <Compile Include="orderItemIdentify.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="RestaurantMenu.xaml.cs">
       <DependentUpon>RestaurantMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ServerClass.cs" />
     <Compile Include="SignUpForm.xaml.cs">
       <DependentUpon>SignUpForm.xaml</DependentUpon>
     </Compile>
