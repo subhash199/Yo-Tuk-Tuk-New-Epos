@@ -179,7 +179,7 @@ namespace Yo_Tuk_Tuk_Epos
             StreamWriter writer = new StreamWriter(TableNumber+".txt", true);
             writer.Close();
             fileName = table + ".txt";
-            server.create(folderName, fileName);
+            server.create(fileName);
 
             RestaurantMenu menu = new RestaurantMenu();          
             menu.FolderFileName(folderName, fileName, table);

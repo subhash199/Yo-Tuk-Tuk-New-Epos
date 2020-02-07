@@ -27,23 +27,9 @@ namespace Yo_Tuk_Tuk_Epos
         {
 
             InitializeComponent();
-            TcpClient client = new TcpClient();
-            try
-            {
-
-                client.Connect("localhost", 8000);
-
-                StreamWriter sw = new StreamWriter(client.GetStream());
-                StreamReader sr = new StreamReader(client.GetStream());
-
-                sw.AutoFlush = true;
-                client.ReceiveTimeout = 1000;
-                client.SendTimeout = 1000;
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
+            this.Hide();
+            RestaurantLayout layout = new RestaurantLayout(this);
+            layout.Show();
 
         }
         public RestaurantLayout layout;

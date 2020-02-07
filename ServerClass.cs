@@ -26,13 +26,13 @@ namespace Yo_Tuk_Tuk_Epos
             return File.ReadAllLines(fileName);
             
         }
-        internal void create(string folderName, string fileName) 
+        internal void create(string fileName) 
         {
             client.Connect(hostName, hostNumber);
-            StreamWriter sw = new StreamWriter(client.GetStream());
-            sw.AutoFlush = true;
+            StreamWriter sw = new StreamWriter(client.GetStream());           
            
-            sw.WriteLine("create"+","+folderName+","+ fileName);           
+            sw.WriteLine("create,"+fileName);
+            sw.AutoFlush = true;
 
         }
     }
