@@ -17,8 +17,10 @@ namespace Yo_Tuk_Tuk_Epos
     /// Interaction logic for RestaurantMenu.xaml
     /// </summary>
     /// 
+    
     public partial class RestaurantMenu : Window
     {
+
         int startersCount = 0;
         int MainCount = 0;
         int sideCount = 0;
@@ -44,7 +46,7 @@ namespace Yo_Tuk_Tuk_Epos
         List<orderItemIdentify> holdPrint = new List<orderItemIdentify>();
         List<string> currentList = new List<string>();
         List<ItemList> sortedList = new List<ItemList>();
-
+        ServerClass server = new ServerClass();
         decimal totalValue = 0;
 
         string folderName = "";
@@ -107,9 +109,11 @@ namespace Yo_Tuk_Tuk_Epos
 
             try
             {
-                StreamReader reader = new StreamReader(txtFileName);
-                string[] splitArray = Regex.Split(reader.ReadToEnd(), "\r\n");
-                reader.Close();
+                string read = server.read(txtFileName);
+                string[] splitArray = Regex.Split(read, "\r\n");
+                //StreamReader reader = new StreamReader(txtFileName);
+                //string[] splitArray = Regex.Split(reader.ReadToEnd(), "\r\n");
+                //reader.Close();
                 for (int i = 0; i < splitArray.Length; i++)
                 {
                     currentList.Add(splitArray[i]);
@@ -118,7 +122,7 @@ namespace Yo_Tuk_Tuk_Epos
                 discountButtonCheck();
 
             }
-            catch
+            catch (Exception e)
             {
 
             }
@@ -397,17 +401,23 @@ namespace Yo_Tuk_Tuk_Epos
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            if(holdPrint.Count!=0)
+            //if(holdPrint.Count!=0)
+            //{
+            //    StreamWriter writer = new StreamWriter(txtFileName);
+            //    for (int i = 0; i < currentList.Count; i++)
+            //    {
+            //        writer.WriteLine(currentList[i]);
+            //    }
+            //    writer.Close();
+            //    kitchenRecipt();
+            //    this.DialogResult = true;
+            //}
+            if (holdPrint.Count != 0)
             {
-                StreamWriter writer = new StreamWriter(txtFileName);
-                for (int i = 0; i < currentList.Count; i++)
-                {
-                    writer.WriteLine(currentList[i]);
-                }
-                writer.Close();
+                server.write(txtFileName, currentList);
                 kitchenRecipt();
                 this.DialogResult = true;
-            }           
+            }
             
             this.Close();
         }

@@ -10,29 +10,38 @@ namespace Yo_Tuk_Tuk_Epos
 {
     class ServerClass
     {
+       
         string hostName = "localhost";
         int hostNumber = 5002;
         TcpClient client = new TcpClient();
         
 
-        internal void write()
+        internal void write(string fileName,List <string> items)
         {            
             client.Connect(hostName, hostNumber);
             StreamWriter sw = new StreamWriter(client.GetStream());            
-            sw.AutoFlush = true;
+            sw.AutoFlush = true;         
+            sw.WriteLine("write," + fileName +","+ string.Join(",",items.ToArray()));
         }
-        internal string [] read(string fileName)
+        internal string read(string fileName)
         {
-            return File.ReadAllLines(fileName);
-            
+            client.Connect(hostName, hostNumber);
+            StreamWriter sw = new StreamWriter(client.GetStream());
+            sw.AutoFlush = true;
+            StreamReader sr = new StreamReader(client.GetStream());
+            sw.WriteLine("read," + fileName);
+            string read = sr.ReadLine();
+            return read;
+
+
         }
         internal void create(string fileName) 
         {
             client.Connect(hostName, hostNumber);
-            StreamWriter sw = new StreamWriter(client.GetStream());           
-           
-            sw.WriteLine("create,"+fileName);
+            StreamWriter sw = new StreamWriter(client.GetStream());
             sw.AutoFlush = true;
+            sw.WriteLine("create,"+fileName);                  
+            sw.Close();
 
         }
     }
