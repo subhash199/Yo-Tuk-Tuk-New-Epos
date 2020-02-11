@@ -61,11 +61,9 @@ namespace Yo_Tuk_Tuk_Epos
         //    ipep = new IPEndPoint(ip, 9100);
         //    socket.Connect(ipep);
         //}
-        public void FolderFileName(string folder, string txtfile, string pTablenum)
-        {
-            folderName = folder;
-            txtFileName = txtfile;
-            tableNum = pTablenum;
+        public void FolderFileName(string txtfile)
+        {          
+            txtFileName = txtfile;            
             TableFile();
 
         }
@@ -112,10 +110,7 @@ namespace Yo_Tuk_Tuk_Epos
                 if (!string.IsNullOrEmpty(txtFileName))
                 {
                     string read = server.read(txtFileName);                   
-                    string[] splitArray = Regex.Split(read, "\r\n");
-                    //StreamReader reader = new StreamReader(txtFileName);
-                    //string[] splitArray = Regex.Split(reader.ReadToEnd(), "\r\n");
-                    //reader.Close();
+                    string[] splitArray = Regex.Split(read, "\r\n");                   
                     for (int i = 0; i < splitArray.Length; i++)
                     {
                         currentList.Add(splitArray[i]);
@@ -158,8 +153,7 @@ namespace Yo_Tuk_Tuk_Epos
 
                 bool visitedDish = false;
 
-                string[] splitlines = readAll.Split(',');
-                //splitlines = splitlines.Take(splitlines.Count() - 1).ToArray();
+                string[] splitlines = readAll.Split(',');              
 
                 decimal value = 0;
 
@@ -405,17 +399,7 @@ namespace Yo_Tuk_Tuk_Epos
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            //if(holdPrint.Count!=0)
-            //{
-            //    StreamWriter writer = new StreamWriter(txtFileName);
-            //    for (int i = 0; i < currentList.Count; i++)
-            //    {
-            //        writer.WriteLine(currentList[i]);
-            //    }
-            //    writer.Close();
-            //    kitchenRecipt();
-            //    this.DialogResult = true;
-            //}
+          
             if (holdPrint.Count != 0)
             {
                 server.write(txtFileName, currentList);
@@ -963,12 +947,7 @@ namespace Yo_Tuk_Tuk_Epos
                 toPay_btn.Text = totalValue.ToString();
                 if(holdPrint.Count!=0)
                 {
-                    StreamWriter writer = new StreamWriter(txtFileName);
-                    for (int i = 0; i < currentList.Count; i++)
-                    {
-                        writer.WriteLine(currentList[i]);
-                    }
-                    writer.Close();
+                    server.write(txtFileName, currentList);                   
                 }
                
             }

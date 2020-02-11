@@ -167,22 +167,11 @@ namespace Yo_Tuk_Tuk_Epos
         }
         private void TableNumber(string TableNumber, Button pButton)
         {
-            string table = TableNumber;
-            //table = table.Replace('_', ' ');
-            //DateTime Date = DateTime.Now;
-            //string folderName = Date.ToString("d/M/yyyy");
-            //folderName = folderName.Replace('/', ('.'));
-            //string folderPath = Directory.GetCurrentDirectory();
-            //string path = System.IO.Path.Combine(folderPath, folderName);
-            //Directory.CreateDirectory("..//..//Bills");           
-            //Directory.CreateDirectory("Bills//" + folderName);
-            //StreamWriter writer = new StreamWriter(TableNumber+".txt", true);
-            //writer.Close();
-            fileName = table + ".txt";
+            fileName = TableNumber + ".txt";
             server.create(fileName);        
 
             RestaurantMenu menu = new RestaurantMenu();          
-            menu.FolderFileName(folderName, fileName, table);
+            menu.FolderFileName(fileName);
             menu.ShowDialog();
             if(menu.DialogResult==true)
             {
@@ -192,33 +181,30 @@ namespace Yo_Tuk_Tuk_Epos
                 this.Hide();
                 
             }
-            else
-            {
-                isFileExist(fileName, pButton);
-            }          
+                  
            
 
         }
-        private void isFileExist(string fileName, Button pName)
-        {
-            if (File.Exists(fileName))
-            {
-                if (new FileInfo(fileName).Length == 0)
-                {
-                    pName.Background = (Brush)new BrushConverter().ConvertFrom("#FF4EE715");
-                }
-                else
-                {
-                    pName.Background = Brushes.Red;
-                }
+        //private void isFileExist(string fileName, Button pName)
+        //{
+        //    if (File.Exists(fileName))
+        //    {
+        //        if (new FileInfo(fileName).Length == 0)
+        //        {
+        //            pName.Background = (Brush)new BrushConverter().ConvertFrom("#FF4EE715");
+        //        }
+        //        else
+        //        {
+        //            pName.Background = Brushes.Red;
+        //        }
 
-            }
-            else
-            {
-                pName.Background = (Brush)new BrushConverter().ConvertFrom("#FF4EE715");
-            }
+        //    }
+        //    else
+        //    {
+        //        pName.Background = (Brush)new BrushConverter().ConvertFrom("#FF4EE715");
+        //    }
 
 
-        }
+        //}
     }
 }
