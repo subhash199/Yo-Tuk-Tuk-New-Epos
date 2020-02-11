@@ -180,6 +180,7 @@ namespace Yo_Tuk_Tuk_Epos
             writer.Close();
             fileName = table + ".txt";
             server.create(fileName);
+            server.close();
 
             RestaurantMenu menu = new RestaurantMenu();          
             menu.FolderFileName(folderName, fileName, table);

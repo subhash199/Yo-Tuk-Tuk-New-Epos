@@ -109,17 +109,21 @@ namespace Yo_Tuk_Tuk_Epos
 
             try
             {
-                string read = server.read(txtFileName);
-                string[] splitArray = Regex.Split(read, "\r\n");
-                //StreamReader reader = new StreamReader(txtFileName);
-                //string[] splitArray = Regex.Split(reader.ReadToEnd(), "\r\n");
-                //reader.Close();
-                for (int i = 0; i < splitArray.Length; i++)
+                if (!string.IsNullOrEmpty(txtFileName))
                 {
-                    currentList.Add(splitArray[i]);
+                    string read = server.read(txtFileName);                   
+                    string[] splitArray = Regex.Split(read, "\r\n");
+                    //StreamReader reader = new StreamReader(txtFileName);
+                    //string[] splitArray = Regex.Split(reader.ReadToEnd(), "\r\n");
+                    //reader.Close();
+                    for (int i = 0; i < splitArray.Length; i++)
+                    {
+                        currentList.Add(splitArray[i]);
 
+                    }
+                    discountButtonCheck();
                 }
-                discountButtonCheck();
+              
 
             }
             catch (Exception e)
