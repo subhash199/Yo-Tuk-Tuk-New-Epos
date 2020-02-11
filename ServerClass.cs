@@ -14,11 +14,12 @@ namespace Yo_Tuk_Tuk_Epos
 
         string hostName = "localhost";
         int hostNumber = 5002;
-        TcpClient client = new TcpClient();
+        
 
        
         internal void write(string fileName, List<string> items)
         {
+            TcpClient client = new TcpClient();
             try
             {
                 client.Connect(hostName, hostNumber);
@@ -29,7 +30,7 @@ namespace Yo_Tuk_Tuk_Epos
             catch(Exception e)
             {
                 MessageBox.Show(e.ToString());
-            }
+            }      
             finally
             {
                 client.Close();
@@ -39,6 +40,7 @@ namespace Yo_Tuk_Tuk_Epos
         }
         internal string read(string fileName)
         {
+            TcpClient client = new TcpClient();
             string read="";
             try
             {
@@ -65,7 +67,7 @@ namespace Yo_Tuk_Tuk_Epos
         }
         internal void create(string fileName)
         {
-
+            TcpClient client = new TcpClient();
             try
             {
                 client.Connect(hostName, hostNumber);
@@ -81,14 +83,11 @@ namespace Yo_Tuk_Tuk_Epos
             {
                 client.Close();
             }
- 
-            
+
+
 
         }
-        internal void close()
-        {
-            client.Close();
-        }
+       
 
     }
 }

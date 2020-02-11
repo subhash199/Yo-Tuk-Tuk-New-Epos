@@ -159,7 +159,7 @@ namespace Yo_Tuk_Tuk_Epos
                 bool visitedDish = false;
 
                 string[] splitlines = readAll.Split(',');
-                splitlines = splitlines.Take(splitlines.Count() - 1).ToArray();
+                //splitlines = splitlines.Take(splitlines.Count() - 1).ToArray();
 
                 decimal value = 0;
 
