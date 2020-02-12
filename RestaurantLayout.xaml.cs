@@ -180,10 +180,8 @@ namespace Yo_Tuk_Tuk_Epos
                 window.Show();                
                 this.Hide();
                 
-            }
-                  
+            }                 
            
-
         }
         //private void isFileExist(string fileName, Button pName)
         //{

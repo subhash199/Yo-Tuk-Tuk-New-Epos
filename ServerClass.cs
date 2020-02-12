@@ -12,8 +12,8 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "localhost";
-        int hostNumber = 5002;
+        string hostName = "150.237.121.150";
+        int hostNumber = 43;
         
 
        
