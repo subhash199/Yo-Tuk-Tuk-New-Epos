@@ -168,7 +168,15 @@ namespace Yo_Tuk_Tuk_Epos
         private void TableNumber(string TableNumber, Button pButton)
         {
             fileName = TableNumber + ".txt";
-            server.create(fileName);        
+            try
+            {
+                server.create(fileName);
+            }
+            catch
+            {
+                MessageBox.Show("Check if the Server is running!");
+            }
+                 
 
             RestaurantMenu menu = new RestaurantMenu();          
             menu.FolderFileName(fileName);
@@ -183,6 +191,8 @@ namespace Yo_Tuk_Tuk_Epos
             }                 
            
         }
+
+    
         //private void isFileExist(string fileName, Button pName)
         //{
         //    if (File.Exists(fileName))

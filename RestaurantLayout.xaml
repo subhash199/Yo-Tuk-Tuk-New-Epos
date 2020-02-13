@@ -7,66 +7,79 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="RestaurantLayout" Height="720" Width="1280" WindowState="Maximized">
-    <Grid>
+    <Grid x:Name="layout_grid">
         <Viewbox HorizontalAlignment="Center">
             <Grid >
                 <Viewbox Margin="0,-52,0,350">
-                    <Label Content="Table Layout" FontSize="24"></Label>
+                    <Label Content="Yo Tuk Tuk Floor Layout" FontSize="20"></Label>
                 </Viewbox>
-                
+
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="_1btn" Click="_1btn_Click" Background="#FF4EE715" Content="1" Style="{StaticResource tables}" />
-                        <Button x:Name="_2btn" Content="2" Background="#FF4EE715" Style="{StaticResource tables}" Click="_2btn_Click"/>
-                        <Button x:Name="_3btn" Content="3" Background="#FF4EE715"  Style="{StaticResource tables}" Click="_3btn_Click"/>
-                        <Button x:Name="_4btn" Content="4" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_4btn_Click"/>
-                        <Button x:Name="_5btn" Content="5" Background="#FF4EE715" Style="{StaticResource tables}"  Click="_5btn_Click"/>
-                        <Button x:Name="_6btn" Content="6" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_6btn_Click"/>
-
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-
-                        <Button x:Name="_7btn" Content="7" Background="#FF4EE715" Style="{StaticResource tables}" Click="_7btn_Click"/>
-                        <Button x:Name="b1btn" Content="B1" Background="#FF4EE715"   Style="{StaticResource tables}" Click="b1btn_Click"/>
-                        <Button x:Name="b2btn" Content="B2" Background="#FF4EE715" Style="{StaticResource tables}" Click="b2btn_Click"/>
-                        <Button x:Name="b3btn" Content="B3" Background="#FF4EE715"  Style="{StaticResource tables}" Click="b3btn_Click"/>
-                        <Button x:Name="b4btn" Content="B4" Background="#FF4EE715" Style="{StaticResource tables}"  Click="b4btn_Click"/>
-                        <Button x:Name="b5btn" Content="B5" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="b5btn_Click"/>
+                  
+                        <!--<StackPanel Orientation="Horizontal">
                         
+                            <Button x:Name="signup_btn" IsEnabled="True" Content="Sign Up" Click="Signup_btn_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="SkyBlue" Style="{StaticResource tables}" KeyboardNavigation.TabIndex="1"/>
+
+                            <Button x:Name="login_btn" IsEnabled="True" Content="Log In" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="Yellow" Click="Login_btn_Click" Margin="560,0,0,0" Style="{StaticResource tables}"  KeyboardNavigation.TabIndex="1" IsDefault="True"  />
+                        
+                    </StackPanel>-->
+                    
+                    <StackPanel x:Name="layout_controls" >
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="_1btn" Click="_1btn_Click" Background="#FF4EE715" Content="1" Style="{StaticResource tables}" />
+                            <Button x:Name="_2btn" Content="2" Background="#FF4EE715" Style="{StaticResource tables}" Click="_2btn_Click"/>
+                            <Button x:Name="_3btn" Content="3" Background="#FF4EE715"  Style="{StaticResource tables}" Click="_3btn_Click"/>
+                            <Button x:Name="_4btn" Content="4" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_4btn_Click"/>
+                            <Button x:Name="_5btn" Content="5" Background="#FF4EE715" Style="{StaticResource tables}"  Click="_5btn_Click"/>
+                            <Button x:Name="_6btn" Content="6" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_6btn_Click"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button x:Name="_7btn" Content="7" Background="#FF4EE715" Style="{StaticResource tables}" Click="_7btn_Click"/>
+                            <Button x:Name="b1btn" Content="B1" Background="#FF4EE715"   Style="{StaticResource tables}" Click="b1btn_Click"/>
+                            <Button x:Name="b2btn" Content="B2" Background="#FF4EE715" Style="{StaticResource tables}" Click="b2btn_Click"/>
+                            <Button x:Name="b3btn" Content="B3" Background="#FF4EE715"  Style="{StaticResource tables}" Click="b3btn_Click"/>
+                            <Button x:Name="b4btn" Content="B4" Background="#FF4EE715" Style="{StaticResource tables}"  Click="b4btn_Click"/>
+                            <Button x:Name="b5btn" Content="B5" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="b5btn_Click"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button x:Name="b6btn" Content="B6" Background="#FF4EE715"  Style="{StaticResource tables}" Click="b6btn_Click"/>
+                            <Button x:Name="b7btn" Content="B7" Background="#FF4EE715" Style="{StaticResource tables}" Click="b7btn_Click"/>
+                            <Button x:Name="_8btn" Content="8" Background="#FF4EE715" Style="{StaticResource tables}" Click="_8btn_Click"/>
+                            <Button x:Name="_9btn" Content="9" Background="#FF4EE715" Style="{StaticResource tables}"  Click="_9btn_Click"/>
+                            <Button x:Name="_10btn" Content="10" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_10btn_Click"/>
+                            <Button x:Name="_11btn" Content="11" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_11btn_Click"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button x:Name="_12btn" Content="12" Background="#FF4EE715" Style="{StaticResource tables}" Click="_12btn_Click"/>
+                            <Button x:Name="_13btn" Content="13" Background="#FF4EE715"   Style="{StaticResource tables}" Click="_13btn_Click"/>
+                            <Button x:Name="_14btn" Content="14" Background="#FF4EE715" Style="{StaticResource tables}" Click="_14btn_Click"/>
+                            <Button x:Name="_15btn" Content="15" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_15btn_Click"/>
+                            <Button x:Name="_16btn" Content="16" Background="#FF4EE715" Style="{StaticResource tables}"  Click="_16btn_Click" />
+                            <Button x:Name="_17btn" Content="17" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_17btn_Click"/>
+
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button x:Name="_18btn" Content="18" Background="#FF4EE715"  Style="{StaticResource tables}" Click="_18btn_Click"/>
+                            <Button x:Name="twbtn" Content="TW" Background="#FF4EE715" Style="{StaticResource tables}" />
+
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                 
 
-                        <Button x:Name="b6btn" Content="B6" Background="#FF4EE715"  Style="{StaticResource tables}" Click="b6btn_Click"/>
-                        <Button x:Name="b7btn" Content="B7" Background="#FF4EE715" Style="{StaticResource tables}" Click="b7btn_Click"/>
-                        <Button x:Name="_8btn" Content="8" Background="#FF4EE715" Style="{StaticResource tables}" Click="_8btn_Click"/>
-                        <Button x:Name="_9btn" Content="9" Background="#FF4EE715" Style="{StaticResource tables}"  Click="_9btn_Click"/>
-                        <Button x:Name="_10btn" Content="10" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_10btn_Click"/>
-                        <Button x:Name="_11btn" Content="11" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_11btn_Click"/>
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
 
-                        <Button x:Name="_12btn" Content="12" Background="#FF4EE715" Style="{StaticResource tables}" Click="_12btn_Click"/>
-                        <Button x:Name="_13btn" Content="13" Background="#FF4EE715"   Style="{StaticResource tables}" Click="_13btn_Click"/>
-                        <Button x:Name="_14btn" Content="14" Background="#FF4EE715" Style="{StaticResource tables}" Click="_14btn_Click"/>
-                        <Button x:Name="_15btn" Content="15" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_15btn_Click"/>
-                        <Button x:Name="_16btn" Content="16" Background="#FF4EE715" Style="{StaticResource tables}"  Click="_16btn_Click" />
-                        <Button x:Name="_17btn" Content="17" Background="#FF4EE715"  Style="{StaticResource tables}"  Click="_17btn_Click"/>
-
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button x:Name="_18btn" Content="18" Background="#FF4EE715"  Style="{StaticResource tables}" Click="_18btn_Click"/>
-                        <Button x:Name="twbtn" Content="TW" Background="#FF4EE715" Style="{StaticResource tables}" />                  
-
-                    </StackPanel>
-              
-
-           
                 </StackPanel>
             </Grid>
-            
+
         </Viewbox>
-      
+
     </Grid>
 </Window>

@@ -12,7 +12,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.121.150";
+        string hostName = "150.237.68.206";
         int hostNumber = 43;
         
 
@@ -55,6 +55,7 @@ namespace Yo_Tuk_Tuk_Epos
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+                
             }
             finally
             {
@@ -78,6 +79,7 @@ namespace Yo_Tuk_Tuk_Epos
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+                
             }
             finally
             {

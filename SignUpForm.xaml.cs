@@ -22,7 +22,7 @@ namespace Yo_Tuk_Tuk_Epos
     public partial class SignUpForm : Window
     {
        
-        public SignUpForm(MainWindow main)
+        public SignUpForm(Window main)
         {
             InitializeComponent();
 
