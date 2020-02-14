@@ -1031,7 +1031,7 @@ namespace Yo_Tuk_Tuk_Epos
                 
                 toPay_btn.Text = "0";
                 change_btn.Text = totalValue.ToString();
-                server.paid(txtFileName, orderID.ToString() +","+ DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay);
+                server.paid(txtFileName, orderID.ToString() +","+ DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay+","+0);
                 this.DialogResult = false;
 
             }
