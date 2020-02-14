@@ -178,8 +178,9 @@ namespace Yo_Tuk_Tuk_Epos
             }
                  
 
-            RestaurantMenu menu = new RestaurantMenu();          
-            menu.FolderFileName(fileName);
+            RestaurantMenu menu = new RestaurantMenu();
+            TableNumber = TableNumber.Remove(0,6);
+            menu.FolderFileName(fileName,int.Parse(TableNumber));
             menu.ShowDialog();
             if(menu.DialogResult==true)
             {
@@ -188,7 +189,11 @@ namespace Yo_Tuk_Tuk_Epos
                 window.Show();                
                 this.Hide();
                 
-            }                 
+            }      
+            else
+            {
+                pButton.Background= (Brush)new BrushConverter().ConvertFrom("#FF4EE715");
+            }
            
         }
 

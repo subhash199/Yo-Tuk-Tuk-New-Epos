@@ -12,7 +12,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.68.206";
+        string hostName = "150.237.122.94";
         int hostNumber = 43;
         
 
@@ -88,6 +88,26 @@ namespace Yo_Tuk_Tuk_Epos
 
 
 
+        }
+        internal void paid(string fileName, string info)
+        {
+            TcpClient client = new TcpClient();
+            try
+            {
+                client.Connect(hostName, hostNumber);
+                StreamWriter sw = new StreamWriter(client.GetStream());
+                sw.AutoFlush = true;
+                sw.WriteLine("paid," + fileName+","+info);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+
+            }
+            finally
+            {
+                client.Close();
+            }
         }
        
 

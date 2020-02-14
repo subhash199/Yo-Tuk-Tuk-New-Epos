@@ -20,7 +20,7 @@ namespace Yo_Tuk_Tuk_Epos
     
     public partial class RestaurantMenu : Window
     {
-
+        string methodOfPay = "";
         int startersCount = 0;
         int MainCount = 0;
         int sideCount = 0;
@@ -51,7 +51,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         string folderName = "";
         string txtFileName = "";
-        string tableNum = "";
+        int tableNum =0;
 
         //private void socketConnection()
         //{
@@ -61,9 +61,10 @@ namespace Yo_Tuk_Tuk_Epos
         //    ipep = new IPEndPoint(ip, 9100);
         //    socket.Connect(ipep);
         //}
-        public void FolderFileName(string txtfile)
+        public void FolderFileName(string txtfile, int tableNumber)
         {          
-            txtFileName = txtfile;            
+            txtFileName = txtfile;
+            tableNum = tableNumber;
             TableFile();
 
         }
@@ -413,7 +414,10 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cancel_btn_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            if(order_Box.Items.Count>5)
+            {
+                this.DialogResult = true;
+            }            
             this.Close();
         }
 
@@ -750,7 +754,7 @@ namespace Yo_Tuk_Tuk_Epos
     
             graphics.DrawString("Yo Tuk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n01482 881955", new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
             offSet += 100;
-            graphics.DrawString(tableNum.ToString(), new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
+            graphics.DrawString("Table " + tableNum.ToString(), new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
             offSet += 40;
             for (int i = 0; i < sortedList.Count; i++)
             {
@@ -956,12 +960,15 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cash_btn_Click(object sender, RoutedEventArgs e)
         {
-            payMethod("Cash");
+            methodOfPay += " Cash ";
+            payMethod();
+           
         }
 
         private void Card_btn_Click(object sender, RoutedEventArgs e)
         {
-            payMethod("Card");
+            methodOfPay += " Card ";
+            payMethod();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -989,7 +996,7 @@ namespace Yo_Tuk_Tuk_Epos
                 TotalUp();
             }
         }
-        private void payMethod(string methodOfPay)
+        private void payMethod()
         {
 
             payment = decimal.Parse(userInput.Text);
@@ -999,25 +1006,33 @@ namespace Yo_Tuk_Tuk_Epos
             if (totalValue == 0 || totalValue < 0)
             {
                 printbtn.IsEnabled = true;
-                try
+                //try
+                //{
+                //    StreamWriter writer = new StreamWriter("X-read.txt",true);
+                //    writer.Write(methodOfPay + "\n" + unChangedTotal+ "\nTips\n" + totalValue+ "\n");
+                //    writer.Close();
+                //}
+                //catch
+                //{
+                //    MessageBox.Show("Couldnt store X-read details");
+                //}
+                StreamWriter Swriter = new StreamWriter("orderID.txt", true);
+                Swriter.Close();
+               
+                 string read = ( File.ReadAllText("orderID.txt"));
+                if(string.IsNullOrWhiteSpace(read))
                 {
-                    StreamWriter writer = new StreamWriter("X-read.txt",true);
-                    writer.Write(methodOfPay + "\n" + unChangedTotal+ "\nTips\n" + totalValue+ "\n");
-                    writer.Close();
+                    read = 0.ToString();
                 }
-                catch
-                {
-                    MessageBox.Show("Couldnt store X-read details");
-                }
+                int orderID = int.Parse(read)+1;
+                
+                File.WriteAllText("orderID.txt", orderID.ToString());
                 this.payStackPanel.IsEnabled = false;
                 
                 toPay_btn.Text = "0";
-                change_btn.Text = totalValue.ToString();                
-                DateTime date = DateTime.Now;
-                string pDate = date.ToString("HH:mm");
-                pDate = pDate.Replace(':', ' ');
-                fileName = "paid " + methodOfPay + pDate + " " + txtFileName;
-                File.Move(txtFileName, "Bills\\" + folderName + "\\" + fileName);
+                change_btn.Text = totalValue.ToString();
+                server.paid(txtFileName, orderID.ToString() +","+ DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay);
+                this.DialogResult = false;
 
             }
             btn_dot.IsEnabled = true;
@@ -1070,7 +1085,7 @@ namespace Yo_Tuk_Tuk_Epos
             format.Alignment = StringAlignment.Center;
 
 
-            graphics.DrawString(tableNum, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
+            graphics.DrawString("Table "+tableNum.ToString(), font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
             offSet += 20;
             for (int i = 0; i < holdPrint.Count; i++)
             {

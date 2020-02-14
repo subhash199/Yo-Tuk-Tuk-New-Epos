@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Yo! Tuk Tuk Epos System" Height="400" Width="600" WindowState="Normal">
+        Title="Yo! Tuk Tuk Epos System" Height="300" Width="600" WindowState="Normal">
     <Grid x:Name="LoginScreen" Margin="0,0,-2.333,0" RenderTransformOrigin="0.5,0.5" Background="Black">
 
         <Grid.RenderTransform>
@@ -18,13 +18,14 @@
             </TransformGroup>
         </Grid.RenderTransform>
         <Label x:Name="LogInID" Content="Log In ID" HorizontalAlignment="Center" Margin="323,164,344,207" VerticalAlignment="Center" FontSize="24" Foreground="#FFF3F1FF" Background="{x:Null}"/>
-        <Separator Margin="258,209,263,177">
+        <Separator Margin="271,205,250.333,66">
 
         </Separator>
-        <Button x:Name="login_btn" Content="Log In" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Login_btn_Click" Style="{StaticResource mainButtons}" KeyboardNavigation.TabIndex="1" IsDefault="True" Margin="245,244,245.333,84" />
-        <PasswordBox x:Name="Password_box" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="221,169,220.333,152" VerticalAlignment="Center" Height="50" Width="155" FontSize="36" KeyboardNavigation.TabIndex="0" Background="#FFD3C9C9"/>
-        <Label x:Name="prompt_label" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="237" FontSize="18" Foreground="White" Margin="188,292,171.333,45" Background="{x:Null}"/>
-        <Image  Source="YoTukTuk.png"  Margin="202,14,204.333,229"/>
+        <Button x:Name="login_btn" Content="Log In" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Login_btn_Click" Style="{StaticResource mainButtons}" KeyboardNavigation.TabIndex="1" IsDefault="True" Margin="301,214,189.333,14" RenderTransformOrigin="0.74,0.471" />
+        <Button x:Name="signup_btn" Content="Sign Up" Click="Signup_btn_Click" HorizontalAlignment="Center"  VerticalAlignment="Center"  Style="{StaticResource mainButtons}" KeyboardNavigation.TabIndex="1" Margin="177,214,313.333,14" />
+        <PasswordBox x:Name="Password_box" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="215,110,227.333,111" VerticalAlignment="Center" Height="50" Width="154" FontSize="36" KeyboardNavigation.TabIndex="0" Background="#FFD3C9C9"/>
+        <Label x:Name="prompt_label" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="237" FontSize="18" Foreground="White" Margin="177,165,182.333,65" Background="{x:Null}" Height="41"/>
+        <Image  Source="YoTukTuk.png"  Margin="215,10,232.333,184"/>
 
     </Grid>
 </Window>
