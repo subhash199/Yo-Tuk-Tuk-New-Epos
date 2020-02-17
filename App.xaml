@@ -8,20 +8,27 @@
             <Setter Property="Height" Value="70"/>
             <Setter Property="Width" Value="141"/>
             <Setter Property="FontSize" Value="34"/>
+           
             <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Self}}"/>
             
-                <Setter Property="Template">                
+
+            <Setter Property="Template">                
                 <Setter.Value>
+                  
                     <ControlTemplate TargetType="Button">
+                        
                         <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+                            
                             <Border CornerRadius="20"
                                 Background="{TemplateBinding Background}"
-                                 BorderThickness="1">
+                                 BorderThickness="2">
+                                
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-
+                                  
                                 </ContentPresenter>
                             </Border>
                         </Grid>
+                      
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="RootGrid" Property="RenderTransform">
@@ -31,7 +38,7 @@
                                 </Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
-                       
+             
                     </ControlTemplate>
                 </Setter.Value>
                     

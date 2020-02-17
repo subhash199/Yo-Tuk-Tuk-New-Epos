@@ -10,9 +10,7 @@
     <Grid x:Name="layout_grid">
         <Viewbox HorizontalAlignment="Center">
             <Grid >
-                <Viewbox Margin="0,-52,0,350">
-                    <Label Content="Yo Tuk Tuk Floor Layout" FontSize="20"></Label>
-                </Viewbox>
+                
 
                 <StackPanel>
                   
@@ -25,7 +23,9 @@
                     </StackPanel>-->
                     
                     <StackPanel x:Name="layout_controls" >
-
+                        <Viewbox >
+                            <Label Content="Yo Tuk Tuk Floor Layout" FontSize="20"></Label>
+                        </Viewbox>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="_1btn" Click="_1btn_Click" Background="#FF4EE715" Content="1" Style="{StaticResource tables}" />
                             <Button x:Name="_2btn" Content="2" Background="#FF4EE715" Style="{StaticResource tables}" Click="_2btn_Click"/>
@@ -71,6 +71,12 @@
                             <Button x:Name="twbtn" Content="TW" Background="#FF4EE715" Style="{StaticResource tables}" />
 
                         </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button x:Name="backEnd" Content="....." Background="#FFE8711F"  Style="{StaticResource tables}" BorderBrush="#FF060606"/>                            
+                        </StackPanel>
+
+
                     </StackPanel>
                  
 

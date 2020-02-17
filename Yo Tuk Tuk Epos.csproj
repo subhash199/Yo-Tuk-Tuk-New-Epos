@@ -98,6 +98,9 @@
       <DependentUpon>RestaurantMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerClass.cs" />
+    <Compile Include="settings.xaml.cs">
+      <DependentUpon>settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpForm.xaml.cs">
       <DependentUpon>SignUpForm.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RestaurantMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

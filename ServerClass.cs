@@ -12,7 +12,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.122.94";
+        string hostName = "150.237.240.54";
         int hostNumber = 43;
         
 
@@ -48,8 +48,16 @@ namespace Yo_Tuk_Tuk_Epos
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 sw.AutoFlush = true;
                 StreamReader sr = new StreamReader(client.GetStream());
-                sw.WriteLine("read," + fileName);
-                read = sr.ReadLine();
+                if(fileName.Contains(".txt"))
+                {
+                    sw.WriteLine("read," + fileName);
+                    read = sr.ReadLine();
+                }
+                else if(fileName.Contains("xread"))
+                {
+                    sw.WriteLine("xread");
+                    read = sr.ReadLine();
+                }
               
             }
             catch (Exception e)
