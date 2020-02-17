@@ -55,7 +55,7 @@ namespace Yo_Tuk_Tuk_Epos
                 }
                 else if(fileName.Contains("xread"))
                 {
-                    sw.WriteLine("xread");
+                    sw.WriteLine("requestXRead,");
                     read = sr.ReadLine();
                 }
               

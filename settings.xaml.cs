@@ -20,8 +20,10 @@ namespace Yo_Tuk_Tuk_Epos
     public partial class settings : Window
     {
         ServerClass serverRequest = new ServerClass();
-        public settings()
+        RestaurantLayout currentLayout;
+        public settings(RestaurantLayout layout)
         {
+            currentLayout = layout;
             InitializeComponent();
         }
 

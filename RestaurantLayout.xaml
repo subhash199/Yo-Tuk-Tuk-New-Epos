@@ -73,7 +73,7 @@
                         </StackPanel>
 
                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                            <Button x:Name="backEnd" Content="....." Background="#FFE8711F"  Style="{StaticResource tables}" BorderBrush="#FF060606"/>                            
+                            <Button x:Name="backEnd" Content="....." Background="#FFE8711F"  Style="{StaticResource tables}" BorderBrush="#FF060606" Click="BackEnd_Click"/>                            
                         </StackPanel>
 
 
