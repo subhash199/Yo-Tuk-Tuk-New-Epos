@@ -12,7 +12,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.240.54";
+        string hostName = "150.237.240.51";
         int hostNumber = 43;
         
 
@@ -57,6 +57,11 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     sw.WriteLine("requestXRead,");
                     read = sr.ReadLine();
+                }
+                else if(fileName==("reset"))
+                {
+                    sw.WriteLine(fileName + ",");
+
                 }
               
             }
