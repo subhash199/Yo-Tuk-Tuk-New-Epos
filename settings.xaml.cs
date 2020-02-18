@@ -80,17 +80,21 @@ namespace Yo_Tuk_Tuk_Epos
             int startX = 0;
             int startY = 0;
             int offSet = 20;
+            StreamWriter writer = new StreamWriter("printDoc");
+            //graphics.DrawString("Day End".PadRight(10) + DateTime.Now, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
+            //offSet += 20;
+            //graphics.DrawString("Cash = ".PadRight(10) + cash, font, new SolidBrush(System.Drawing.Color.Black), 0, 0 + 0);
+            //offSet += 20;
+            //graphics.DrawString("Card = ".PadRight(10) + card, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
+            //offSet += 20;
+            //graphics.DrawString("Discount = ".PadRight(10) + Discount, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
+            //offSet += 20;
+            //graphics.DrawString("Total Sales = ".PadRight(10) + total, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
+            //offSet += 20;
+            writer.WriteLine("\tDay End\r\n"+"Cash = ".PadRight(10)+cash+"\r\nCard = ".PadRight(10)+card+"\r\nDiscount = ".PadRight(10)+Discount+"\r\nTotal Sales = ".PadRight(10)+total);
+            writer.Close();
 
-            graphics.DrawString("Day End".PadRight(10) + DateTime.Now, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
-            offSet += 20;
-            graphics.DrawString("Cash = ".PadRight(10) + cash, font, new SolidBrush(System.Drawing.Color.Black), 0, 0 + 0);
-            offSet += 20;
-            graphics.DrawString("Card = ".PadRight(10) + card, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
-            offSet += 20;
-            graphics.DrawString("Discount = ".PadRight(10) + Discount, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
-            offSet += 20;
-            graphics.DrawString("Total Sales = ".PadRight(10) + total, font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
-            offSet += 20;
+            
 
         }
     }

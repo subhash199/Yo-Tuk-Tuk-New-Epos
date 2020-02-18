@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,19 @@ namespace Yo_Tuk_Tuk_Epos
         string hostName = "150.237.240.51";
         int hostNumber = 43;
         
+        internal void printReceipt()
+        {
+            Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            clientSocket.NoDelay = true;
+
+            IPAddress ip = IPAddress.Parse("192.168.192.6");
+            IPEndPoint ipep = new IPEndPoint(ip, 9100);
+
+            clientSocket.Connect(ipep);
+            byte[] fileToSent = File.ReadAllBytes("printDoc");
+            clientSocket.Send(fileToSent);
+            clientSocket.Close();
+        }
 
        
         internal void write(string fileName, List<string> items)
