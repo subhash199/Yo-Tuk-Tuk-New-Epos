@@ -875,9 +875,20 @@ namespace Yo_Tuk_Tuk_Epos
         }
         private void paymentMeth(decimal value)
         {
-
-            userInput.Text += value.ToString();
-            payment = decimal.Parse(userInput.Text);
+            if(userInput.Text.Contains("."))
+            {
+                if (!(userInput.Text.Substring(userInput.Text.IndexOf(".") + 1).Length>=2))
+                {
+                    userInput.Text += value.ToString();
+                    payment = decimal.Parse(userInput.Text);
+                }
+            }
+            else
+            {
+                userInput.Text += value.ToString();
+                payment = decimal.Parse(userInput.Text);
+            }
+           
            
         }
 
@@ -973,8 +984,16 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult=true;
-            this.Close();
+            if(toPay_btn.Text=="0")
+            {
+                this.DialogResult = false;
+            }
+            else
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
+           
         }
         public void discountButtonCheck()
         {
@@ -1032,7 +1051,7 @@ namespace Yo_Tuk_Tuk_Epos
                 toPay_btn.Text = "0";
                 change_btn.Text = totalValue.ToString();
                 server.paid(txtFileName, orderID.ToString() +","+ DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay+","+0);
-                this.DialogResult = false;
+               
 
             }
             btn_dot.IsEnabled = true;
