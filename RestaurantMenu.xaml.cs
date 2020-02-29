@@ -433,7 +433,36 @@ namespace Yo_Tuk_Tuk_Epos
         }
 
         
+        private void foodPrice(string category,string Name,double price )
+        {
+            if(category =="St")
+            {
+                currentList.Add(category + "," + Name + ","+price+",");
+                holdPrint.Insert(0, new orderItemIdentify("*s", Name));
+                startersCount++;
+                discountButtonCheck();
+            }
+            else if(category=="M")
+            {
+                currentList.Add("M" + "," + Name + "," + value + ",");
+                holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
+                MainCount += 1;
+                discountButtonCheck(); 
+            }
+            else if(category=="Sd")
+            {
 
+            }
+            else if(category=="C")
+            {
+
+            }
+            else if(category=="D")
+            {
+
+            }
+
+        }
         private void lowStarters(string Name)
         {
             currentList.Add("St" + "," + Name + ",3.95,");
