@@ -13,7 +13,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.240.82";
+        string hostName = "150.237.202.232";
         int hostNumber = 43;
         
         internal void printReceipt()
@@ -62,6 +62,11 @@ namespace Yo_Tuk_Tuk_Epos
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 sw.AutoFlush = true;
                 StreamReader sr = new StreamReader(client.GetStream());
+                if(fileName.Contains("itemsList"))
+                {
+                    sw.WriteLine("itemsList,");
+                    read = sr.ReadLine();
+                }
                 if(fileName.Contains(".txt"))
                 {
                     sw.WriteLine("read," + fileName);

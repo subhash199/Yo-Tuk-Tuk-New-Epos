@@ -20,6 +20,9 @@ namespace Yo_Tuk_Tuk_Epos
     
     public partial class RestaurantMenu : Window
     {
+        ServerClass server = new ServerClass();
+        Dictionary<string, double> itemsDictionary = new Dictionary<string, double>();
+
         string methodOfPay = "";
         int startersCount = 0;
         int MainCount = 0;
@@ -42,11 +45,19 @@ namespace Yo_Tuk_Tuk_Epos
         {
             InitializeComponent();
             TableFile();
+            string [] items = (server.read("itemsList")).Split(',');
+            items = items.Take(items.Count() - 1).ToArray();
+            for (int i = 0; i < items.Length; i++)
+            {
+                itemsDictionary.Add(items[i], double.Parse(items[i + 1]));
+                i=i + 1;
+            }
         }
         List<orderItemIdentify> holdPrint = new List<orderItemIdentify>();
         List<string> currentList = new List<string>();
         List<ItemList> sortedList = new List<ItemList>();
-        ServerClass server = new ServerClass();
+      
+       
         decimal totalValue = 0;
 
         string folderName = "";
@@ -420,6 +431,8 @@ namespace Yo_Tuk_Tuk_Epos
             }            
             this.Close();
         }
+
+        
 
         private void lowStarters(string Name)
         {
