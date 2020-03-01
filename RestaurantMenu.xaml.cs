@@ -444,77 +444,92 @@ namespace Yo_Tuk_Tuk_Epos
             }
             else if(category=="M")
             {
-                currentList.Add("M" + "," + Name + "," + value + ",");
+                currentList.Add(category + "," + Name + "," + price + ",");
                 holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
                 MainCount += 1;
                 discountButtonCheck(); 
             }
             else if(category=="Sd")
             {
-
+                currentList.Add(category + "," + Name + "," + price + ",");
+                holdPrint.Insert(startersCount, new orderItemIdentify("*sd", Name));
+                sideCount += 1;
+                discountButtonCheck();
             }
             else if(category=="C")
             {
-
+                currentList.Add(category + "," + Name + "," + price + ",");
+                holdPrint.Insert(startersCount, new orderItemIdentify("*c", Name));
+                 desertsCount+= 1;
+                discountButtonCheck();
             }
             else if(category=="D")
             {
-
+                currentList.Add(category + "," + Name + "," + price + ",");
+                holdPrint.Insert(startersCount, new orderItemIdentify("*d", Name));                
+                discountButtonCheck();
             }
 
         }
         private void lowStarters(string Name)
         {
-            currentList.Add("St" + "," + Name + ",3.95,");
-            holdPrint.Insert(0, new orderItemIdentify("*s", Name));
-            startersCount++;
-            discountButtonCheck();
+            foodPrice("St", Name, itemsDictionary[Name]);
+            //currentList.Add("St" + "," + Name + ",3.95,");
+            //holdPrint.Insert(0, new orderItemIdentify("*s", Name));
+            //startersCount++;
+            //discountButtonCheck();
         }
         private void MidStarters(String Name)
         {
-            currentList.Add("St" + "," + Name + ",4.95,");
-            holdPrint.Insert(0, new orderItemIdentify("*s", Name));
-            startersCount++;
-            discountButtonCheck();
+            foodPrice("St", Name, itemsDictionary[Name]);
+            //currentList.Add("St" + "," + Name + ",4.95,");
+            //holdPrint.Insert(0, new orderItemIdentify("*s", Name));
+            //startersCount++;
+            //discountButtonCheck();
         }
         private void HighStarters(string Name)
         {
-            currentList.Add("St" + "," + Name + ",5.95,");
-            holdPrint.Insert(0, new orderItemIdentify("*s", Name));
-            startersCount++;
-            discountButtonCheck();
+            foodPrice("St", Name, itemsDictionary[Name]);
+            //currentList.Add("St" + "," + Name + ",5.95,");
+            //holdPrint.Insert(0, new orderItemIdentify("*s", Name));
+            //startersCount++;
+            //discountButtonCheck();
         }
 
         private void MainCourse(String Name, double value)
         {
-            currentList.Add("M" + "," + Name + "," + value + ",");
-            holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
-            MainCount += 1;
-            discountButtonCheck();
+            foodPrice("M" , Name, itemsDictionary[Name]);
+            //currentList.Add("M" + "," + Name + "," + value + ",");
+            //holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
+            //MainCount += 1;
+            //discountButtonCheck();
         }
 
 
         private void sideOrders(string Name, double Value)
         {
-            currentList.Add("Sd" + "," + Name + "," + Value + ",");
-            holdPrint.Insert(startersCount + MainCount, new orderItemIdentify("*sd", Name));
-            sideCount += 1;
-            discountButtonCheck();
+            foodPrice("Sd", Name, itemsDictionary[Name]);
+            //currentList.Add("Sd" + "," + Name + "," + Value + ",");
+            //holdPrint.Insert(startersCount + MainCount, new orderItemIdentify("*sd", Name));
+            //sideCount += 1;
+            //discountButtonCheck();
         }
 
         private void Carbs(string Name, double Value)
         {
-            currentList.Add("C" + "," + Name + "," + Value + ",");
-            holdPrint.Insert(startersCount + MainCount + sideCount, new orderItemIdentify("*c", Name));
-            desertsCount += 1;
-            discountButtonCheck();
+            foodPrice("C", Name, itemsDictionary[Name]);
+            //currentList.Add("C" + "," + Name + "," + Value + ",");
+            //holdPrint.Insert(startersCount + MainCount + sideCount, new orderItemIdentify("*c", Name));
+            //desertsCount += 1;
+            //discountButtonCheck();
         }
 
         private void Desserts(string Name, Double Value)
         {
-            currentList.Add("D" + "," + Name + "," + Value + ",");
-            holdPrint.Insert(startersCount + MainCount + sideCount + desertsCount, new orderItemIdentify("*d", Name));
-            discountButtonCheck();
+            foodPrice("D", Name, itemsDictionary[Name]);
+            //currentList.Add("D" + "," + Name + "," + Value + ",");
+            //holdPrint.Insert(startersCount + MainCount + sideCount + desertsCount, new orderItemIdentify("*d", Name));
+            //discountButtonCheck();
         }
 
         #region
@@ -580,7 +595,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Staff_btn_Click(object sender, RoutedEventArgs e)
         {
-            MainCourse(Coconut_btn.Content.ToString(), 11.95);
+            MainCourse(Staff_btn.Content.ToString(), 11.95);
         }
 
 
@@ -694,12 +709,12 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void _1pt_btn_Click(object sender, RoutedEventArgs e)
         {
-            Carbs("Perfumed Rice pint", 4.50);
+            Carbs("Perfumed Rice Pint", 4.50);
         }
 
         private void Half_btn_Click(object sender, RoutedEventArgs e)
         {
-            Carbs("halfpt Rice", 2.50);
+            Carbs("half pt Rice", 2.50);
         }
 
         private void Gulab_btn_Click(object sender, RoutedEventArgs e)
@@ -746,7 +761,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void NonVeg_btn_Click(object sender, RoutedEventArgs e)
         {
-            MainCourse("Non Veg Thali", 13.95);
+            MainCourse("Non-Veg Thali", 13.95);
         }
 
         private void Taster_Button_Click(object sender, RoutedEventArgs e)
@@ -790,7 +805,7 @@ namespace Yo_Tuk_Tuk_Epos
 
             //e.PageSettings.PaperSize.Width = 50;
 
-            Image newImage = Image.FromFile("YoTukTukPrint.jpg");
+            Image newImage = Image.FromFile("YoTukTuk.png");
 
             graphics.DrawImage(newImage,80,0);
     
@@ -987,8 +1002,12 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Btn_CE_Click(object sender, RoutedEventArgs e)
         {
-            userInput.Text = userInput.Text.Remove(0);
-            btn_dot.IsEnabled = true;
+            if (userInput.Text.Length!=0)
+            {
+                userInput.Text = userInput.Text.Remove(0);
+                btn_dot.IsEnabled = true;
+            }
+            
         }
 
         private void Pay_btn_Click(object sender, RoutedEventArgs e)

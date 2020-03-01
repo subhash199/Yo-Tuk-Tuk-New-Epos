@@ -13,8 +13,8 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.202.232";
-        int hostNumber = 43;
+        string hostName = "150.237.240.34";
+        int hostNumber = 5002;
         
         internal void printReceipt()
         {

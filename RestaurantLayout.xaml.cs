@@ -179,7 +179,15 @@ namespace Yo_Tuk_Tuk_Epos
                  
 
             RestaurantMenu menu = new RestaurantMenu();
-            TableNumber = TableNumber.Remove(0,6);
+            if(TableNumber.Contains("Table"))
+            {
+                TableNumber = TableNumber.Remove(0, 6);
+            }
+            else
+            {
+                TableNumber = TableNumber.Remove(0, 4);
+            }
+           
             menu.FolderFileName(fileName,int.Parse(TableNumber));
             menu.ShowDialog();
             if(menu.DialogResult==true)
