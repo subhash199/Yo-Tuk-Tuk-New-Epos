@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Controls;
 
 namespace Yo_Tuk_Tuk_Epos
 {
@@ -40,7 +41,7 @@ namespace Yo_Tuk_Tuk_Epos
         IPAddress ip = null;
         IPEndPoint ipep = null;
 
-
+        
         public RestaurantMenu()
         {
             InitializeComponent();
@@ -50,20 +51,31 @@ namespace Yo_Tuk_Tuk_Epos
             for (int i = 0; i < items.Length; i++)
             {
                 itemsDictionary.Add(items[i], double.Parse(items[i + 1]));
-                i=i + 1;
+                i = i + 1;
             }
+            Button menuButtons;
+            List<Button> butList = new List<Button> { _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24,
+                _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48 };
+            string s = "";
+            for (int i = 0; i < butList.Count; i++)
+            {
+                butList[i].Content = items[i*2];
+            }
+           
         }
         List<orderItemIdentify> holdPrint = new List<orderItemIdentify>();
         List<string> currentList = new List<string>();
         List<ItemList> sortedList = new List<ItemList>();
-      
-       
+
+        string ItemName = "";
+        Button button;
+
         decimal totalValue = 0;
 
         string folderName = "";
         string txtFileName = "";
         int tableNum =0;
-
+        #region
         //private void socketConnection()
         //{
         //    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -79,9 +91,9 @@ namespace Yo_Tuk_Tuk_Epos
             TableFile();
 
         }
-        private void Bombay_bnt_Click(object sender, RoutedEventArgs e)
-        {
-            lowStarters(bombay_bnt.Content.ToString());
+        private void _1_Click(object sender, RoutedEventArgs e)
+        {            
+            lowStarters(_1.Content.ToString());
         }
 
 
@@ -534,105 +546,105 @@ namespace Yo_Tuk_Tuk_Epos
 
         #region
 
-        private void FishLeek_btn_Click(object sender, RoutedEventArgs e)
-        {
-            HighStarters(FishLeek_btn.Content.ToString());
-        }
+        //private void FishLeek_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    HighStarters(FishLeek_btn.Content.ToString());
+        //}
 
-        private void Fish_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MidStarters(Fish_btn.Content.ToString());
-        }
+        //private void Fish_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MidStarters(Fish_btn.Content.ToString());
+        //}
 
-        private void Keema_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MidStarters(Keema_btn.Content.ToString());
-        }
-        private void Goat_btn_Click_1(object sender, RoutedEventArgs e)
-        {
-            lowStarters(Goat_btn.Content.ToString());
-        }
+        //private void Keema_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MidStarters(Keema_btn.Content.ToString());
+        //}
+        //private void Goat_btn_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    lowStarters(Goat_btn.Content.ToString());
+        //}
 
-        private void Bangers_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MidStarters(bangers_btn.Content.ToString());
-        }
+        //private void Bangers_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MidStarters(bangers_btn.Content.ToString());
+        //}
 
-        private void Dirty_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MidStarters(dirty_btn.Content.ToString());
-        }
+        //private void Dirty_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MidStarters(dirty_btn.Content.ToString());
+        //}
 
-        private void Sweet_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MidStarters(sweet_btn.Content.ToString());
-        }
-
-
-        private void Samosas_btn_Click(object sender, RoutedEventArgs e)
-        {
-            lowStarters(Samosas_btn.Content.ToString());
-        }
-
-        private void Bombay_btn_Click(object sender, RoutedEventArgs e)
-        {
-            lowStarters(Bombay_btn.Content.ToString());
-        }
-
-        private void Railway_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Railway_btn.Content.ToString(), 11.95);
-        }
-        private void Goan_btn_Click_1(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Goan_btn.Content.ToString(), 12.95);
-        }
-
-        private void Butter_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Butter_btn.Content.ToString(), 9.95);
-        }
-
-        private void Staff_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Staff_btn.Content.ToString(), 11.95);
-        }
+        //private void Sweet_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MidStarters(sweet_btn.Content.ToString());
+        //}
 
 
-        private void Coconut_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Coconut_btn.Content.ToString(), 9.95);
-        }
+        //private void Samosas_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    lowStarters(Samosas_btn.Content.ToString());
+        //}
 
-        private void Mango_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Mango_btn.Content.ToString(), 12.95);
-        }
+        //private void _2_Click(object sender, RoutedEventArgs e)
+        //{
+        //    lowStarters(_2.Content.ToString());
+        //}
 
-        private void Lemon_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Lemon_btn.Content.ToString(), 12.95);
-        }
+        //private void Railway_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Railway_btn.Content.ToString(), 11.95);
+        //}
+        //private void Goan_btn_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Goan_btn.Content.ToString(), 12.95);
+        //}
 
-        private void Modu_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Modu_btn.Content.ToString(), 9.95);
-        }
+        //private void Butter_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Butter_btn.Content.ToString(), 9.95);
+        //}
 
-        private void Bengal_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Bengal_btn.Content.ToString(), 9.95);
-        }
+        //private void Staff_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Staff_btn.Content.ToString(), 11.95);
+        //}
 
-        private void Mixed_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Mixed_btn.Content.ToString(), 12.95);
-        }
 
-        private void Korai_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse(Korai_btn.Content.ToString(), 12.95);
-        }
+        //private void Coconut_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Coconut_btn.Content.ToString(), 9.95);
+        //}
+
+        //private void Mango_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Mango_btn.Content.ToString(), 12.95);
+        //}
+
+        //private void Lemon_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Lemon_btn.Content.ToString(), 12.95);
+        //}
+
+        //private void Modu_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Modu_btn.Content.ToString(), 9.95);
+        //}
+
+        //private void Bengal_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Bengal_btn.Content.ToString(), 9.95);
+        //}
+
+        //private void Mixed_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Mixed_btn.Content.ToString(), 12.95);
+        //}
+
+        //private void Korai_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainCourse(Korai_btn.Content.ToString(), 12.95);
+        //}
 
         private void Garlic_btn_Click(object sender, RoutedEventArgs e)
         {
@@ -805,7 +817,7 @@ namespace Yo_Tuk_Tuk_Epos
 
             //e.PageSettings.PaperSize.Width = 50;
 
-            Image newImage = Image.FromFile("YoTukTuk.png");
+            System.Drawing.Image newImage = System.Drawing.Image.FromFile("YoTukTuk.png");
 
             graphics.DrawImage(newImage,80,0);
     
@@ -1375,6 +1387,247 @@ namespace Yo_Tuk_Tuk_Epos
             
         }
 
-       
+        #endregion
+        #region
+        private void _1_Click_1(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+        private void _2_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _3_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _4_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _5_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _6_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _7_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _8_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _9_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+
+        private void _10_Click(object sender, RoutedEventArgs e)
+        {
+            Starters(sender as Button);
+        }
+        private void _11_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+        private void _12_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _13_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _14_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _16_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _17_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _19_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _20_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _21_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _22_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _24_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _26_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _27_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _29_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _30_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _31_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
+        private void _32_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
+
+        private void _33_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
+
+        private void _35_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
+
+        private void _36_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
+
+        private void _37_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
+
+        private void _38_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
+
+        private void _39_Click(object sender, RoutedEventArgs e)
+        {
+            Deserts(sender as Button);
+        }
+
+        private void _40_Click(object sender, RoutedEventArgs e)
+        {
+            Deserts(sender as Button);
+        }
+
+        private void _41_Click(object sender, RoutedEventArgs e)
+        {
+            Deserts(sender as Button);
+        }
+
+        private void _42_Click(object sender, RoutedEventArgs e)
+        {
+            Deserts(sender as Button);
+        }
+
+        private void _43_Click(object sender, RoutedEventArgs e)
+        {
+            Deserts(sender as Button);
+        }
+
+        private void _44_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _45_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _46_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _47_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void _48_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+
+        private void Starters(Button bName)
+        {
+            button = bName as Button;
+            ItemName = button.Content.ToString(); ;
+            foodPrice("St", button.Content.ToString(), itemsDictionary[ItemName]);
+        }
+        private void Maincourse(Button bName)
+        {
+            button = bName as Button;
+            ItemName = button.Content.ToString(); ;
+            foodPrice("M", button.Content.ToString(), itemsDictionary[ItemName]);
+        }
+        private void Sideoders(Button bName)
+        {
+            button = bName as Button;
+            ItemName = button.Content.ToString(); ;
+            foodPrice("Sd", button.Content.ToString(), itemsDictionary[ItemName]);
+        }
+        private void Carbs(Button bName)
+        {
+            button = bName as Button;
+            ItemName = button.Content.ToString(); ;
+            foodPrice("C", button.Content.ToString(), itemsDictionary[ItemName]);
+        }
+        private void Deserts(Button bName)
+        {
+            button = bName as Button;
+            ItemName = button.Content.ToString(); ;
+            foodPrice("D", button.Content.ToString(), itemsDictionary[ItemName]);
+        }
+
+        
     }
 }
+#endregion
