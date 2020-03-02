@@ -85,6 +85,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Client.cs" />
+    <Compile Include="FoodPricing.xaml.cs">
+      <DependentUpon>FoodPricing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HoldItemsList.cs" />
     <Compile Include="ItemList.cs" />
     <Compile Include="orderItemIdentify.cs" />
@@ -105,6 +108,10 @@
       <DependentUpon>SignUpForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="userId.cs" />
+    <Page Include="FoodPricing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

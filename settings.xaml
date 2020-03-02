@@ -11,7 +11,7 @@
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="dayEnd" Content="Day End" Background="#FF4EE715"  Style="{StaticResource tables}" Click="DayEnd_Click"/>
-                    <Button x:Name="twbtn" Content="Settings"  Background="#FF4EE715" Style="{StaticResource tables}" FontSize="36" />
+                    <Button x:Name="update" Content="Update" Background="#FF4EE715"  Style="{StaticResource tables}" Click="Update_Click_1"/>
                 </StackPanel>
             </Grid>
         </Viewbox>
