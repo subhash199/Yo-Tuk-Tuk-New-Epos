@@ -62,6 +62,7 @@ namespace Yo_Tuk_Tuk_Epos
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 sw.AutoFlush = true;
                 StreamReader sr = new StreamReader(client.GetStream());
+              
                 if(fileName.Contains("itemsList"))
                 {
                     sw.WriteLine("itemsList,");
@@ -82,7 +83,12 @@ namespace Yo_Tuk_Tuk_Epos
                     sw.WriteLine(fileName + ",");
 
                 }
-              
+                else if (fileName.Contains("listAll"))
+                {
+                    sw.WriteLine(fileName+",");
+                    read = sr.ReadLine();
+                }
+
             }
             catch (Exception e)
             {

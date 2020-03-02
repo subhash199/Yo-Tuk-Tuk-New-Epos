@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
-        Title="FoodPricing" Height="450" Width="800">
+        Title="Food Pricing" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Search" HorizontalAlignment="Left" Margin="206,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.269,0.371"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="256,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251"/>
+        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="355" Margin="21,54,0,0" VerticalAlignment="Top" Width="749"  SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="Category" Width="auto" DisplayMemberBinding="{Binding Category}" />
+                    <GridViewColumn Header="Dish" Width="auto" DisplayMemberBinding="{Binding Dish}" />
+                    <GridViewColumn Header="Price" Width="auto" DisplayMemberBinding="{Binding Price}" />
+                   
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>
