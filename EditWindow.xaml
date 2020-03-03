@@ -15,8 +15,8 @@
         <TextBox x:Name="category_box" HorizontalAlignment="Left" Height="23" Margin="200,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
         <TextBox x:Name="dish_box" HorizontalAlignment="Left" Height="23" Margin="408,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
         <TextBox x:Name="price_box" HorizontalAlignment="Left" Height="23" Margin="600,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
-        <Button x:Name="update_Button" Content="Update" Background="Green" HorizontalAlignment="Left" Margin="229,258,0,0" Style="{StaticResource tables}" VerticalAlignment="Top" Width="148" RenderTransformOrigin="1.01,0.538" Click="Update_Button_Click"/>
-        <Button x:Name="back_Button" Content="Cancel" Background="Red" HorizontalAlignment="Left" Margin="427,258,0,0" Style="{StaticResource ResourceKey=tables}" VerticalAlignment="Top" Width="148"/>
+        <Button x:Name="update_Button" Content="Update" Background="Green" HorizontalAlignment="Left" Margin="200,258,0,0" Style="{StaticResource tables}" VerticalAlignment="Top" Width="148" RenderTransformOrigin="1.01,0.538" Click="Update_Button_Click"/>
+        <Button x:Name="back_Button" Content="Cancel" Background="Red" HorizontalAlignment="Left" Margin="408,258,0,0" Style="{StaticResource ResourceKey=tables}" VerticalAlignment="Top" Width="148"/>
 
     </Grid>
 </Window>

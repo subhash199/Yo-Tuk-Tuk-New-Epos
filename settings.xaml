@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
-        Title="settings" Height="450" Width="800">
+        Title="settings" Height="150" Width="290">
     <Grid>
-        <Viewbox>
+        
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="dayEnd" Content="Day End" Background="#FF4EE715"  Style="{StaticResource tables}" Click="DayEnd_Click"/>
                     <Button x:Name="update" Content="Update" Background="#FF4EE715"  Style="{StaticResource tables}" Click="Update_Click_1"/>
                 </StackPanel>
             </Grid>
-        </Viewbox>
+        
         
     </Grid>
 </Window>

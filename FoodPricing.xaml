@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="Food Pricing" Height="450" Width="800">
     <Grid>
+        <Viewbox>
+            <Grid>
+        
         <Label Content="Search" HorizontalAlignment="Left" Margin="206,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.269,0.371"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="256,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251"/>
-        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="355" Margin="21,54,0,0" VerticalAlignment="Top" Width="749"  SelectionChanged="ListView_SelectionChanged">
+        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="355" Margin="21,54,0,0" VerticalAlignment="Top" Width="749"  >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
@@ -21,6 +24,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
+        <Button x:Name="Edit_btn" Content="Edit" HorizontalAlignment="Left" Margin="546,21,0,0" Background="Green" VerticalAlignment="Top" Width="75" Click="Edit_btn_Click" />
+        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Left" Margin="647,21,0,0" Background="Red" VerticalAlignment="Top" Width="75"/>
+            </Grid>
+        </Viewbox>
     </Grid>
 </Window>

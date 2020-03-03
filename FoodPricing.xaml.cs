@@ -33,16 +33,12 @@ namespace Yo_Tuk_Tuk_Epos
            
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Edit_btn_Click(object sender, RoutedEventArgs e)
         {
-            
-            if(displayListView.SelectedItems.Count==2)
-            {
-                EditWindow window = new EditWindow(displayListView.SelectedItem.ToString());
-                window.Show();
-                
-            }
-            
+
+            string details = displayListView.SelectedItem.ToString();
+            EditWindow window = new EditWindow(details);
+            window.Show();
         }
     }
 }
