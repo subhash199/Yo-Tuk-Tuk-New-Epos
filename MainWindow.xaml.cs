@@ -26,10 +26,8 @@ namespace Yo_Tuk_Tuk_Epos
         public MainWindow()
         {
 
-            InitializeComponent();
-            this.Hide();
-            RestaurantLayout layout = new RestaurantLayout(this);
-            layout.Show();
+            InitializeComponent();         
+       
 
         }
         public RestaurantLayout layout;

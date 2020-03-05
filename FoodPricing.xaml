@@ -5,27 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
-        Title="Food Pricing" Height="450" Width="800">
+        Title="Food Pricing" Height="450" Width="800" WindowState="Maximized">
     <Grid>
         <Viewbox>
             <Grid>
-        
-        <Label Content="Search" HorizontalAlignment="Left" Margin="206,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.269,0.371"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="256,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251"/>
-        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="355" Margin="21,54,0,0" VerticalAlignment="Top" Width="749"  >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
-                    <GridViewColumn Header="Category" Width="auto" DisplayMemberBinding="{Binding Category}" />
-                    <GridViewColumn Header="Dish" Width="auto" DisplayMemberBinding="{Binding Dish}" />
-                    <GridViewColumn Header="Price" Width="auto" DisplayMemberBinding="{Binding Price}" />
-                   
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Search" HorizontalAlignment="Left"  RenderTransformOrigin="0.269,0.371" FontSize="16"/>
+                        <TextBox HorizontalAlignment="Left" Height="28"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251"/>
+                        <Button x:Name="Edit_btn" Content="Edit" HorizontalAlignment="Right" Margin="210,0,0,0" Background="Green" Width="75" Click="Edit_btn_Click" />
+                        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Right" Background="Red" Margin="100,0,0,0" Width="75" Click="Back_btn_Click"/>
+                    </StackPanel>                    
+                    <StackPanel>
+                        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="333"  VerticalAlignment="Top" Width="770"  >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
+                                    <GridViewColumn Header="Category" Width="auto" DisplayMemberBinding="{Binding Category}" />
+                                    <GridViewColumn Header="Dish" Width="auto" DisplayMemberBinding="{Binding Dish}" />
+                                    <GridViewColumn Header="Price" Width="auto" DisplayMemberBinding="{Binding Price}" />
 
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="Edit_btn" Content="Edit" HorizontalAlignment="Left" Margin="546,21,0,0" Background="Green" VerticalAlignment="Top" Width="75" Click="Edit_btn_Click" />
-        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Left" Margin="647,21,0,0" Background="Red" VerticalAlignment="Top" Width="75"/>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </StackPanel>
+               
+               
+               
             </Grid>
         </Viewbox>
     </Grid>

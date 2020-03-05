@@ -20,8 +20,12 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class EditWindow : Window
     {
-        public EditWindow(string details)
+        Window layoutWindow;
+        Window foodLayoutWindow;
+        public EditWindow(string details, Window window, Window foodWindow)
         {
+            layoutWindow = window;
+            foodLayoutWindow = foodWindow;
             InitializeComponent();
             Regex pattern = new Regex("[{=,}]");
             details = pattern.Replace(details, "");
@@ -67,9 +71,13 @@ namespace Yo_Tuk_Tuk_Epos
             double p;
             if (double.TryParse(price_box.Text, out p))
             {
-                string updateDetails = Id_label + "," + category_box.Text + "," + dish_box.Text + "," + p;
+                string updateDetails = Id_label.Content + "," + category_box.Text + "," + dish_box.Text + "," + p;
                 ServerClass server = new ServerClass();
                 server.create("updateDetails," + updateDetails);
+                this.Close();
+                FoodPricing pricing = new FoodPricing(layoutWindow);
+                pricing.Show();
+                
 
             }
             else
@@ -77,6 +85,12 @@ namespace Yo_Tuk_Tuk_Epos
                 MessageBox.Show("Price entered is Not Vaild");
             }
 
+        }
+
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            foodLayoutWindow.Show();
         }
     }
 }

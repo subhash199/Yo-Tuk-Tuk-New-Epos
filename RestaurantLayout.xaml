@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="RestaurantLayout" Height="720" Width="1280" WindowState="Maximized">
+        Title="RestaurantLayout" WindowState="Maximized">
     <Grid x:Name="layout_grid">
         <Viewbox HorizontalAlignment="Center">
             <Grid >
@@ -68,20 +68,13 @@
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                             <Button x:Name="_18btn" Content="18" Background="#FF4EE715"  Style="{StaticResource tables}" Click="_18btn_Click"/>
-                            <Button x:Name="twbtn" Content="TW" Background="#FF4EE715" Style="{StaticResource tables}" />
+                            <Button x:Name="backEnd" Content="..." Background="#FFE8711F"  Style="{StaticResource tables}" BorderBrush="#FF060606" Click="BackEnd_Click"/>
 
-                        </StackPanel>
-
-                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                            <Button x:Name="backEnd" Content="....." Background="#FFE8711F"  Style="{StaticResource tables}" BorderBrush="#FF060606" Click="BackEnd_Click"/>                            
-                        </StackPanel>
+                        </StackPanel>                    
 
 
                     </StackPanel>
-                 
-
-
-
+                
                 </StackPanel>
             </Grid>
 

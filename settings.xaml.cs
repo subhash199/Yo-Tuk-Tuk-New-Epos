@@ -100,7 +100,9 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Update_Click_1(object sender, RoutedEventArgs e)
         {
-            FoodPricing pricing = new FoodPricing();
+            FoodPricing pricing = new FoodPricing(currentLayout);
+            currentLayout.Hide();
+            this.Close();            
             pricing.Show();
         }
     }

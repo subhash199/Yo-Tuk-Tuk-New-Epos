@@ -19,9 +19,10 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class FoodPricing : Window
     {
-        
-        public FoodPricing()
+        Window layoutWindow;
+        public FoodPricing(Window window)
         {
+            layoutWindow = window;
             InitializeComponent();
             ServerClass server = new ServerClass();
             string[] list = (server.read("listAll")).Split(',');
@@ -37,8 +38,15 @@ namespace Yo_Tuk_Tuk_Epos
         {
 
             string details = displayListView.SelectedItem.ToString();
-            EditWindow window = new EditWindow(details);
+            this.Hide();
+            EditWindow window = new EditWindow(details, layoutWindow, this);
             window.Show();
+        }
+
+        private void Back_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            layoutWindow.Show();
         }
     }
 }

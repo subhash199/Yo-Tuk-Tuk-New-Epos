@@ -31,10 +31,10 @@
                         <Button x:Name="_12" Content="Modu Chilli" Canvas.Left="211" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_12_Click" />
                         <Button x:Name="_13" Content="Lemon Fish" Canvas.Left="314" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_13_Click" />
                         <Button x:Name="_14" Content="Mango Prawn" Canvas.Left="420" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_14_Click" />
-                        <Button x:Name="_15" Content="Coconut Chicken" Canvas.Left="525" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" />
+                        <Button x:Name="_15" Content="Coconut Chicken" Canvas.Left="525" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_15_Click"  />
                         <Button x:Name="_16" Content="Goan Fish" Canvas.Left="629" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_16_Click"  />
                         <Button x:Name="_17" Content="Staff Curry" Canvas.Left="734" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_17_Click" />
-                        <Button x:Name="_18" Content="Butter Mossala" Canvas.Left="839" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" />
+                        <Button x:Name="_18" Content="Butter Mossala" Canvas.Left="839" Canvas.Top="110" Style="{StaticResource ResourceKey=MainCourse}" Click="_18_Click" />
 
                     </StackPanel>
 
@@ -44,22 +44,22 @@
                         <Button x:Name="_20" Content="Mixed Biriyani" Canvas.Left="109" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="_20_Click" />
                         <Button x:Name="_21" Content="Korai keema" Canvas.Left="211" Canvas.Top="216" Style="{StaticResource ResourceKey=MainCourse}" Click="_21_Click" />
                         <Button x:Name="_22" Content="Garlic Dhal&#xD;&#xA;Side" Canvas.Left="314" Canvas.Top="216" Style="{StaticResource ResourceKey=SideOrders}" Click="_22_Click" />
-                        <Button x:Name="_23" Content="Garlic Dhal&#xD;&#xA;Main" Canvas.Left="420" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" />
+                        <Button x:Name="_23" Content="Garlic Dhal&#xD;&#xA;Main" Canvas.Left="420" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" Click="_23_Click" />
                         <Button x:Name="_24" Content="Bengal Potato&#xD;&#xA;Side" Canvas.Left="525" Canvas.Top="215" Style="{StaticResource ResourceKey=SideOrders}" Click="_24_Click" />
-                        <Button x:Name="_25" Content="Bengal&#xD;Potato&#xD;&#xA;Main" Canvas.Left="629" Canvas.Top="217" Style="{StaticResource ResourceKey=SideOrders}" />
+                        <Button x:Name="_25" Content="Bengal&#xD;Potato&#xD;&#xA;Main" Canvas.Left="629" Canvas.Top="217" Style="{StaticResource ResourceKey=SideOrders}" Click="_25_Click" />
                         <Button x:Name="_26" Content="Coconut&#xD;Spinach&#xD;&#xA;Side" Canvas.Left="734" Canvas.Top="213" Style="{StaticResource ResourceKey=SideOrders}" Click="_26_Click"/>
                         <Button x:Name="_27" Content="Coconut&#xD;Spinach&#xD;&#xA;Main" Canvas.Left="839" Canvas.Top="212" Style="{StaticResource ResourceKey=SideOrders}" Click="_27_Click" />
 
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="_28" Content="Chick Pea&#xD;Mush&#xD;&#xA;Side" Canvas.Left="3" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" />
+                        <Button x:Name="_28" Content="Chick Pea&#xD;Mush&#xD;&#xA;Side" Canvas.Left="3" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" Click="_28_Click" />
                         <Button x:Name="_29" Content="Chick Pea&#xD; Mush&#xD;&#xA;Main" Canvas.Left="109" Canvas.Top="319" Style="{StaticResource ResourceKey=SideOrders}" Click="_29_Click"  />
                         <Button x:Name="_30" Content="Mixed Veg&#xD;&#xA;Side" Canvas.Left="211" Canvas.Top="319" Style="{StaticResource ResourceKey=SideOrders}" Click="_30_Click" />
                         <Button x:Name="_31" Content="Mixed Veg&#xA;Main" Canvas.Left="314" Canvas.Top="317" Style="{StaticResource ResourceKey=SideOrders}" Click="_31_Click"  />
                         <Button x:Name="_32" Content="Aloo Puri" Canvas.Left="420" Canvas.Top="321" Style="{StaticResource ResourceKey=Carbs}" Click="_32_Click" />
                         <Button x:Name="_33" Content="Chapatti" Canvas.Left="525" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" Click="_33_Click" />
-                        <Button x:Name="_34" Content="Porata" Canvas.Left="629" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" />
+                        <Button x:Name="_34" Content="Porata" Canvas.Left="629" Canvas.Top="324" Style="{StaticResource ResourceKey=Carbs}" Click="_34_Click" />
                         <Button x:Name="_35" Content="Noon Bora" Canvas.Left="734" Canvas.Top="319" Style="{StaticResource ResourceKey=Carbs}" Click="_35_Click" />
                         <Button x:Name="_36" Content="Bread Basket" Canvas.Left="839" Canvas.Top="319" Style="{StaticResource ResourceKey=Carbs}" Click="_36_Click"/>
 
@@ -240,21 +240,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="btn_0" Content="0 " Style="{StaticResource PayButton}" Click="Btn_0_Click"/>
                             <Button x:Name="btn_dot" Content="." Style="{StaticResource PayButton}" Click="Btn_dot_Click" />
-                            <Button x:Name="btn_CE" Content="CE"  Height="50" Width="100" Click="Btn_CE_Click">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border CornerRadius="20" BorderBrush="Black" BorderThickness="1">
-                                            <TextBlock Text ="CE" Foreground="Black"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center">
-
-                                            </TextBlock>
-
-
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
+                            <Button x:Name="btn_CE" Content="CE" Background="White" Style="{StaticResource PayButton}" Click="Btn_CE_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="cash_btn" Height="50" Width="100" Click="Cash_btn_Click">

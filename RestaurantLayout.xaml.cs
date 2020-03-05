@@ -207,7 +207,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void BackEnd_Click(object sender, RoutedEventArgs e)
         {
-            settings settings = new settings(this);
+            settings settings = new settings(this);            
             settings.Show();
         }
 

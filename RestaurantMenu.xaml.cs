@@ -430,6 +430,10 @@ namespace Yo_Tuk_Tuk_Epos
                 kitchenRecipt();
                 this.DialogResult = true;
             }
+            else if(currentList.Count!=0)
+            {
+                this.DialogResult = true;
+            }
             
             this.Close();
         }
@@ -1455,13 +1459,20 @@ namespace Yo_Tuk_Tuk_Epos
         {
             Maincourse(sender as Button);
         }
-
+        private void _15_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
         private void _16_Click(object sender, RoutedEventArgs e)
         {
             Maincourse(sender as Button);
         }
 
         private void _17_Click(object sender, RoutedEventArgs e)
+        {
+            Maincourse(sender as Button);
+        }
+        private void _18_Click(object sender, RoutedEventArgs e)
         {
             Maincourse(sender as Button);
         }
@@ -1485,11 +1496,20 @@ namespace Yo_Tuk_Tuk_Epos
         {
             Sideoders(sender as Button);
         }
+        private void _23_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
 
         private void _24_Click(object sender, RoutedEventArgs e)
         {
             Sideoders(sender as Button);
         }
+        private void _25_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+
 
         private void _26_Click(object sender, RoutedEventArgs e)
         {
@@ -1497,6 +1517,10 @@ namespace Yo_Tuk_Tuk_Epos
         }
 
         private void _27_Click(object sender, RoutedEventArgs e)
+        {
+            Sideoders(sender as Button);
+        }
+        private void _28_Click(object sender, RoutedEventArgs e)
         {
             Sideoders(sender as Button);
         }
@@ -1525,7 +1549,10 @@ namespace Yo_Tuk_Tuk_Epos
         {
             Carbs(sender as Button);
         }
-
+        private void _34_Click(object sender, RoutedEventArgs e)
+        {
+            Carbs(sender as Button);
+        }
         private void _35_Click(object sender, RoutedEventArgs e)
         {
             Carbs(sender as Button);
@@ -1627,7 +1654,7 @@ namespace Yo_Tuk_Tuk_Epos
             foodPrice("D", button.Content.ToString(), itemsDictionary[ItemName]);
         }
 
-        
+      
     }
 }
 #endregion
