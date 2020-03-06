@@ -26,8 +26,8 @@ namespace Yo_Tuk_Tuk_Epos
         public MainWindow()
         {
 
-            InitializeComponent();         
-       
+            InitializeComponent();
+           
 
         }
         public RestaurantLayout layout;

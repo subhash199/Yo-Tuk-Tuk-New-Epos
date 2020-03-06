@@ -18,12 +18,14 @@ namespace Yo_Tuk_Tuk_Epos
     /// Interaction logic for RestaurantMenu.xaml
     /// </summary>
     /// 
-    
+
     public partial class RestaurantMenu : Window
     {
         ServerClass server = new ServerClass();
         Dictionary<string, double> itemsDictionary = new Dictionary<string, double>();
 
+
+        bool isSaved = false;
         string methodOfPay = "";
         int startersCount = 0;
         int MainCount = 0;
@@ -37,16 +39,16 @@ namespace Yo_Tuk_Tuk_Epos
         int padWidth = 18;
         string fileName = "";
         bool isFinalReceipt = false;
-        Socket socket=null;
+        Socket socket = null;
         IPAddress ip = null;
         IPEndPoint ipep = null;
 
-        
+
         public RestaurantMenu()
         {
             InitializeComponent();
             TableFile();
-            string [] items = (server.read("itemsList")).Split(',');
+            string[] items = (server.read("itemsList")).Split(',');
             items = items.Take(items.Count() - 1).ToArray();
             for (int i = 0; i < items.Length; i++)
             {
@@ -59,9 +61,9 @@ namespace Yo_Tuk_Tuk_Epos
             string s = "";
             for (int i = 0; i < butList.Count; i++)
             {
-                butList[i].Content = items[i*2];
+                butList[i].Content = items[i * 2];
             }
-           
+
         }
         List<orderItemIdentify> holdPrint = new List<orderItemIdentify>();
         List<string> currentList = new List<string>();
@@ -74,7 +76,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         string folderName = "";
         string txtFileName = "";
-        int tableNum =0;
+        int tableNum = 0;
         #region
         //private void socketConnection()
         //{
@@ -85,17 +87,12 @@ namespace Yo_Tuk_Tuk_Epos
         //    socket.Connect(ipep);
         //}
         public void FolderFileName(string txtfile, int tableNumber)
-        {          
+        {
             txtFileName = txtfile;
             tableNum = tableNumber;
             TableFile();
 
         }
-        private void _1_Click(object sender, RoutedEventArgs e)
-        {            
-            lowStarters(_1.Content.ToString());
-        }
-
 
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -131,18 +128,21 @@ namespace Yo_Tuk_Tuk_Epos
 
             try
             {
-                if (!string.IsNullOrEmpty(txtFileName))
-                {
-                    string read = server.read(txtFileName);                   
-                    string[] splitArray = Regex.Split(read, "\r\n");                   
-                    for (int i = 0; i < splitArray.Length; i++)
-                    {
-                        currentList.Add(splitArray[i]);
 
-                    }
-                    discountButtonCheck();
+                string read = server.read(txtFileName);
+                if (read.Length > 0)
+                {
+                    isSaved = true;
                 }
-              
+                string[] splitArray = Regex.Split(read, "\r\n");
+                for (int i = 0; i < splitArray.Length; i++)
+                {
+                    currentList.Add(splitArray[i]);
+
+                }
+                discountButtonCheck();
+
+
 
             }
             catch (Exception e)
@@ -177,7 +177,7 @@ namespace Yo_Tuk_Tuk_Epos
 
                 bool visitedDish = false;
 
-                string[] splitlines = readAll.Split(',');              
+                string[] splitlines = readAll.Split(',');
 
                 decimal value = 0;
 
@@ -396,7 +396,7 @@ namespace Yo_Tuk_Tuk_Epos
                 output = output.Replace(".", "");
 
                 output = output.Trim();
-                if(output!="")
+                if (output != "")
                 {
                     for (int i = 0; i < currentList.Count; i++)
                     {
@@ -408,7 +408,7 @@ namespace Yo_Tuk_Tuk_Epos
                     }
                     for (int i = 0; i < holdPrint.Count; i++)
                     {
-                        if(holdPrint[i].name.Contains(output))
+                        if (holdPrint[i].name.Contains(output))
                         {
                             holdPrint.RemoveAt(i);
                             break;
@@ -417,519 +417,254 @@ namespace Yo_Tuk_Tuk_Epos
                     discountButtonCheck();
                 }
 
-                
+
             }
 
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-          
+            
+
             if (holdPrint.Count != 0)
             {
-                server.write(txtFileName, currentList);
-                kitchenRecipt();
-                this.DialogResult = true;
+               string readBack = (server.write(txtFileName, currentList));
+                if(readBack == "OK")
+                {
+                    string sendPrint = "holdPrint," + tableNum + ",";
+                    for (int i = 0; i < holdPrint.Count; i++)
+                    {
+                        sendPrint += holdPrint[i].section + "," + holdPrint[i].name + ",";
+                    }
+                    server.print(sendPrint);
+                    //kitchenRecipt();
+                    this.DialogResult = true;
+                }
+               
             }
-            else if(currentList.Count!=0)
+            else if (currentList.Count != 0)
             {
                 this.DialogResult = true;
             }
-            
+
             this.Close();
         }
 
 
         private void Cancel_btn_Click(object sender, RoutedEventArgs e)
         {
-            if(order_Box.Items.Count>5)
+            if (order_Box.Items.Count > 6 && currentList.Count != 0 && isSaved == true)
             {
                 this.DialogResult = true;
-            }            
+            }
             this.Close();
         }
 
-        
-        private void foodPrice(string category,string Name,double price )
+
+        private void foodPrice(string category, string Name, double price)
         {
-            if(category =="St")
+            if (category == "St")
             {
-                currentList.Add(category + "," + Name + ","+price+",");
+                currentList.Add(category + "," + Name + "," + price + ",");
                 holdPrint.Insert(0, new orderItemIdentify("*s", Name));
                 startersCount++;
                 discountButtonCheck();
             }
-            else if(category=="M")
+            else if (category == "M")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
                 holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
                 MainCount += 1;
-                discountButtonCheck(); 
+                discountButtonCheck();
             }
-            else if(category=="Sd")
+            else if (category == "Sd")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
                 holdPrint.Insert(startersCount, new orderItemIdentify("*sd", Name));
                 sideCount += 1;
                 discountButtonCheck();
             }
-            else if(category=="C")
+            else if (category == "C")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
                 holdPrint.Insert(startersCount, new orderItemIdentify("*c", Name));
-                 desertsCount+= 1;
+                desertsCount += 1;
                 discountButtonCheck();
             }
-            else if(category=="D")
+            else if (category == "D")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
-                holdPrint.Insert(startersCount, new orderItemIdentify("*d", Name));                
+                holdPrint.Insert(startersCount, new orderItemIdentify("*d", Name));
                 discountButtonCheck();
             }
 
-        }
-        private void lowStarters(string Name)
-        {
-            foodPrice("St", Name, itemsDictionary[Name]);
-            //currentList.Add("St" + "," + Name + ",3.95,");
-            //holdPrint.Insert(0, new orderItemIdentify("*s", Name));
-            //startersCount++;
-            //discountButtonCheck();
-        }
-        private void MidStarters(String Name)
-        {
-            foodPrice("St", Name, itemsDictionary[Name]);
-            //currentList.Add("St" + "," + Name + ",4.95,");
-            //holdPrint.Insert(0, new orderItemIdentify("*s", Name));
-            //startersCount++;
-            //discountButtonCheck();
-        }
-        private void HighStarters(string Name)
-        {
-            foodPrice("St", Name, itemsDictionary[Name]);
-            //currentList.Add("St" + "," + Name + ",5.95,");
-            //holdPrint.Insert(0, new orderItemIdentify("*s", Name));
-            //startersCount++;
-            //discountButtonCheck();
-        }
-
-        private void MainCourse(String Name, double value)
-        {
-            foodPrice("M" , Name, itemsDictionary[Name]);
-            //currentList.Add("M" + "," + Name + "," + value + ",");
-            //holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
-            //MainCount += 1;
-            //discountButtonCheck();
-        }
-
-
-        private void sideOrders(string Name, double Value)
-        {
-            foodPrice("Sd", Name, itemsDictionary[Name]);
-            //currentList.Add("Sd" + "," + Name + "," + Value + ",");
-            //holdPrint.Insert(startersCount + MainCount, new orderItemIdentify("*sd", Name));
-            //sideCount += 1;
-            //discountButtonCheck();
-        }
-
-        private void Carbs(string Name, double Value)
-        {
-            foodPrice("C", Name, itemsDictionary[Name]);
-            //currentList.Add("C" + "," + Name + "," + Value + ",");
-            //holdPrint.Insert(startersCount + MainCount + sideCount, new orderItemIdentify("*c", Name));
-            //desertsCount += 1;
-            //discountButtonCheck();
-        }
-
-        private void Desserts(string Name, Double Value)
-        {
-            foodPrice("D", Name, itemsDictionary[Name]);
-            //currentList.Add("D" + "," + Name + "," + Value + ",");
-            //holdPrint.Insert(startersCount + MainCount + sideCount + desertsCount, new orderItemIdentify("*d", Name));
-            //discountButtonCheck();
-        }
-
-        #region
-
-        //private void FishLeek_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    HighStarters(FishLeek_btn.Content.ToString());
-        //}
-
-        //private void Fish_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MidStarters(Fish_btn.Content.ToString());
-        //}
-
-        //private void Keema_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MidStarters(Keema_btn.Content.ToString());
-        //}
-        //private void Goat_btn_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    lowStarters(Goat_btn.Content.ToString());
-        //}
-
-        //private void Bangers_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MidStarters(bangers_btn.Content.ToString());
-        //}
-
-        //private void Dirty_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MidStarters(dirty_btn.Content.ToString());
-        //}
-
-        //private void Sweet_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MidStarters(sweet_btn.Content.ToString());
-        //}
-
-
-        //private void Samosas_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    lowStarters(Samosas_btn.Content.ToString());
-        //}
-
-        //private void _2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    lowStarters(_2.Content.ToString());
-        //}
-
-        //private void Railway_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Railway_btn.Content.ToString(), 11.95);
-        //}
-        //private void Goan_btn_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Goan_btn.Content.ToString(), 12.95);
-        //}
-
-        //private void Butter_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Butter_btn.Content.ToString(), 9.95);
-        //}
-
-        //private void Staff_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Staff_btn.Content.ToString(), 11.95);
-        //}
-
-
-        //private void Coconut_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Coconut_btn.Content.ToString(), 9.95);
-        //}
-
-        //private void Mango_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Mango_btn.Content.ToString(), 12.95);
-        //}
-
-        //private void Lemon_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Lemon_btn.Content.ToString(), 12.95);
-        //}
-
-        //private void Modu_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Modu_btn.Content.ToString(), 9.95);
-        //}
-
-        //private void Bengal_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Bengal_btn.Content.ToString(), 9.95);
-        //}
-
-        //private void Mixed_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Mixed_btn.Content.ToString(), 12.95);
-        //}
-
-        //private void Korai_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MainCourse(Korai_btn.Content.ToString(), 12.95);
-        //}
-
-        private void Garlic_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Garlic Dhall S", 3.95);
-
-        }
-        private void GarlicMain_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Garlic Dhall M", 9.95);
-        }
-
-        private void BengalPotato_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Bengal Potato S", 3.95);
-
-        }
-        private void BengalPotatoMain_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Bengal Potato M", 9.95);
-        }
-        private void Spinach_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Coconut Spinach S", 4.95);
-        }
-
-        private void Chick_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Chick Pea Mush S", 3.95);
-        }
-
-        private void Veg_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Mixed Veg S", 3.95);
-        }
-        private void SpinachMain_btn_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Coconut Spinach M", 10.95);
-        }
-
-        private void ChickMain_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Chick Pea Mush M", 9.95);
-        }
-
-        private void VegMain_btn_Click(object sender, RoutedEventArgs e)
-        {
-            sideOrders("Mixed Veg M", 9.95);
-        }
-
-        private void Aloo_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("Aloo Puri", 2.75);
-        }
-
-        private void Noon_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("Noon Bora", 2.75);
-        }
-
-        private void Chapatti_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("Elephant Chapatti", 2.20);
-        }
-
-        private void Porota_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("Porata", 2.75);
-        }
-
-        private void Bread_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("Bread Basket", 5.95);
-        }
-
-        private void _1pt_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("Perfumed Rice Pint", 4.50);
-        }
-
-        private void Half_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Carbs("half pt Rice", 2.50);
-        }
-
-        private void Gulab_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Desserts("Warm Gulab Jamun", 3.95);
-        }
-
-        private void Macaroons_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Desserts("Indian Macaroons", 3.95);
-        }
-
-        private void Sorbet_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Desserts("Mixed Sorbet", 3.95);
-        }
-
-        private void Vanillia_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Desserts("Vanilla Ice Cream", 1.95);
-        }
-
-        private void Kulfi_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Desserts("Kulfi", 1.95);
-        }
-
-
-
-        private void OfficeWorker_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse("Office Workers", 12.95);
-        }
-
-        private void SchoolBoy_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse("School Boy Tiffin", 11.95);
-        }
-
-        private void VegThali_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse("Veg Thali", 13.95);
-        }
-
-        private void NonVeg_btn_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse("Non-Veg Thali", 13.95);
-        }
-
-        private void Taster_Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainCourse("Taster Menu", 16.95);
         }
         #endregion
         private void Print_btn_Click(object sender, RoutedEventArgs e)
         {
-            receiptPrint();
+            //receiptPrint();
+            printReceipt();
 
         }
-        private void receiptPrint()
+        private void printReceipt()
         {
-            var printDocument = new PrintDocument();
-
-            printDocument.PrintPage += new PrintPageEventHandler(PrintReceipt);
-
-            PrinterSettings printerSettings = new PrinterSettings();
-            //printerSettings.PrinterName = "smartprinter";
-            printDocument.PrinterSettings = printerSettings;
-            printDocument.Print();
-        }
-
-        private void PrintReceipt(object sender, PrintPageEventArgs e)
-        {
-            Graphics graphics = e.Graphics;
-            Font font = new Font("Courier New", 12);
-
-            float fontHeight = font.GetHeight();
-
-            int startX = 0;
-            int startY = 0;
-            int offSet = 120;
-
-            int mCount = 0;
-            int sCount = 0;
-            int cCount = 0;
-            int dCount = 0;
-
-
-            //e.PageSettings.PaperSize.Width = 50;
-
-            System.Drawing.Image newImage = System.Drawing.Image.FromFile("YoTukTuk.png");
-
-            graphics.DrawImage(newImage,80,0);
-    
-            graphics.DrawString("Yo Tuk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n01482 881955", new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
-            offSet += 100;
-            graphics.DrawString("Table " + tableNum.ToString(), new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
-            offSet += 40;
+            string sendToServer = "printReceipt," + tableNum + ",";
             for (int i = 0; i < sortedList.Count; i++)
             {
-                switch (sortedList[i].identifier)
-                {
-                    case "*m":
-                        if (mCount == 0)
-                        {
-                            graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                            offSet += 20;
-                            mCount += 1;
-                        }
-                        graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                        graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
-                        graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-
-                        offSet += 20;
-                        break;
-                    case "*sd":
-                        if (sCount == 0)
-                        {
-                            graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                            offSet += 20;
-                            sCount += 1;
-                        }
-                        graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                        graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
-                        graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-
-                        offSet += 20;
-                        break;
-                    case "*c":
-                        if (cCount == 0)
-                        {
-                            graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                            offSet += 20;
-                            cCount += 1;
-                        }
-                        graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                        graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
-                        graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-
-                        offSet += 20;
-                        break;
-                    case "*d":
-                        if (dCount == 0)
-                        {
-                            graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                            offSet += 20;
-                            dCount += 1;
-                        }
-                        graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                        graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
-                        graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-
-                        offSet += 20;
-                        break;
-                    default:
-
-                        graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                        graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
-                        graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-
-                        offSet += 20;
-                        break;
-                }
-
-
+                sendToServer += sortedList[i].identifier + "," + sortedList[i].name + "," + sortedList[i].value + ",";
 
             }
-            offSet += 20;
-            graphics.DrawString("Members Discount", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-            graphics.DrawString("£-" + discountedValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+            sendToServer += "membersDiscount," + discountedValue + ",";
+            sendToServer += "grandTotal," + unChangedTotal + ",";
 
-            offSet += 20;
-            if(isFinalReceipt == false)
+            if (isFinalReceipt == true)
             {
-                graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                graphics.DrawString("£ " + totalValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-            }
-            else
-            {
-                graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-                graphics.DrawString("£ " + unChangedTotal.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
-                offSet += 20;
-                graphics.DrawString("Paid", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                 string changeValue = totalValue.ToString();
                 changeValue = changeValue.Replace('-', ' ');
                 changeValue = changeValue.Trim();
                 totalValue = decimal.Parse(changeValue);
-                graphics.DrawString("£ " + (totalValue+unChangedTotal).ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+                sendToServer += "paid" + (totalValue + unChangedTotal).ToString();
             }
-           
-
-            offSet += 40;
-            
-            graphics.DrawString("Thank You For Dining With Us!\n\n", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
-           
-
-
-
+            server.print(sendToServer);
         }
+        //private void receiptPrint()
+        //{
+        //    var printDocument = new PrintDocument();
+
+        //    printDocument.PrintPage += new PrintPageEventHandler(PrintReceipt);
+
+        //    PrinterSettings printerSettings = new PrinterSettings();
+        //    printDocument.PrinterSettings = printerSettings;
+        //    printDocument.Print();
+        //}
+
+        //private void PrintReceipt(object sender, PrintPageEventArgs e)
+        //{
+        //    Graphics graphics = e.Graphics;
+        //    Font font = new Font("Courier New", 12);
+
+        //    float fontHeight = font.GetHeight();
+
+        //    int startX = 0;
+        //    int startY = 0;
+        //    int offSet = 120;
+
+        //    int mCount = 0;
+        //    int sCount = 0;
+        //    int cCount = 0;
+        //    int dCount = 0;
+
+
+        //    //e.PageSettings.PaperSize.Width = 50;
+
+        //    System.Drawing.Image newImage = System.Drawing.Image.FromFile("YoTukTuk.png");
+
+        //    graphics.DrawImage(newImage, 80, 0);
+
+        //    graphics.DrawString("Yo Tuk Tuk \n 53 Lairgate \n Beverley \n HU17 8ET\n01482 881955", new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
+        //    offSet += 100;
+        //    graphics.DrawString("Table " + tableNum.ToString(), new Font("Calibri (Body)", 12), new SolidBrush(System.Drawing.Color.Black), 80, 0 + offSet);
+        //    offSet += 40;
+        //    for (int i = 0; i < sortedList.Count; i++)
+        //    {
+        //        switch (sortedList[i].identifier)
+        //        {
+        //            case "*m":
+        //                if (mCount == 0)
+        //                {
+        //                    graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                    offSet += 20;
+        //                    mCount += 1;
+        //                }
+        //                graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
+        //                graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+
+        //                offSet += 20;
+        //                break;
+        //            case "*sd":
+        //                if (sCount == 0)
+        //                {
+        //                    graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                    offSet += 20;
+        //                    sCount += 1;
+        //                }
+        //                graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
+        //                graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+
+        //                offSet += 20;
+        //                break;
+        //            case "*c":
+        //                if (cCount == 0)
+        //                {
+        //                    graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                    offSet += 20;
+        //                    cCount += 1;
+        //                }
+        //                graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
+        //                graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+
+        //                offSet += 20;
+        //                break;
+        //            case "*d":
+        //                if (dCount == 0)
+        //                {
+        //                    graphics.DrawString("--------------------------------------", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                    offSet += 20;
+        //                    dCount += 1;
+        //                }
+        //                graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
+        //                graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+
+        //                offSet += 20;
+        //                break;
+        //            default:
+
+        //                graphics.DrawString(sortedList[i].qty.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //                graphics.DrawString(sortedList[i].name.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 30, startY + offSet);
+        //                graphics.DrawString("£ " + sortedList[i].value.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+
+        //                offSet += 20;
+        //                break;
+        //        }
+
+
+
+        //    }
+        //    offSet += 20;
+        //    graphics.DrawString("Members Discount", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //    graphics.DrawString("£-" + discountedValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+
+        //    offSet += 20;
+        //    if (isFinalReceipt == false)
+        //    {
+        //        graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //        graphics.DrawString("£ " + totalValue.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+        //    }
+        //    else
+        //    {
+        //        graphics.DrawString("Grand Total", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //        graphics.DrawString("£ " + unChangedTotal.ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+        //        offSet += 20;
+        //        graphics.DrawString("Paid", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+        //        string changeValue = totalValue.ToString();
+        //        changeValue = changeValue.Replace('-', ' ');
+        //        changeValue = changeValue.Trim();
+        //        totalValue = decimal.Parse(changeValue);
+        //        graphics.DrawString("£ " + (totalValue + unChangedTotal).ToString(), new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), 220, startY + offSet);
+        //    }
+
+
+        //    offSet += 40;
+
+        //    graphics.DrawString("Thank You For Dining With Us!\n\n", new Font("Arial", 12), new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
+
+
+
+
+        //}
         int loop = 0;
         private void MemeberDiscount_btn_Checked(object sender, RoutedEventArgs e)
         {
@@ -948,9 +683,9 @@ namespace Yo_Tuk_Tuk_Epos
         }
         private void paymentMeth(decimal value)
         {
-            if(userInput.Text.Contains("."))
+            if (userInput.Text.Contains("."))
             {
-                if (!(userInput.Text.Substring(userInput.Text.IndexOf(".") + 1).Length>=2))
+                if (!(userInput.Text.Substring(userInput.Text.IndexOf(".") + 1).Length >= 2))
                 {
                     userInput.Text += value.ToString();
                     payment = decimal.Parse(userInput.Text);
@@ -961,8 +696,8 @@ namespace Yo_Tuk_Tuk_Epos
                 userInput.Text += value.ToString();
                 payment = decimal.Parse(userInput.Text);
             }
-           
-           
+
+
         }
 
         private void Btn_dot_Click(object sender, RoutedEventArgs e)
@@ -1018,17 +753,17 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Btn_CE_Click(object sender, RoutedEventArgs e)
         {
-            if (userInput.Text.Length!=0)
+            if (userInput.Text.Length != 0)
             {
                 userInput.Text = userInput.Text.Remove(0);
                 btn_dot.IsEnabled = true;
             }
-            
+
         }
 
         private void Pay_btn_Click(object sender, RoutedEventArgs e)
         {
-            if(currentList.Count==0 && holdPrint.Count==0)
+            if (currentList.Count == 0 && holdPrint.Count == 0)
             {
                 MessageBox.Show("No items in the order!");
 
@@ -1037,20 +772,20 @@ namespace Yo_Tuk_Tuk_Epos
             {
                 PaymentGrid.Visibility = Visibility.Visible;
                 toPay_btn.Text = totalValue.ToString();
-                if(holdPrint.Count!=0)
+                if (holdPrint.Count != 0)
                 {
-                    server.write(txtFileName, currentList);                   
+                    server.write(txtFileName, currentList);
                 }
-               
+
             }
-         
+
         }
 
         private void Cash_btn_Click(object sender, RoutedEventArgs e)
         {
             methodOfPay += " Cash ";
             payMethod();
-           
+
         }
 
         private void Card_btn_Click(object sender, RoutedEventArgs e)
@@ -1061,7 +796,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            if(toPay_btn.Text=="0")
+            if (toPay_btn.Text == "0")
             {
                 this.DialogResult = false;
             }
@@ -1070,7 +805,7 @@ namespace Yo_Tuk_Tuk_Epos
                 this.DialogResult = true;
                 this.Close();
             }
-           
+
         }
         public void discountButtonCheck()
         {
@@ -1095,48 +830,76 @@ namespace Yo_Tuk_Tuk_Epos
         private void payMethod()
         {
 
-            payment = decimal.Parse(userInput.Text);
-            totalValue -= payment;
-            toPay_btn.Text = totalValue.ToString();
-            userInput.Text = userInput.Text.Remove(0);
-            if (totalValue == 0 || totalValue < 0)
+            void pay()
             {
-                printbtn.IsEnabled = true;
-                //try
-                //{
-                //    StreamWriter writer = new StreamWriter("X-read.txt",true);
-                //    writer.Write(methodOfPay + "\n" + unChangedTotal+ "\nTips\n" + totalValue+ "\n");
-                //    writer.Close();
-                //}
-                //catch
-                //{
-                //    MessageBox.Show("Couldnt store X-read details");
-                //}
-                StreamWriter Swriter = new StreamWriter("orderID.txt", true);
-                Swriter.Close();
-               
-                 string read = ( File.ReadAllText("orderID.txt"));
-                if(string.IsNullOrWhiteSpace(read))
+                payment = decimal.Parse(userInput.Text);
+                totalValue -= payment;
+                toPay_btn.Text = totalValue.ToString();
+                userInput.Text = userInput.Text.Remove(0);
+                if (totalValue == 0 || totalValue < 0)
                 {
-                    read = 0.ToString();
+                    printbtn.IsEnabled = true;
+                    //try
+                    //{
+                    //    StreamWriter writer = new StreamWriter("X-read.txt",true);
+                    //    writer.Write(methodOfPay + "\n" + unChangedTotal+ "\nTips\n" + totalValue+ "\n");
+                    //    writer.Close();
+                    //}
+                    //catch
+                    //{
+                    //    MessageBox.Show("Couldnt store X-read details");
+                    //}
+                    StreamWriter Swriter = new StreamWriter("orderID.txt", true);
+                    Swriter.Close();
+
+                    string read = (File.ReadAllText("orderID.txt"));
+                    if (string.IsNullOrWhiteSpace(read))
+                    {
+                        read = 0.ToString();
+                    }
+                    int orderID = int.Parse(read) + 1;
+
+                    File.WriteAllText("orderID.txt", orderID.ToString());
+                    this.payStackPanel.IsEnabled = false;
+
+                    toPay_btn.Text = "0";
+                    change_btn.Text = totalValue.ToString();
+                    server.paid(txtFileName, orderID.ToString() + "," + DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay + "," + 0);
                 }
-                int orderID = int.Parse(read)+1;
-                
-                File.WriteAllText("orderID.txt", orderID.ToString());
-                this.payStackPanel.IsEnabled = false;
-                
-                toPay_btn.Text = "0";
-                change_btn.Text = totalValue.ToString();
-                server.paid(txtFileName, orderID.ToString() +","+ DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay+","+0);
-               
+
 
             }
+            if (userInput.Text == "")
+            {
+
+                if (MessageBox.Show("Would you like to pay the remaining amount?", "Pay ALL", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    userInput.Text = toPay_btn.Text;
+                    pay();
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                if (userInput.Text.Length > 1)
+                {
+                    pay();
+                }
+
+            }
+
+
+
             btn_dot.IsEnabled = true;
         }
         private void printbtn_Click(object sender, RoutedEventArgs e)
         {
             isFinalReceipt = true;
-            receiptPrint();
+            printReceipt();
+            //receiptPrint();
 
         }
 
@@ -1181,7 +944,7 @@ namespace Yo_Tuk_Tuk_Epos
             format.Alignment = StringAlignment.Center;
 
 
-            graphics.DrawString("Table "+tableNum.ToString(), font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
+            graphics.DrawString("Table " + tableNum.ToString(), font, new SolidBrush(System.Drawing.Color.Black), 100, 0 + 0);
             offSet += 20;
             for (int i = 0; i < holdPrint.Count; i++)
             {
@@ -1262,7 +1025,7 @@ namespace Yo_Tuk_Tuk_Epos
                         {
                             if (sdLoop == 0)
                             {
-                               // byteData.Add(byte.Parse("----------------------------\n"));
+                                // byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1301,7 +1064,7 @@ namespace Yo_Tuk_Tuk_Epos
                         {
                             if (cLoop == 0)
                             {
-                               // byteData.Add(byte.Parse("----------------------------\n"));
+                                // byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1324,7 +1087,7 @@ namespace Yo_Tuk_Tuk_Epos
                                         count++;
                                     }
                                 }
-                               // byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
+                                // byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
                                 graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
 
@@ -1341,7 +1104,7 @@ namespace Yo_Tuk_Tuk_Epos
                         {
                             if (dloop == 0)
                             {
-                              //  byteData.Add(byte.Parse("----------------------------\n"));
+                                //  byteData.Add(byte.Parse("----------------------------\n"));
                                 graphics.DrawString("----------------------------", font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
                             }
@@ -1363,7 +1126,7 @@ namespace Yo_Tuk_Tuk_Epos
                                         count++;
                                     }
                                 }
-                               // byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
+                                // byteData.Add(byte.Parse(count.ToString() + " x " + holdPrint[i].name + "\n"));
                                 graphics.DrawString(count.ToString() + " x " + holdPrint[i].name, font, new SolidBrush(System.Drawing.Color.Black), startX, startY + offSet);
                                 offSet += 20;
 
@@ -1388,10 +1151,10 @@ namespace Yo_Tuk_Tuk_Epos
             //socket.Send(arraybyte);
             //socket.Close();
 
-            
+
         }
 
-        #endregion
+
         #region
         private void _1_Click_1(object sender, RoutedEventArgs e)
         {
@@ -1654,7 +1417,7 @@ namespace Yo_Tuk_Tuk_Epos
             foodPrice("D", button.Content.ToString(), itemsDictionary[ItemName]);
         }
 
-      
+
     }
 }
 #endregion

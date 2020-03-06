@@ -13,7 +13,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.240.78";
+        string hostName = "150.237.240.157";
         int hostNumber = 5002;
         
         internal void printReceipt()
@@ -29,9 +29,7 @@ namespace Yo_Tuk_Tuk_Epos
             clientSocket.Send(fileToSent);
             clientSocket.Close();
         }
-
-       
-        internal void write(string fileName, List<string> items)
+        internal void print(string list)
         {
             TcpClient client = new TcpClient();
             try
@@ -39,7 +37,31 @@ namespace Yo_Tuk_Tuk_Epos
                 client.Connect(hostName, hostNumber);
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 sw.AutoFlush = true;
+                sw.WriteLine(list);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                client.Close();
+            }
+        }
+
+       
+        internal string write(string fileName, List<string> items)
+        {
+            string read = "";
+            TcpClient client = new TcpClient();
+            try
+            {
+                client.Connect(hostName, hostNumber);
+                StreamWriter sw = new StreamWriter(client.GetStream());
+                StreamReader sr = new StreamReader(client.GetStream());
+                sw.AutoFlush = true;
                 sw.WriteLine("write," + fileName + "," + string.Join(",", items.ToArray()));
+                read = sr.ReadLine();
             }
             catch(Exception e)
             {
@@ -48,9 +70,11 @@ namespace Yo_Tuk_Tuk_Epos
             finally
             {
                 client.Close();
+                
             }
-            
-      
+            return read;
+
+
         }
         internal string read(string fileName)
         {

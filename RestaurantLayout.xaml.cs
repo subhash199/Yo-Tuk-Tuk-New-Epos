@@ -193,9 +193,9 @@ namespace Yo_Tuk_Tuk_Epos
             if(menu.DialogResult==true)
             {
                 pButton.Background = Brushes.Red;
-                window.layout = this;
-                window.Show();                
-                this.Hide();
+                //window.layout = this;
+                //window.Show();                
+                //this.Hide();
                 
             }      
             else
