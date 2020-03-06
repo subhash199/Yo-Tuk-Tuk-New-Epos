@@ -36,6 +36,8 @@ namespace Yo_Tuk_Tuk_Epos
             {
                 client.Connect(hostName, hostNumber);
                 StreamWriter sw = new StreamWriter(client.GetStream());
+                
+                client.SendTimeout = 1000;
                 sw.AutoFlush = true;
                 sw.WriteLine(list);
             }
@@ -59,6 +61,8 @@ namespace Yo_Tuk_Tuk_Epos
                 client.Connect(hostName, hostNumber);
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 StreamReader sr = new StreamReader(client.GetStream());
+                client.ReceiveTimeout = 1000;
+                client.SendTimeout = 1000;
                 sw.AutoFlush = true;
                 sw.WriteLine("write," + fileName + "," + string.Join(",", items.ToArray()));
                 read = sr.ReadLine();
@@ -86,8 +90,9 @@ namespace Yo_Tuk_Tuk_Epos
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 sw.AutoFlush = true;
                 StreamReader sr = new StreamReader(client.GetStream());
-              
-                if(fileName.Contains("itemsList"))
+                client.ReceiveTimeout = 1000;
+                client.SendTimeout = 1000;
+                if (fileName.Contains("itemsList"))
                 {
                     sw.WriteLine("itemsList,");
                     read = sr.ReadLine();
@@ -135,7 +140,8 @@ namespace Yo_Tuk_Tuk_Epos
             {
                
                 client.Connect(hostName, hostNumber);
-                StreamWriter sw = new StreamWriter(client.GetStream());
+                StreamWriter sw = new StreamWriter(client.GetStream());                
+                client.SendTimeout = 1000;
                 sw.AutoFlush = true;
                 if (fileName.Contains(".txt"))
                 {

@@ -192,6 +192,7 @@
             <Setter Property="Template">
                 <Setter.Value >
                     <ControlTemplate TargetType="{x:Type Button}">
+                        
                         <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid" >
                             <Ellipse Fill="#FFF2F92B"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
