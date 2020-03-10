@@ -45,11 +45,14 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Edit_btn_Click(object sender, RoutedEventArgs e)
         {
-
-            MenuItems details = (MenuItems) displayListView.SelectedItem;
-            this.Hide();
-            EditWindow window = new EditWindow(details, layoutWindow, this);
-            window.Show();
+            if(displayListView.SelectedItems.Count>0)
+            {
+                MenuItems details = (MenuItems)displayListView.SelectedItem;
+                this.Hide();
+                EditWindow window = new EditWindow(details, layoutWindow, this);
+                window.Show();
+            }
+           
         }
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)

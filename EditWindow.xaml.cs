@@ -30,26 +30,35 @@ namespace Yo_Tuk_Tuk_Epos
             Id_label.Content = details.ID;
             category_box.Text = details.Category;
             dish_box.Text = details.Dish;
-            price_box.Text = details.Price;        
+            price_box.Text = details.Price;
         }
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            double p;
-            if (double.TryParse(price_box.Text, out p))
+            if (!(string.IsNullOrWhiteSpace(category_box.Text) && string.IsNullOrWhiteSpace(dish_box.Text) && string.IsNullOrWhiteSpace(price_box.Text)))
             {
-                string updateDetails = Id_label.Content + "," + category_box.Text + "," + dish_box.Text + "," + p;
-                ServerClass server = new ServerClass();
-                server.create("updateDetails," + updateDetails);
-                this.Close();
-                FoodPricing pricing = new FoodPricing(layoutWindow);
-                pricing.Show();
-                
 
+                double p;
+                if (double.TryParse(price_box.Text, out p))
+                {
+                    string updateDetails = Id_label.Content + "," + category_box.Text + "," + dish_box.Text + "," + p;
+                    ServerClass server = new ServerClass();
+                    server.create("updateDetails," + updateDetails);
+                    this.Close();
+                    FoodPricing pricing = new FoodPricing(layoutWindow);
+                    pricing.Show();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Price entered is Not Vaild");
+                }
             }
             else
             {
-                MessageBox.Show("Price entered is Not Vaild");
+                MessageBox.Show("Text Boxes cannot be etmpy");
+
             }
 
         }
