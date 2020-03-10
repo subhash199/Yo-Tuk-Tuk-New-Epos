@@ -30,7 +30,7 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
         {
-            bool idExist = false;
+           
             string accessCode = "Yo!TukTuk";
             string name = "";
             string id="";
@@ -51,34 +51,7 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     name = name_box.Text;
                     id = logInBox.Text;
-                    //if (File.Exists("UserDetails.txt") == false)
-                    //{
-                    //    StreamWriter write = new StreamWriter("UserDetails.txt");
-                    //    write.Close();
-                    //}
-                    //StreamReader reader = new StreamReader("UserDetails.txt");
-                    //string copyRead = reader.ReadToEnd();
-                    //reader.Close();
-                    //string[] splitDetails = copyRead.Split(',');
-                    //for (int i = 0; i < splitDetails.Length; i++)
-                    //{
-                    //    if (splitDetails[i] == id)
-                    //    {
-                    //        idExist = true;
-                    //        errorPrompt_label.Content = "User Id already exists!";
-                    //    }
-                    //}
-
-                    //if (idExist == false)
-                    //{
-                    //    StreamWriter write = new StreamWriter("UserDetails.txt", true);
-
-                    //    write.Write(id + "," + name + ",");
-                    //    write.Close();                
-                    //    this.Close();
-
-
-                    //}
+                  
                     string serverRespond = server.read("signUp," + name + "," + id);
                     if(serverRespond == "OK")
                     {

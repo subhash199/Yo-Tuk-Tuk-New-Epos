@@ -192,10 +192,7 @@ namespace Yo_Tuk_Tuk_Epos
             menu.ShowDialog();
             if(menu.DialogResult==true)
             {
-                pButton.Background = Brushes.Red;
-                //window.layout = this;
-                //window.Show();                
-                //this.Hide();
+                pButton.Background = Brushes.Red;               
                 
             }      
             else
@@ -209,6 +206,13 @@ namespace Yo_Tuk_Tuk_Epos
         {
             settings settings = new settings(this);            
             settings.Show();
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            window.layout = this;
+            window.Show();
+            this.Hide();
         }
 
 

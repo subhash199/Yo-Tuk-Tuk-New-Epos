@@ -14,7 +14,7 @@
         <Label x:Name="AccessCode" Content="Access Code" HorizontalAlignment="Left" Margin="17,200,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=labelModifier}"/>
         <TextBox x:Name="logInBox" HorizontalAlignment="Left" Height="42" Margin="322,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,1.574" Style="{StaticResource textboxMod}" KeyboardNavigation.TabIndex="1"/>
         <Button x:Name="signup_btn" Content="Yo! Sign up" HorizontalAlignment="Left" Margin="373,273,0,0" VerticalAlignment="Top" Style="{StaticResource mainButtons}" Click="Signup_btn_Click" KeyboardNavigation.TabIndex="4" IsDefault="True"/>
-        <Label x:Name="errorPrompt_label" Content="" HorizontalAlignment="Left" Margin="292,12,0,0" VerticalAlignment="Top" Style="{StaticResource labelModifier}" Width="268" RenderTransformOrigin="0.4,0.431" Height="45" FontSize="24"/>
+        <Label x:Name="errorPrompt_label" Content="" HorizontalAlignment="Left" Margin="137,12,0,0" VerticalAlignment="Top" Style="{StaticResource labelModifier}" Width="592" RenderTransformOrigin="0.4,0.431" Height="45" FontSize="24"/>
         <TextBox x:Name="name_box" HorizontalAlignment="Left" Height="42" Margin="322,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,1.574" Style="{StaticResource textboxMod}" KeyboardNavigation.TabIndex="0"/>
         <PasswordBox x:Name="accessBox" HorizontalAlignment="Left" Margin="322,211,0,0" VerticalAlignment="Top" Height="42" Width="199" FontSize="24" KeyboardNavigation.TabIndex="3"/>
 

@@ -10,22 +10,20 @@
     <Grid x:Name="layout_grid">
         <Viewbox HorizontalAlignment="Center">
             <Grid >
-                
+
 
                 <StackPanel>
-                  
-                        <!--<StackPanel Orientation="Horizontal">
-                        
-                            <Button x:Name="signup_btn" IsEnabled="True" Content="Sign Up" Click="Signup_btn_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="SkyBlue" Style="{StaticResource tables}" KeyboardNavigation.TabIndex="1"/>
 
-                            <Button x:Name="login_btn" IsEnabled="True" Content="Log In" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="Yellow" Click="Login_btn_Click" Margin="560,0,0,0" Style="{StaticResource tables}"  KeyboardNavigation.TabIndex="1" IsDefault="True"  />
-                        
-                    </StackPanel>-->
-                    
                     <StackPanel x:Name="layout_controls" >
-                        <Viewbox >
-                            <Label Content="Yo Tuk Tuk Floor Layout" FontSize="20"></Label>
-                        </Viewbox>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Content="Yo Tuk Tuk Floor Layout" FontSize="20"></Label>                            
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="logout" Content="Log Out" Background="AliceBlue" Style="{StaticResource tables}" Click="Logout_Click" />
+                        </StackPanel>
+
+
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="_1btn" Click="_1btn_Click" Background="#FF4EE715" Content="1" Style="{StaticResource tables}" />
                             <Button x:Name="_2btn" Content="2" Background="#FF4EE715" Style="{StaticResource tables}" Click="_2btn_Click"/>
@@ -70,11 +68,11 @@
                             <Button x:Name="_18btn" Content="18" Background="#FF4EE715"  Style="{StaticResource tables}" Click="_18btn_Click"/>
                             <Button x:Name="backEnd" Content="..." Background="#FFE8711F"  Style="{StaticResource tables}" BorderBrush="#FF060606" Click="BackEnd_Click"/>
 
-                        </StackPanel>                    
+                        </StackPanel>
 
 
                     </StackPanel>
-                
+
                 </StackPanel>
             </Grid>
 

@@ -34,101 +34,51 @@ namespace Yo_Tuk_Tuk_Epos
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
         {
             SignUpForm sign = new SignUpForm(this);
-            sign.Show();            
-        }      
-        
-        
+            sign.Show();
+        }
+
+
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-            string userId = "";
-            bool userExist = false;
+            string userId = "";           
             if (!(string.IsNullOrEmpty(Password_box.Password)))
             {
                 userId = Password_box.Password;
-                try
+
+                string serverReply = (server.read("logIn," + userId));
+                if (serverReply == "exist")
                 {
-                    string serverReply = (server.read("logIn," + userId));
-                    if (serverReply == "exist") 
+                    Password_box.Clear();
+                    try
                     {
-                        Password_box.Clear();
-                        try
-                        {
-                            this.Hide();
-                            layout.Show();
+                        this.Hide();
+                        layout.Show();
 
-                        }
-                        catch
-                        {
-
-                            layout = new RestaurantLayout(this);
-                            this.Hide();
-                            layout.Show();
-                        }
                     }
-                   
-
-
-                    //if (File.Exists("UserDetails.txt") == false)
-                    //{
-                    //    StreamWriter writer = new StreamWriter("UserDetails.txt");
-                    //    writer.Close();
-                    //}
-                    //StreamReader logIn = new StreamReader("UserDetails.txt");
-                    //string read = logIn.ReadToEnd();
-                    //string[] logInId = read.Split(',');
-
-                    //logInId = logInId.Take(logInId.Count() - 1).ToArray();
-
-                    //for (int i = 0; i < logInId.Length; i++)
-                    //{
-
-                    //    if (userId == logInId[i])
-                    //    {
-                    //        userExist = true;
-                    //        break;
-                    //    }
-                    //}
-                    //if (userExist == true)
-                    //{
-
-                    //    Password_box.Clear();
-                    //    try
-                    //    {
-                    //        this.Hide();
-                    //        layout.Show();
-
-                    //    }
-                    //    catch
-                    //    {
-
-                    //        layout = new RestaurantLayout(this);
-                    //        this.Hide();
-                    //        layout.Show();
-                    //    }
-
-
-
-                
-                    else
+                    catch
                     {
-                        prompt_label.Content = "Incorrect ID";
-                        Password_box.Clear();
+
+                        layout = new RestaurantLayout(this);
+                        this.Hide();
+                        layout.Show();
                     }
                 }
-                catch (Exception ex)
+
+
+                else
                 {
-                    prompt_label.Content = ex;
+                    prompt_label.Content = "Incorrect ID";
                     Password_box.Clear();
                 }
+
+
             }
             else
             {
                 prompt_label.Content = "Please Enter Your LogIn ID!";
 
             }
-            
-           
-         
+
 
         }
 
