@@ -39,11 +39,11 @@ namespace Yo_Tuk_Tuk_Epos
             if (accessBox.Password == accessCode&& name_box.Text.Trim()!="" &&logInBox.Text.Trim()!="")
             {
 
-                if (name_box.Text.All(char.IsDigit) == true )
+                if (name_box.Text.Any(char.IsDigit) == true )
                 {
                     errorPrompt_label.Content = "Invaild Name";
                 }
-                else if(logInBox.Text.All(char.IsLetter)==true)
+                if(logInBox.Text.Any(char.IsLetter)==true)
                 {
                     errorPrompt_label.Content = "Invaild ID! Please Enter Numbers";
                 }

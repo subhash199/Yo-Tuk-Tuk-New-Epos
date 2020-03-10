@@ -28,6 +28,8 @@ namespace Yo_Tuk_Tuk_Epos
 
             InitializeComponent();
             server = new ServerClass();
+            FocusManager.SetFocusedElement(this, Password_box);
+            Keyboard.Focus(Password_box);
 
         }
         public RestaurantLayout layout;

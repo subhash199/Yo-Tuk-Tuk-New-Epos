@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="HoldItemsList.cs" />
     <Compile Include="ItemList.cs" />
+    <Compile Include="MenuItems.cs" />
     <Compile Include="orderItemIdentify.cs" />
     <Compile Include="PayForm.xaml.cs">
       <DependentUpon>PayForm.xaml</DependentUpon>
@@ -186,13 +187,7 @@
     <Resource Include="UserDetails.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="YoTukTuk.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="background2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

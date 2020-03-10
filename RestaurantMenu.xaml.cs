@@ -114,6 +114,7 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     if (currentList[i].Contains(output))
                     {
+                        startersCount = +1;
                         currentList.Add(currentList[i]);
                         break;
                     }
@@ -410,6 +411,7 @@ namespace Yo_Tuk_Tuk_Epos
                     {
                         if (holdPrint[i].name.Contains(output))
                         {
+                            startersCount = startersCount - 1;
                             holdPrint.RemoveAt(i);
                             break;
                         }
@@ -472,6 +474,7 @@ namespace Yo_Tuk_Tuk_Epos
             else if (category == "M")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
+
                 holdPrint.Insert(startersCount, new orderItemIdentify("*m", Name));
                 MainCount += 1;
                 discountButtonCheck();
@@ -502,7 +505,11 @@ namespace Yo_Tuk_Tuk_Epos
         private void Print_btn_Click(object sender, RoutedEventArgs e)
         {
             //receiptPrint();
-            printReceipt();
+            if(order_Box.Items.Count>5)
+            {
+                printReceipt();
+            }
+           
 
         }
         private void printReceipt()

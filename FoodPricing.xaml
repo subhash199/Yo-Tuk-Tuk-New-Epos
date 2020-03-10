@@ -11,23 +11,22 @@
             <Grid>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Search" HorizontalAlignment="Left"  RenderTransformOrigin="0.269,0.371" FontSize="16"/>
-                        <TextBox HorizontalAlignment="Left" Height="28"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251"/>
-                        <Button x:Name="Edit_btn" Content="Edit" HorizontalAlignment="Right" Margin="210,0,0,0" Background="Green" Width="75" Click="Edit_btn_Click" />
-                        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Right" Background="Red" Margin="100,0,0,0" Width="75" Click="Back_btn_Click"/>
+                        <Label Content="Search" FontSize="16"/>
+                        <TextBox x:Name="Search_box"  Height="28" TextAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="251" TextChanged="Search_box_TextChanged" />
+                        <Button x:Name="Edit_btn" Content="Edit" HorizontalAlignment="Right" Margin="300,0,0,0" Background="Green" Width="75" Click="Edit_btn_Click" />
+                        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Right" Background="Red" Margin="10,0,0,0" Width="75" Click="Back_btn_Click"/>
                     </StackPanel>                    
                     <StackPanel>
-                        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="333"  VerticalAlignment="Top" Width="770"  >
+                        <ListView x:Name="displayListView" HorizontalAlignment="Left" Height="333"  VerticalAlignment="Top" Width="770" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
                                     <GridViewColumn Header="Category" Width="auto" DisplayMemberBinding="{Binding Category}" />
                                     <GridViewColumn Header="Dish" Width="auto" DisplayMemberBinding="{Binding Dish}" />
                                     <GridViewColumn Header="Price" Width="auto" DisplayMemberBinding="{Binding Price}" />
-
-
                                 </GridView>
                             </ListView.View>
+
                         </ListView>
                     </StackPanel>
                 </StackPanel>
