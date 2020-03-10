@@ -21,17 +21,17 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class SignUpForm : Window
     {
-       
+        ServerClass server = null;
         public SignUpForm(Window main)
         {
             InitializeComponent();
-
+            server = new ServerClass();
         }
 
         private void Signup_btn_Click(object sender, RoutedEventArgs e)
         {
             bool idExist = false;
-            string accessCode = "Yo!079me";
+            string accessCode = "Yo!TukTuk";
             string name = "";
             string id="";
 
@@ -43,37 +43,50 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     errorPrompt_label.Content = "Invaild Name";
                 }
+                else if(logInBox.Text.All(char.IsLetter)==true)
+                {
+                    errorPrompt_label.Content = "Invaild ID! Please Enter Numbers";
+                }
                 else
                 {
                     name = name_box.Text;
                     id = logInBox.Text;
-                    if (File.Exists("UserDetails.txt") == false)
-                    {
-                        StreamWriter write = new StreamWriter("UserDetails.txt");
-                        write.Close();
-                    }
-                    StreamReader reader = new StreamReader("UserDetails.txt");
-                    string copyRead = reader.ReadToEnd();
-                    reader.Close();
-                    string[] splitDetails = copyRead.Split(',');
-                    for (int i = 0; i < splitDetails.Length; i++)
-                    {
-                        if (splitDetails[i] == id)
-                        {
-                            idExist = true;
-                            errorPrompt_label.Content = "User Id already exists!";
-                        }
-                    }
+                    //if (File.Exists("UserDetails.txt") == false)
+                    //{
+                    //    StreamWriter write = new StreamWriter("UserDetails.txt");
+                    //    write.Close();
+                    //}
+                    //StreamReader reader = new StreamReader("UserDetails.txt");
+                    //string copyRead = reader.ReadToEnd();
+                    //reader.Close();
+                    //string[] splitDetails = copyRead.Split(',');
+                    //for (int i = 0; i < splitDetails.Length; i++)
+                    //{
+                    //    if (splitDetails[i] == id)
+                    //    {
+                    //        idExist = true;
+                    //        errorPrompt_label.Content = "User Id already exists!";
+                    //    }
+                    //}
 
-                    if (idExist == false)
+                    //if (idExist == false)
+                    //{
+                    //    StreamWriter write = new StreamWriter("UserDetails.txt", true);
+
+                    //    write.Write(id + "," + name + ",");
+                    //    write.Close();                
+                    //    this.Close();
+
+
+                    //}
+                    string serverRespond = server.read("signUp," + name + "," + id);
+                    if(serverRespond == "OK")
                     {
-                        StreamWriter write = new StreamWriter("UserDetails.txt", true);
-                        
-                        write.Write(id + "," + name + ",");
-                        write.Close();                
                         this.Close();
-
-
+                    }
+                    else
+                    {
+                        errorPrompt_label.Content = "User ID already exists!";
                     }
                 }
                

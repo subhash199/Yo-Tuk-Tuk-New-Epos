@@ -13,7 +13,7 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "150.237.240.157";
+        string hostName = "150.237.240.80";
         int hostNumber = 5002;
         
         internal void printReceipt()
@@ -90,14 +90,15 @@ namespace Yo_Tuk_Tuk_Epos
                 StreamWriter sw = new StreamWriter(client.GetStream());
                 sw.AutoFlush = true;
                 StreamReader sr = new StreamReader(client.GetStream());
-                client.ReceiveTimeout = 1000;
-                client.SendTimeout = 1000;
+                //client.ReceiveTimeout = 1000;
+                //client.SendTimeout = 1000;
                 if (fileName.Contains("itemsList"))
                 {
                     sw.WriteLine("itemsList,");
                     read = sr.ReadLine();
+                    
                 }
-                if(fileName.Contains(".txt"))
+                else if(fileName.Contains(".txt"))
                 {
                     sw.WriteLine("read," + fileName);
                     read = sr.ReadLine();
@@ -115,6 +116,11 @@ namespace Yo_Tuk_Tuk_Epos
                 else if (fileName.Contains("listAll"))
                 {
                     sw.WriteLine(fileName+",");
+                    read = sr.ReadLine();
+                }
+               else
+                {
+                    sw.WriteLine(fileName);
                     read = sr.ReadLine();
                 }
 

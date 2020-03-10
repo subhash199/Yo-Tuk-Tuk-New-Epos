@@ -22,12 +22,12 @@ namespace Yo_Tuk_Tuk_Epos
     /// </summary>
     public partial class MainWindow : Window
     {
-  
+        ServerClass server = null;
         public MainWindow()
         {
 
             InitializeComponent();
-           
+            server = new ServerClass();
 
         }
         public RestaurantLayout layout;
@@ -40,62 +40,95 @@ namespace Yo_Tuk_Tuk_Epos
         
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-            string userId = Password_box.Password;
+            string userId = "";
             bool userExist = false;
-            try
+            if (!(string.IsNullOrEmpty(Password_box.Password)))
             {
-                if(File.Exists("UserDetails.txt")==false)
+                userId = Password_box.Password;
+                try
                 {
-                    StreamWriter writer = new StreamWriter("UserDetails.txt");
-                    writer.Close();
-                }
-                StreamReader logIn = new StreamReader("UserDetails.txt");
-                string read = logIn.ReadToEnd();
-                string[] logInId = read.Split(',');
-
-                logInId = logInId.Take(logInId.Count() - 1).ToArray();
-
-                for (int i = 0; i < logInId.Length; i++)
-                {
-
-                    if (userId == logInId[i])
+                    string serverReply = (server.read("logIn," + userId));
+                    if (serverReply == "exist") 
                     {
-                        userExist = true;
-                        break;
+                        Password_box.Clear();
+                        try
+                        {
+                            this.Hide();
+                            layout.Show();
+
+                        }
+                        catch
+                        {
+
+                            layout = new RestaurantLayout(this);
+                            this.Hide();
+                            layout.Show();
+                        }
                     }
-                }
-                if (userExist == true)
-                {
-                    
-                    Password_box.Clear();
-                    try
-                    {
-                        this.Hide();                
-                        layout.Show();                
-                        
-                    }
-                    catch
-                    {
-                        
-                        layout = new RestaurantLayout(this);
-                        this.Hide();
-                        layout.Show();                  
-                    }
-                                       
                    
 
+
+                    //if (File.Exists("UserDetails.txt") == false)
+                    //{
+                    //    StreamWriter writer = new StreamWriter("UserDetails.txt");
+                    //    writer.Close();
+                    //}
+                    //StreamReader logIn = new StreamReader("UserDetails.txt");
+                    //string read = logIn.ReadToEnd();
+                    //string[] logInId = read.Split(',');
+
+                    //logInId = logInId.Take(logInId.Count() - 1).ToArray();
+
+                    //for (int i = 0; i < logInId.Length; i++)
+                    //{
+
+                    //    if (userId == logInId[i])
+                    //    {
+                    //        userExist = true;
+                    //        break;
+                    //    }
+                    //}
+                    //if (userExist == true)
+                    //{
+
+                    //    Password_box.Clear();
+                    //    try
+                    //    {
+                    //        this.Hide();
+                    //        layout.Show();
+
+                    //    }
+                    //    catch
+                    //    {
+
+                    //        layout = new RestaurantLayout(this);
+                    //        this.Hide();
+                    //        layout.Show();
+                    //    }
+
+
+
+                
+                    else
+                    {
+                        prompt_label.Content = "Incorrect ID";
+                        Password_box.Clear();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    prompt_label.Content = "Incorrect ID";
+                    prompt_label.Content = ex;
                     Password_box.Clear();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                prompt_label.Content = ex;
-                Password_box.Clear();
+                prompt_label.Content = "Please Enter Your LogIn ID!";
+
             }
+            
+           
+         
 
         }
 
