@@ -33,28 +33,29 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void DayEnd_Click(object sender, RoutedEventArgs e)
         {
-            string[] read = (serverRequest.read("xread")).Split(',');
+            serverRequest.read("xread");
+            //string[] read = (serverRequest.read("xread")).Split(',');
 
 
-            for (int i = 0; i < read.Length; i++)
-            {
-                if (read[i] == "cash")
-                {
-                    cash += double.Parse(read[i - 4]);
+            //for (int i = 0; i < read.Length; i++)
+            //{
+            //    if (read[i] == "cash")
+            //    {
+            //        cash += double.Parse(read[i - 4]);
 
 
-                }
-                else if (read[i] == "card")
-                {
-                    card += double.Parse(read[i - 4]);
-                }
-                else if (read[i] == "discount")
-                {
-                    Discount += double.Parse(read[i + 1]);
-                }
-            }
-            total = cash + card;
-            printXread();
+            //    }
+            //    else if (read[i] == "card")
+            //    {
+            //        card += double.Parse(read[i - 4]);
+            //    }
+            //    else if (read[i] == "discount")
+            //    {
+            //        Discount += double.Parse(read[i + 1]);
+            //    }
+            //}
+            //total = cash + card;
+            //printXread();
             if (MessageBox.Show("Would you like to Reset X-Read?", "Reset", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 serverRequest.read("reset");

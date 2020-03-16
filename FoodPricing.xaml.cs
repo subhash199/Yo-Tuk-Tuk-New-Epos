@@ -52,6 +52,10 @@ namespace Yo_Tuk_Tuk_Epos
                 EditWindow window = new EditWindow(details, layoutWindow, this);
                 window.Show();
             }
+            else
+            {
+                MessageBox.Show("Select an Item to Edit!");
+            }
            
         }
 

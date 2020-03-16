@@ -517,7 +517,7 @@ namespace Yo_Tuk_Tuk_Epos
             string sendToServer = "printReceipt," + tableNum + ",";
             for (int i = 0; i < sortedList.Count; i++)
             {
-                sendToServer += sortedList[i].identifier + "," + sortedList[i].name + "," + sortedList[i].value + ",";
+                sendToServer += sortedList[i].identifier + ","+sortedList[i].qty+"," + sortedList[i].name + "," + sortedList[i].value + ",";
 
             }
             sendToServer += "membersDiscount," + discountedValue + ",";
