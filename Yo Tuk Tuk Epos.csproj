@@ -120,6 +120,9 @@
       <DependentUpon>FoodPricing.xaml</DependentUpon>
     </Compile>
     <Compile Include="HoldItemsList.cs" />
+    <Compile Include="HostWindow.xaml.cs">
+      <DependentUpon>HostWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemList.cs" />
     <Compile Include="MenuItems.cs" />
     <Compile Include="orderItemIdentify.cs" />
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FoodPricing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -106,5 +106,11 @@ namespace Yo_Tuk_Tuk_Epos
             this.Close();            
             pricing.Show();
         }
+
+        private void Host_Click(object sender, RoutedEventArgs e)
+        {
+            HostWindow host = new HostWindow();
+            host.Show();
+        }
     }
 }

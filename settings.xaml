@@ -10,17 +10,22 @@
     
        
         <Grid >
+        <Viewbox>
+       
             <Grid>
          
                 <StackPanel Orientation="Horizontal">
                 
                     <Button x:Name="dayEnd" Content="Day End" Background="#FF4EE715"  Style="{StaticResource tables}" Click="DayEnd_Click"/>
                     <Button x:Name="update" Content="Update" Background="#FF4EE715"  Style="{StaticResource tables}" Click="Update_Click_1"/>
+                    <Button x:Name="host" Content="host" Background="#FF4EE715"  Style="{StaticResource tables}" Click="Host_Click"/>
                 
             </StackPanel>
            
         </Grid>
-        </Grid>
+
+        </Viewbox>
+    </Grid>
         
            
        

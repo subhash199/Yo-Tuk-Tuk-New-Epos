@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Habanero.Faces.Base;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = "194.207.197.57";
-        int hostNumber = 5002;
+        string hostName = File.ReadAllText("host.txt").Trim();
+        int hostNumber = 8002;
         
         internal void printReceipt()
         {
@@ -127,7 +128,12 @@ namespace Yo_Tuk_Tuk_Epos
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
+               if(MessageBox.Show("Is the server active?", "Server-Connection",MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+                {
+                    HostWindow window = new HostWindow();
+                    window.ShowDialog();       
+                }
                 
             }
             finally

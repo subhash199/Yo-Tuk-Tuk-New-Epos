@@ -528,7 +528,7 @@ namespace Yo_Tuk_Tuk_Epos
                 changeValue = changeValue.Replace('-', ' ');
                 changeValue = changeValue.Trim();
                 totalValue = decimal.Parse(changeValue);
-                sendToServer += "paid" + (totalValue + unChangedTotal).ToString();
+                sendToServer += "paid" + ","+(totalValue + unChangedTotal).ToString();
             }
             server.print(sendToServer);
         }
