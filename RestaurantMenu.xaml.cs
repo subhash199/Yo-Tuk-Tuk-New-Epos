@@ -34,6 +34,8 @@ namespace Yo_Tuk_Tuk_Epos
         decimal unChangedTotal = 0;
 
         decimal payment = 0;
+        decimal cardPayValue = 0;
+        decimal cashPayValue = 0;
         decimal mainCurryCount = 0;
         decimal discountedValue = 0;
         int padWidth = 18;
@@ -789,6 +791,15 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Cash_btn_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                cashPayValue += decimal.Parse(userInput.Text);
+            }
+            catch
+            {
+                
+            }
+            
             methodOfPay += " Cash ";
             payMethod();
 
@@ -796,6 +807,15 @@ namespace Yo_Tuk_Tuk_Epos
 
         private void Card_btn_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                cardPayValue += decimal.Parse(userInput.Text);
+            }
+            catch
+            {
+
+            }
+           
             methodOfPay += " Card ";
             payMethod();
         }
@@ -870,7 +890,7 @@ namespace Yo_Tuk_Tuk_Epos
 
                     toPay_btn.Text = "0";
                     change_btn.Text = totalValue.ToString();
-                    server.paid(txtFileName, orderID.ToString() + "," + DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay + "," + 0);
+                    server.paid(txtFileName, orderID.ToString() + "," + DateTime.Now + "," + tableNum + "," + unChangedTotal + "," + discountedValue + "," + methodOfPay + "," + 0+","+cashPayValue+","+cardPayValue);
                 }
 
 
@@ -890,7 +910,7 @@ namespace Yo_Tuk_Tuk_Epos
             }
             else
             {
-                if (userInput.Text.Length > 1)
+                if (userInput.Text.Length > 0)
                 {
                     pay();
                 }
