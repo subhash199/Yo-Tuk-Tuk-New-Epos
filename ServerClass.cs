@@ -150,9 +150,10 @@ namespace Yo_Tuk_Tuk_Epos
             TcpClient client = new TcpClient();
             try
             {
-               
+                string read = "";
                 client.Connect(hostName, hostNumber);
-                StreamWriter sw = new StreamWriter(client.GetStream());                
+                StreamWriter sw = new StreamWriter(client.GetStream());
+                StreamReader sr = new StreamReader(client.GetStream());
                 client.SendTimeout = 1000;
                 sw.AutoFlush = true;
                 if (fileName.Contains(".txt"))
@@ -161,7 +162,12 @@ namespace Yo_Tuk_Tuk_Epos
                 }
                 else
                 {
-                    sw.WriteLine(fileName);
+                   sw.WriteLine(fileName);
+                   if( sr.ReadLine()=="OK")
+                    {
+                        MessageBox.Show("Updated successfully!");
+                    }
+                   
                 }
             }
             catch (Exception e)
@@ -174,7 +180,7 @@ namespace Yo_Tuk_Tuk_Epos
                 client.Close();
             }
 
-
+          
 
         }
         internal void paid(string fileName, string info)

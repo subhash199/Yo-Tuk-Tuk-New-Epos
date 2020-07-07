@@ -483,21 +483,21 @@ namespace Yo_Tuk_Tuk_Epos
             else if (category == "Sd")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
-                holdPrint.Insert(startersCount, new orderItemIdentify("*sd", Name));
+                holdPrint.Insert(MainCount+startersCount, new orderItemIdentify("*sd", Name));
                 sideCount += 1;
                 discountButtonCheck();
             }
             else if (category == "C")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
-                holdPrint.Insert(startersCount, new orderItemIdentify("*c", Name));
+                holdPrint.Insert(sideCount+MainCount+startersCount, new orderItemIdentify("*c", Name));
                 desertsCount += 1;
                 discountButtonCheck();
             }
             else if (category == "D")
             {
                 currentList.Add(category + "," + Name + "," + price + ",");
-                holdPrint.Insert(startersCount, new orderItemIdentify("*d", Name));
+                holdPrint.Insert(desertsCount+sideCount + MainCount + startersCount, new orderItemIdentify("*d", Name));
                 discountButtonCheck();
             }
 

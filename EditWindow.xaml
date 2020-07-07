@@ -13,7 +13,7 @@
                 <Label x:Name="Id_label" Content="" HorizontalAlignment="Left" Margin="53,83,0,0" VerticalAlignment="Top" FontSize="18"/>
                 <Label Content="Category" HorizontalAlignment="Left" Margin="187,41,0,0" VerticalAlignment="Top" FontSize="18"/>
                 <Label Content="Dish Name" HorizontalAlignment="Left" Margin="361,41,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.822,0.337"/>
-                <Label Content="Price" HorizontalAlignment="Left" Margin="549,41,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <Label Content="Price" HorizontalAlignment="Left" Margin="547,41,0,0" VerticalAlignment="Top" FontSize="18"/>
                 <TextBox x:Name="category_box" HorizontalAlignment="Left" Height="23" Margin="145,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
                 <TextBox x:Name="dish_box" HorizontalAlignment="Left" Height="23" Margin="345,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
                 <TextBox x:Name="price_box" HorizontalAlignment="Left" Height="23" Margin="519,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="108"/>

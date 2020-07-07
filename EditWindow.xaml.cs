@@ -43,7 +43,7 @@ namespace Yo_Tuk_Tuk_Epos
                 {
                     string updateDetails = Id_label.Content + "," + category_box.Text + "," + dish_box.Text + "," + p;
                     ServerClass server = new ServerClass();
-                    server.create("updateDetails," + updateDetails);
+                    server.create("updateDetails," + updateDetails);                    
                     this.Close();
                     FoodPricing pricing = new FoodPricing(layoutWindow);
                     pricing.Show();
