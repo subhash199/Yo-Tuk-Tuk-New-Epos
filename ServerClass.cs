@@ -14,8 +14,8 @@ namespace Yo_Tuk_Tuk_Epos
     class ServerClass
     {
 
-        string hostName = File.ReadAllText("host.txt").Trim();
-        int hostNumber = 8002;
+        string hostName = File.ReadAllText("host.txt").Trim();        
+        int hostNumber = int.Parse(File.ReadAllText("port.txt").Trim());
         
         internal void printReceipt()
         {

@@ -5,22 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yo_Tuk_Tuk_Epos"
         mc:Ignorable="d"
-        Title="HostWindow" Height="450" Width="800">
+        Title="HostWindow" Height="300" Width="800">
     <Grid>
         <Viewbox>
             <Grid>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <Label x:Name="hostTitle" Content="Host" HorizontalContentAlignment="Center"></Label>
-                    <TextBox x:Name="hostBox"></TextBox>                  
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="ok_btn"  Background="#FF4EE715" Content="Ok" Style="{StaticResource tables}" Width="80" Height="40" FontSize="12" Click="Ok_btn_Click" />
-                    <Button x:Name="cancel_btn"  Background="Red" Content="Cancel" Style="{StaticResource tables}" Width="80" Height="40" FontSize="12" Click="Cancel_btn_Click" />
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
+                        <Label x:Name="hostTitle" Content="Host" HorizontalContentAlignment="Center"></Label>
+                        <TextBox x:Name="hostBox" Width="130" ></TextBox>                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
+                         <Label x:Name="portTitle" Content="Port" HorizontalContentAlignment="Center"></Label>
+                    <TextBox x:Name="portBox" Margin="5,0,0,0" Width="128"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="ok_btn"  Background="#FF4EE715" Content="Ok" Style="{StaticResource tables}" Width="100" Height="40" FontSize="12" Click="Ok_btn_Click" />
+                        <Button x:Name="cancel_btn"  Background="Red" Content="Cancel" Style="{StaticResource tables}" Width="100" Height="40" FontSize="12" Click="Cancel_btn_Click" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Viewbox>
-        
+
     </Grid>
 </Window>
